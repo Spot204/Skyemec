@@ -1,0 +1,167 @@
+.Body-top {
+    padding: 10px 0 0 0;
+
+    .slider-image {
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .slider-image:active {
+        cursor: grabbing
+    }
+
+    .slick-dots li button::before {
+        font-size: 15px !important;
+        position: absolute !important;
+        margin-top: 30px !important;
+        color: #333 !important;
+    }
+}
+
+.Body-top-connect {
+    display: block;
+    position: absolute;
+    transform: translate(300px, -600px);
+    z-index: 9;
+}
+
+.Body-top-connect-text {
+    font-size: 45px;
+    display: block;
+    width: 520px;
+    color: #b1b1b1;
+    cursor: default;
+    font-weight: bolder;
+}
+
+.Body-top-connect-button {
+    font-size: 20px;
+    color: white;
+    background-color: #51be9d;
+    border: 0px;
+    border-radius: 50px;
+    padding: 7px 25px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.Body-top-extension {
+    display: flex;
+    position: absolute;
+    width: auto;
+    padding: 20px;
+    transform: translate(300px, -90px);
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.Body-top-item {
+    display: flex;
+    width: 240px;
+}
+
+#search-doctor {
+    padding-left: 15px;
+    border-left: 1px solid #b1b1b1;
+}
+
+#schedule {
+    padding-left: 15px;
+    border-left: 1px solid #b1b1b1;
+}
+
+.Body-top-extension-icon {
+    margin-top: 5px;
+    font-size: 25px;
+    color: #0076c0;
+}
+
+#contact {
+    padding-right: 15px;
+}
+
+.Body-top-item-text {
+    margin-left: 10px;
+}
+
+.Body-top-item-text-top {
+    padding: 0;
+    margin: 0;
+}
+
+.Body-top-item-text-down {
+    font-size: 15px;
+    color: #b1b1b1;
+    padding: 0;
+}
+
+#Body-middle-header {
+    margin-top: 90px;
+    margin-left: 300px;
+}
+
+.Body-middle {
+    display: flex;
+    width: 1055px;
+    margin-top: 10px;
+    height: 600px;
+    transform: translateX(35%)
+}
+
+.Body-middle-information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 80px;
+
+    .Body-middle-infor-item {
+        width: 300px;
+    }
+
+    .Body-infor-icon {
+        font-size: 30px;
+        color: #0076c0;
+    }
+}
+
+.Body-middle-infor-item-top {
+    color: #0076c0;
+}
+
+.space {
+    width: auto;
+    height: 100px;
+    background-color: #0076c0;
+}
+
+.Body-bottom {
+    margin-top: 20px;
+    display: flex;
+    width: auto;
+    justify-content: center;
+}
+
+
+.Body-bottom-images {
+    max-width: 500px;
+    max-height: 400px;
+}
+
+.Body-bottom-about-Skyemec-infor {
+    margin-left: 20px;
+    width: 600px;
+}
+
+.Body-bottom-header {
+    font-size: 40px;
+}
+
+.Body-bottom-label {
+    font-size: 15px;
+}
+
+.Body-top-item-text-top:hover {
+    color: #0076c0;
+}
