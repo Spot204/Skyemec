@@ -1,0 +1,63 @@
+.background {
+  background-color: lightgray;
+  margin: 0px;
+  border: 0.1px solid lightgray;
+  height: auto;
+}
+
+.container {
+  background-color: white;
+  height: auto;
+  margin: 200px 150px 0 150px;
+}
+
+.date {
+  margin: 0 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.scheduled {
+  margin-left: 160px;
+  font-size: 20px;
+}
+
+.worktime {
+  margin-left: 160px;
+  font-size: 20px;
+  padding-bottom: 50px;
+}
+
+h2 {
+  color: #0067ab;
+  font-size: 26px;
+  margin-left: 80px;
+  margin-bottom: 35px;
+}
+
+.line {
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 180px;
+  width: 65%;
+}
+
+button {
+  height: 70px;
+  width: 70px;
+  background-color: #51be9d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #4a9f8b;
+  color: white;
+}
