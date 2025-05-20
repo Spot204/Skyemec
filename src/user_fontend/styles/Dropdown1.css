@@ -1,0 +1,41 @@
+.Bodysd-oder-dropdown-container {
+    position: relative;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    margin-top: 5px;
+}
+
+.Bodysd-oder-select {
+    padding: 10px;
+    color: #aaa;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Bodysd-oder-select:hover {
+    background-color: #e0e0e0;
+}
+
+.Bodysd-oder-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 99.5%;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.Bodysd-oder-dropdown-item {
+    padding: 3px 12px;
+    cursor: pointer;
+}
+
+.Bodysd-oder-dropdown-item:hover {
+    background-color: #ddd;
+}

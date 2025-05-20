@@ -1,0 +1,56 @@
+.Bodysd-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.Bodysd-dropdown-button {
+    width: 100%;
+    padding: 10px;
+    border: transparent;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: left;
+}
+
+.Bodysd-dropdown-button:active {
+    border: transparent;
+}
+
+.Bodysd-dropdown-menu {
+    position: absolute;
+    width: 200%;
+    transform: translateX(-50px);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.Bodysd-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+}
+
+.Bodysd-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+
+    P {
+        margin-left: 10px;
+    }
+
+    .Bodysd-select-icon {
+        color: #0076c0;
+    }
+}

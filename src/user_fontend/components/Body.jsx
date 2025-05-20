@@ -8,7 +8,6 @@ import image1 from "../assets/small1.jpg";
 import image2 from "../assets/small2.jpg";
 import image3 from "../assets/small3.jpg";
 import image4 from "../assets/small4.jpg";
-// import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,7 +22,7 @@ import { faShieldHeart } from "@fortawesome/free-solid-svg-icons";
 const sliders = [slider1, slider2, slider3, slider4];
 const images = [image1, image2, image3, image4];
 
-const Body = () => {
+const Body = ({ setCurrentPage }) => {
   const settings = {
     dots: true, // Hiển thị chấm chỉ báo
     infinite: true, // Lặp lại vô tận
@@ -48,7 +47,7 @@ const Body = () => {
   };
 
   return (
-    <body className="Body-container">
+    <div className="Body-container">
       <div className="Body-top">
         <Slider {...settings}>
           {sliders.map((img, index) => (
@@ -59,7 +58,7 @@ const Body = () => {
         </Slider>
         <div className="Body-top-connect">
           <span className="Body-top-connect-text">
-            Chăm sóc bằng tài năng, ý đức và sự thấu cảm
+            Chăm sóc bằng tài năng, y đức và sự thấu cảm
           </span>
           <button className="Body-top-connect-button">Xem thêm</button>
         </div>
@@ -76,7 +75,11 @@ const Body = () => {
               </span>
             </div>
           </div>
-          <div className="Body-top-item" id="schedule">
+          <div
+            className="Body-top-item"
+            id="schedule"
+            onClick={() => setCurrentPage("oder_doctor")}
+          >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
               icon={faCalendar}
@@ -88,7 +91,11 @@ const Body = () => {
               </span>
             </div>
           </div>
-          <div className="Body-top-item" id="search-doctor">
+          <div
+            className="Body-top-item"
+            id="search-doctor"
+            onClick={() => setCurrentPage("search_doctor")}
+          >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
               icon={faUserDoctor}
@@ -152,17 +159,20 @@ const Body = () => {
       <div className="space"></div>
       <div className="Body-bottom">
         <div className="Body-bottom-images">
-          <Slider {...settings_local}>
-            {images.map((img, index) => (
-              <div key={index}>
-                <img
-                  src={img}
-                  alt={`Slide ${index}`}
-                  className="Body-bottom-slider-image"
-                />
-              </div>
-            ))}
-          </Slider>
+          {images.length > 0 && (
+            <Slider {...settings_local}>
+              {images.map((img, index) => (
+                <div key={index}>
+                  <img
+                    src={img}
+                    alt={`Slide ${index}`}
+                    className="Body-bottom-slider-image"
+                  />
+                </div>
+              ))}
+            </Slider>
+          )}
+          <hr className="bug" />
         </div>
         <div className="Body-bottom-about-Skyemec">
           <div className="Body-bottom-about-Skyemec-infor">
@@ -179,8 +189,7 @@ const Body = () => {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 };
-
 export default Body;

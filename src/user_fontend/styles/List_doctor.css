@@ -1,0 +1,44 @@
+.List-doctor {
+    list-style-type: none;
+    display: grid;
+    width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.List-doctor-item {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    width: 400px;
+}
+
+.btn-register-for-examination {
+    width: 120px;
+    height: 40px;
+    border: 0px;
+    background-color: #0076c0;
+    border-radius: 5px;
+    color: white;
+}
+
+.List-doctor-item-right {
+    color: #0076c0;
+}
+
+.btn-List-number {
+    background-color: aliceblue;
+    color: black;
+    border: 0;
+    border-radius: 20px;
+}
+
+.btn-List-number :hover {
+    background-color: #0076c0;
+    color: white;
+}
+
+.btn-List-number .active {
+    background-color: #0076c0;
+    color: white;
+}
