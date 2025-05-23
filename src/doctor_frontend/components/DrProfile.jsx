@@ -1,10 +1,12 @@
-import "../styles/Body.css";
+import "../styles/DrProfile.css";
 import dr1 from "../assets/dr-pho-hoang-dang-mich.PNG";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DrProfile = () => {
   return (
     <div className="background">
-      <div className="container">
+      <div className="container1">
         <div className="doctor">
           <div className="col1">
             <div className="img">

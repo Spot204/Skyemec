@@ -4,12 +4,12 @@
   border: 0.1px solid lightgray;
 }
 
-.container {
+.container1 {
   background-color: white;
-  display: flex;
   justify-content: center;
+  display: flex;
   height: 200vh;
-  margin: 200px 150px 0 150px;
+  margin: 50px 150px 0 150px;
 }
 
 .doctor {
