@@ -1,29 +1,37 @@
 import "../styles/Body_Search_doctor.css";
-import image1 from "../assets/image1.jpg";
+import image1 from "../assets/Docimage1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faCalendar } from "@fortawesome/free-regular-svg-icons";
-import { faUserDoctor } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPhone,
+  faCalendar,
+  faUserDoctor,
+} from "@fortawesome/free-solid-svg-icons";
 import Oder_doctor from "./Oder_Doctor";
 import Search_doctor from "./Search_doctor";
 import { useState } from "react";
+import Department from "./Department";
+import { useNavigate } from "react-router-dom";
 
-const Body_Search_doctor = ({ activeComponent, setCurrentPage }) => {
-  const [topText, setTopText] = useState("DANH SÁCH BÁC SĨ - CHUYÊN GIA");
+const Body_Search_doctor = ({ topText, setTopText }) => {
+  const navigate = useNavigate();
+
   return (
     <section className="Bodysd-container">
       <div className="Bodysd-top">
         <img className="Bodysd-top-image" src={image1} alt="doctor" />
-        <div className="Bodysd-top-text"> {topText}</div>
+        <div className="Bodysd-top-text">{topText}</div>
         <div className="Bodysd-top-extension">
           <div className="Bodysd-top-exten-item" id="Phone">
             <FontAwesomeIcon className="icon" icon={faPhone} />
-            <p className="Bodysd-top-exten-item-text">Gọi tổng đài</p>{" "}
+            <p className="Bodysd-top-exten-item-text">Gọi tổng đài</p>
           </div>
           <div
             className="Bodysd-top-exten-item"
             id="Calendar"
-            onClick={() => setCurrentPage("oder_doctor")}
+            onClick={() => {
+              navigate("/oder_doctor");
+              setTopText("ĐẶT LỊCH KHÁM BỆNH");
+            }}
           >
             <FontAwesomeIcon className="icon" icon={faCalendar} />
             <p className="Bodysd-top-exten-item-text">Đặt lịch hẹn</p>
@@ -32,8 +40,8 @@ const Body_Search_doctor = ({ activeComponent, setCurrentPage }) => {
             className="Bodysd-top-exten-item"
             id="Doctor"
             onClick={() => {
-              setCurrentPage("search_doctor");
-              setTopText("ĐẶT LỊCH KHÁM BỆNH");
+              setTopText("DANH SÁCH BÁC SĨ - CHUYÊN GIA");
+              navigate("/search_doctor");
             }}
           >
             <FontAwesomeIcon className="icon" icon={faUserDoctor} />
@@ -41,9 +49,8 @@ const Body_Search_doctor = ({ activeComponent, setCurrentPage }) => {
           </div>
         </div>
       </div>
-      {activeComponent === "oder_doctor" && <Oder_doctor />}
-      {activeComponent === "search_doctor" && <Search_doctor />}
     </section>
   );
 };
+
 export default Body_Search_doctor;

@@ -18,11 +18,13 @@ import { faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import { faHeartPulse } from "@fortawesome/free-solid-svg-icons/faHeartPulse";
 import { faStethoscope } from "@fortawesome/free-solid-svg-icons";
 import { faShieldHeart } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const sliders = [slider1, slider2, slider3, slider4];
 const images = [image1, image2, image3, image4];
 
-const Body = ({ setCurrentPage }) => {
+const Body = () => {
+  const navigate = useNavigate();
   const settings = {
     dots: true, // Hiển thị chấm chỉ báo
     infinite: true, // Lặp lại vô tận
@@ -78,7 +80,7 @@ const Body = ({ setCurrentPage }) => {
           <div
             className="Body-top-item"
             id="schedule"
-            onClick={() => setCurrentPage("oder_doctor")}
+            onClick={() => navigate("/oder_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
@@ -94,7 +96,7 @@ const Body = ({ setCurrentPage }) => {
           <div
             className="Body-top-item"
             id="search-doctor"
-            onClick={() => setCurrentPage("search_doctor")}
+            onClick={() => navigate("/search_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
