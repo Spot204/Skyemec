@@ -3,7 +3,7 @@ import Header from "./user_fontend/components/Header";
 import Body from "./user_fontend/components/Body";
 import Body_Search_doctor from "./user_fontend/components/Body_Search_doctor";
 import Footer from "./user_fontend/components/Footer";
-import Login from "./doctor_frontend/components/DrProfile";
+import Login from "./login/components/Body";
 import Schedule from "./doctor_frontend/components/DrSchedule";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Schedule />
+      <Login />
       {/* {currentPage === "home" && <Body setCurrentPage={setCurrentPage} />}
       {currentPage === "home" ? (
         <Body />
@@ -25,7 +25,6 @@ const App = () => {
       {currentPage !== "home" &&
         currentPage !== "oder_doctor" &&
         currentPage !== "search_doctor" && <div>Page not found</div>} */}
-      <Footer />
     </>
   );
 };
