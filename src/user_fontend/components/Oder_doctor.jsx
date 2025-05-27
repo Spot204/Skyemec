@@ -2,11 +2,12 @@ import "../styles/Oder_doctor.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 
 const Oder_doctor = () => {
   const options = ["dfasdf", "dafsdfasdf", "dafsdfasdf"];
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   const [formData, setFormData] = useState({
     gender: "",
@@ -19,13 +20,60 @@ const Oder_doctor = () => {
     }));
   }, []);
 
- const [users, setUsers] = useState([]);
-    useEffect(() => {
-      axios
-        .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
-        .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
-        .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
-    }, []);
+  //  const [users, setUsers] = useState([]);
+  //     useEffect(() => {
+  //       axios
+  //         .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
+  //         .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
+  //         .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
+  //     }, []);
+
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [schedule, setSchedule] = useState([]);
+  const [showDatePicker, setShowDatePicker] = useState(false); // Ẩn Date Picker mặc định
+
+  const handleSelectDate = (dayType) => {
+    let today = new Date();
+    let selected = new Date(today);
+
+    if (dayType === "tomorrow") selected.setDate(today.getDate() + 1);
+    if (dayType === "dayAfterTomorrow") selected.setDate(today.getDate() + 2);
+    if (dayType === "custom") {
+      setShowDatePicker(true); // Hiển thị Date Picker khi chọn "Ngày khác"
+      return;
+    }
+
+    setShowDatePicker(false); // Ẩn Date Picker nếu chọn một ngày cụ thể
+    setSelectedDate(selected);
+    generateSchedule(selected);
+  };
+
+  // Sửa lịch làm việc theo yêu cầu
+  const generateSchedule = (date) => {
+    let schedule = [];
+    let dayOfWeek = date.getDay(); // 0: Chủ Nhật, 6: Thứ 7
+    let now = new Date();
+    let currentHour = now.getHours() + now.getMinutes() / 60; // Lấy giờ hiện tại
+
+    if (dayOfWeek === 0) {
+      setSchedule(["Chủ Nhật nghỉ làm"]);
+      return;
+    }
+
+    let startTime = 8;
+    let endTime = dayOfWeek === 6 ? 11.5 : 16.5; // Thứ 7 kết thúc lúc 11h30, ngày thường lúc 16h30
+
+    for (let time = startTime; time <= endTime; time += 0.5) {
+      let isPast =
+        date.toDateString() === now.toDateString() && time <= currentHour;
+      schedule.push({
+        time: `${Math.floor(time)}:${time % 1 === 0 ? "00" : "30"}`,
+        isPast,
+      });
+    }
+
+    setSchedule(schedule);
+  };
 
   return (
     <div className="Bodysd-middle">
@@ -73,22 +121,110 @@ const Oder_doctor = () => {
           <div className="discription">
             <label className="Bodysd-oder-date">Thời gian khám</label>
             <div className="Bodysd-oder-date">
-              <div className="Bodysd-oder-boxdate">
-                <h3 className="date-of-month"></h3>
-                <label className="date-of-week">today</label>
+              <div
+                className="Bodysd-oder-boxdate"
+                onClick={() => handleSelectDate("today")}
+              >
+                <div>
+                  <h3>{new Date().getDate()}</h3>
+                  <label>
+                    {
+                      [
+                        "Chủ Nhật",
+                        "Thứ Hai",
+                        "Thứ Ba",
+                        "Thứ Tư",
+                        "Thứ Năm",
+                        "Thứ Sáu",
+                        "Thứ Bảy",
+                      ][new Date().getDay()]
+                    }
+                  </label>
+                </div>
               </div>
-              <div className="Bodysd-oder-boxdate">
-                <h3 className="date-of-month"></h3>
-                <label className="date-of-week">tomorrow</label>
+              <div
+                className="Bodysd-oder-boxdate"
+                onClick={() => handleSelectDate("tomorrow")}
+              >
+                <div>
+                  <h3>{new Date().getDate() + 1}</h3>
+                  <label>
+                    {
+                      [
+                        "Chủ Nhật",
+                        "Thứ Hai",
+                        "Thứ Ba",
+                        "Thứ Tư",
+                        "Thứ Năm",
+                        "Thứ Sáu",
+                        "Thứ Bảy",
+                      ][new Date().getDay() + 1]
+                    }
+                  </label>
+                </div>
               </div>
-              <div className="Bodysd-oder-boxdate">
-                <h3 className="date-of-month"></h3>
-                <label className="date-of-week">day after tomorrow</label>
+              <div
+                className="Bodysd-oder-boxdate"
+                onClick={() => handleSelectDate("dayAfterTomorrow")}
+              >
+                <div>
+                  <h3>{new Date().getDate() + 2}</h3>
+                  <label>
+                    {
+                      [
+                        "Chủ Nhật",
+                        "Thứ Hai",
+                        "Thứ Ba",
+                        "Thứ Tư",
+                        "Thứ Năm",
+                        "Thứ Sáu",
+                        "Thứ Bảy",
+                      ][new Date().getDay() + 2]
+                    }
+                  </label>
+                </div>
               </div>
-              <div className="Bodysd-oder-boxdate">
-                <label className="date-of-week">ngày khác</label>
+              <div
+                className="Bodysd-oder-boxdate"
+                onClick={() => handleSelectDate("custom")}
+              >
+                <div>
+                  <input
+                    className="date-picker-container"
+                    type="date"
+                    min={new Date().toISOString().split("T")[0]} // Chỉ cho phép chọn ngày hiện tại trở đi
+                    onChange={(e) => {
+                      setSelectedDate(new Date(e.target.value));
+                      generateSchedule(new Date(e.target.value));
+                      setShowDatePicker(false); // Ẩn Date Picker sau khi chọn
+                    }}
+                    value="Ngày khác"
+                  />
+                  <br />
+                  <label>Ngày khác</label>
+                </div>
               </div>
             </div>
+
+            {/* Hiển thị lịch làm việc */}
+            {selectedDate && (
+              <div className="schedule">
+                <h4>Lịch làm việc ngày {selectedDate?.toLocaleDateString()}</h4>
+                <ul>
+                  {schedule.map((slot, index) => (
+                    <li
+                      key={index}
+                      className={`slot-item ${
+                        slot.isPast ? "disabled-slot" : ""
+                      } ${selectedSlot === slot.time ? "selected-slot" : ""}`}
+                      onClick={() => setSelectedSlot(slot.time)}
+                    >
+                      {slot.time}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <label className="Bodysd-oder-note">
               Lưu ý: Tổng đài viên Vinmec sẽ gọi lại cho quý khách để xác nhận
               thông tin thời gian dựa theo đăng ký và điều chỉnh nếu cần thiết.
