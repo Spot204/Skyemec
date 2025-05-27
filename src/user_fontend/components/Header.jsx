@@ -103,7 +103,7 @@ const Header = () => {
       <div className="Header-navbar-right">
         <div className="Header-login">
           <FontAwesomeIcon icon={faUser} />
-          <span className="login">Đăng nhập</span>
+          <span className="login" onClick={() => navigate("login")}>Đăng nhập</span>
         </div>
         <div className="Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />

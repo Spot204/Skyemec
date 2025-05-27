@@ -1,4 +1,4 @@
-import "../styles/Oder_doctor.css";
+import "../styles/Oder_doctor.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
@@ -48,10 +48,10 @@ const Oder_doctor = () => {
     generateSchedule(selected);
   };
 
-  // Sửa lịch làm việc theo yêu cầu
+
   const generateSchedule = (date) => {
     let schedule = [];
-    let dayOfWeek = date.getDay(); // 0: Chủ Nhật, 6: Thứ 7
+    let dayOfWeek = date.getDay(); 
     let now = new Date();
     let currentHour = now.getHours() + now.getMinutes() / 60; // Lấy giờ hiện tại
 
