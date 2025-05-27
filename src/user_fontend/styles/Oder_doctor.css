@@ -63,6 +63,10 @@
     font-size: 16px;
     border: 1px solid #ccc;
 }
+#Bodysd-input-name{
+    width: 75%;
+    margin-right: 20px;
+}
 
 .Bodysd-input-field:active {
     border: 1px solid #ccc;

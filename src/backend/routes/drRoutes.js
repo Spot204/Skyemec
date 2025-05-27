@@ -1,13 +1,14 @@
-const express = require("express");
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
+import express from "express";
+import Dr from "../models/Dr";
+import bcrypt from "bcrypt";
+
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await Dr.findOne({ email });
     if (!user)
       return res.status(400).json({ message: "Sai email hoặc mật khẩu!" });
 
@@ -17,8 +18,8 @@ router.post("/login", async (req, res) => {
 
     res.json({ message: "Đăng nhập thành công!" });
   } catch (error) {
-    res.status(500).json({ message: "Lỗi server!" });
+    res.status(500).json({ message: "Lỗi server!", error });
   }
 });
 
-module.exports = router;
+export default router;

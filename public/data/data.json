@@ -1,0 +1,48 @@
+{
+  "cap_cuu": {
+    "name": "Cấp cứu",
+    "sections": {
+      "general": {
+        "title": "Tổng quát",
+        "headers": ["Hoạt động 24/7"],
+        "notes": ["Thông tin chung về khoa cấp cứu"],
+        "images": ["/src/user_fontend/assets/image1.jpg"]
+      },
+      "service": {
+        "title": "Dịch vụ",
+        "headers": ["Dịch vụ cấp cứu khẩn cấp"],
+        "notes": ["Danh sách các dịch vụ cấp cứu"],
+        "images": ["./assets/image2.jpg"]
+      },
+      "technology": {
+        "title": "Kỹ thuật - Công nghệ",
+        "headers": ["Ứng dụng công nghệ tiên tiến"],
+        "notes": ["Các kỹ thuật hiện đại đang được triển khai"],
+        "images": ["./assets/image3.jpg"]
+      }
+    }
+  },
+  "chan_thuong_chinh_hinh": {
+    "name": "Chấn thương chỉnh hình",
+    "sections": {
+      "general": {
+        "title": "Tổng quát",
+        "headers": ["Đánh giá và điều trị"],
+        "notes": ["Thông tin tổng quát về chỉnh hình"],
+        "images": ["./assets/image4.jpg"]
+      },
+      "service": {
+        "title": "Dịch vụ",
+        "headers": ["Các dịch vụ phục hồi chức năng"],
+        "notes": ["Danh sách dịch vụ của khoa chỉnh hình"],
+        "images": ["./assets/image5.jpg"]
+      },
+      "technology": {
+        "title": "Kỹ thuật - Công nghệ",
+        "headers": ["Công nghệ phẫu thuật tiên tiến"],
+        "notes": ["Ứng dụng công nghệ mới trong phẫu thuật chỉnh hình"],
+        "images": ["./assets/image6.jpg"]
+      }
+    }
+  }
+}
