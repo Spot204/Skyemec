@@ -1,0 +1,97 @@
+.AppointmentList-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 85, 102, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+  }
+  
+  .AppointmentList-table th,
+  .AppointmentList-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f3f3f3;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .AppointmentList-table thead tr {
+    background-color: #005566;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .AppointmentList-table tbody tr:hover {
+    background-color: #f0f8ff;
+  }
+  
+  /* Trạng thái màu sắc */
+  .status-pending {
+    color: #f57c00; /* cam */
+    font-weight: 600;
+  }
+  
+  .status-confirmed {
+    color: #2e7d32; /* xanh lá */
+    font-weight: 600;
+  }
+  
+  .status-cancelled {
+    color: #cc4b37; /* đỏ */
+    font-weight: 600;
+  }
+  
+  /* Button chung */
+  .btn {
+    border: none;
+    padding: 6px 14px;
+    margin-right: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Xác nhận - nút màu xanh đậm */
+  .btn-confirm {
+    background-color: #005566;
+    color: white;
+  }
+  
+  .btn-confirm:hover {
+    background-color: #0077cc;
+  }
+  
+  /* Hủy - nút màu đỏ nhạt */
+  .btn-cancel {
+    background-color: #cc4b37;
+    color: white;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #e67368;
+  }
+  
+  /* Khôi phục - nút màu xanh lá */
+  .btn-restore {
+    background-color: #2e7d32;
+    color: white;
+  }
+  
+  .btn-restore:hover {
+    background-color: #4caf50;
+  }
+  
+  /* Xem - nút màu xanh da trời */
+  .btn-view {
+    background-color: #006699;
+    color: white;
+  }
+  
+  .btn-view:hover {
+    background-color: #3399ff;
+  }
+  

@@ -1,0 +1,131 @@
+.NewsManagement-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+    background-color: #fff;
+  }
+  
+  .NewsManagement-container h2 {
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #005566;
+    padding-bottom: 8px;
+  }
+  
+  .NewsManagement-form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .NewsManagement-form input[type="text"],
+  .NewsManagement-form select,
+  .NewsManagement-form textarea {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    color: #005566;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .NewsManagement-form select {
+    max-width: 300px;
+  }
+  
+  .NewsManagement-form textarea {
+    resize: vertical;
+  }
+  
+  .NewsManagement-buttons {
+    margin-top: 10px;
+  }
+  
+  .NewsManagement-buttons button {
+    background-color: #005566;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 12px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .NewsManagement-buttons button:hover {
+    background-color: #0077cc;
+  }
+  
+  .NewsManagement-buttons .btn-cancel {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .NewsManagement-buttons .btn-cancel:hover {
+    background-color: #aaa;
+    color: white;
+  }
+  
+  .NewsManagement-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,85,102,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .NewsManagement-table th,
+  .NewsManagement-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f3f3f3;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .NewsManagement-table thead tr {
+    background-color: #005566;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .NewsManagement-table tbody tr:hover {
+    background-color: #f0f8ff;
+  }
+  
+  .NewsManagement-table button {
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 6px;
+  }
+  
+  .NewsManagement-table .btn-edit {
+    background-color: #0077cc;
+    color: white;
+  }
+  
+  .NewsManagement-table .btn-edit:hover {
+    background-color: #3399ff;
+  }
+  
+  .NewsManagement-table .btn-delete {
+    background-color: #cc4b37;
+    color: white;
+  }
+  
+  .NewsManagement-table .btn-delete:hover {
+    background-color: #e67368;
+  }
+  
