@@ -46,11 +46,15 @@ const DrSchedule = () => {
     <div className="background">
       <div className="container">
         <div style={{ textAlign: "center", padding: "20px" }}>
-          <button onClick={handlePrev}>&lt;</button>
+          <button class="change-month" onClick={handlePrev}>
+            &lt;
+          </button>
           <span className="date">
             Tháng {month}, {year}
           </span>
-          <button onClick={handleNext}>&gt;</button>
+          <button class="change-month" onClick={handleNext}>
+            &gt;
+          </button>
         </div>
         <h25>Lịch trình làm việc</h25>
         <div className="scheduled">

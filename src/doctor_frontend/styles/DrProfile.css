@@ -48,6 +48,10 @@
   cursor: pointer;
 }
 
+.drpro-general {
+  margin-top: 70px;
+}
+
 .doctor {
   flex: 5;
   width: 50%;

@@ -19,6 +19,7 @@
 .scheduled {
   margin-left: 160px;
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .worktime {
@@ -31,6 +32,7 @@ h25 {
   color: #0067ab;
   font-size: 26px;
   margin-left: 80px;
+  font-weight: bold;
 }
 
 .line {
@@ -41,7 +43,7 @@ h25 {
   width: 80%;
 }
 
-button {
+.change-month {
   height: 70px;
   width: 70px;
   background-color: #51be9d;
@@ -54,7 +56,7 @@ button {
   margin-top: 10px;
 }
 
-button:hover {
+.change-month:hover {
   background-color: #4a9f8b;
   color: white;
 }

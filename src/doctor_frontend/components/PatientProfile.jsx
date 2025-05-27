@@ -4,26 +4,43 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import topimage from "../assets/Docimage1.jpg";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const PatientProfile = () => {
   const navigate = useNavigate();
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/patients")
+      .then((res) => {
+        console.log("DATA:", res.data);
+        setPatients(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const patient = patients[0];
+
+  if (!patient) return <div>Đang tải dữ liệu...</div>;
 
   return (
     // bổ sung onClick
     <div className="papro-cover">
       <div className="papro-top-text">
-        <h455>THÔNG TIN BỆNH NHÂN</h455>
+        <a>THÔNG TIN BỆNH NHÂN</a>
       </div>
       <img className="papro-top-image" src={topimage} alt="patient" />
       <span onClick={() => navigate("")} className="papro-navigator">
         Trang chủ <FontAwesomeIcon icon={faAngleRight} /> {"  "}
       </span>
       <span onClick={() => navigate("")} className="papro-navigator-2">
-        Tìm bác sĩ <FontAwesomeIcon icon={faAngleRight} />
+        Hồ sơ bệnh án <FontAwesomeIcon icon={faAngleRight} />
       </span>
       <span className="papro-navigator-3">
         {"  "}
-        Bệnh nhân Nguyễn Văn A
+        Bệnh nhân {patient.name}
       </span>
       <div className="main-papro-container">
         <div className="patient">
@@ -32,81 +49,75 @@ const PatientProfile = () => {
               <img src={patient1} alt="Ảnh 1" />
             </div>
             <div className="papro-info">
-              <h3>Bệnh nhân</h3>
-              <h4>Nguyễn Văn A</h4>
+              <h6>Bệnh nhân</h6>
+              <h4>{patient.name}</h4>
               <button>Sửa thông tin</button>
             </div>
           </div>
           <div className="papro-general">
             <h5>Thông tin cơ bản</h5>
-            <p>Số điện thoại: 0123456789</p>
-            <p>Ngày sinh: 01/01/1969</p>
-            <p>CMND/CCCD: 123456789</p>
-            <p>Giới tính: Nam</p>
-            <p>Dân tộc: Kinh</p>
-            <p>Địa chỉ thường trú: Quận Thanh Xuân, TP. Hà Nội</p>
-            <p>Số thẻ BHYT: 428184728</p>
-            <p>Ngày khám: 20/05/2025</p>
+            <p>Số điện thoại: {patient.phone}</p>
+            <p>Ngày sinh: {patient.birthDate}</p>
+            <p>CMND/CCCD: {patient.idNumber}</p>
+            <p>Giới tính: {patient.gender}</p>
+            <p>Dân tộc: {patient.ethnicity}</p>
+            <p>Địa chỉ thường trú: {patient.address}</p>
+            <p>Số thẻ BHYT: {patient.insuranceNumber}</p>
             <p>
-              Nơi đăng kí khám chữa bệnh ban đầu: Bệnh viện Đại học Y Hà Nội
+              Ngày khám:{" "}
+              {new Date(patient.examinationDate).toLocaleDateString()}
             </p>
-            <p>Nghề nghiệp: Công nhân</p>
+            <p>
+              Nơi đăng kí khám chữa bệnh ban đầu: {patient.registeredHospital}
+            </p>
+            <p>Nghề nghiệp: {patient.job}</p>
           </div>
           <div className="line"></div>
           <h5>Thông tin người thân</h5>
-          <p>Họ tên: Nguyễn Văn B</p>
-          <p>Số điện thoại: 0123456788</p>
-          <p>Quan hệ với bệnh nhân: Anh trai</p>
-          <p>Địa chỉ thường trú: Quận Thanh Xuân, TP. Hà Nội</p>
+          {patient.relatives &&
+            patient.relatives.map((r, idx) => (
+              <div key={idx}>
+                <p>Họ tên: {r.name}</p>
+                <p>Số điện thoại: {r.phone}</p>
+                <p>Quan hệ với bệnh nhân: {r.relation}</p>
+                <p>Địa chỉ thường trú: {r.address}</p>
+              </div>
+            ))}
         </div>
 
         <div className="papro-info">
           <h5>Tiền sử bệnh lý</h5>
-          <p>• Bệnh tiểu đường loại 2 (chẩn đoán 5 năm trước)</p>
-          <p>• Cao huyết áp </p>
-          <p>• Tiền sử đau dạ dày</p>
+          {patient.medicalHistory &&
+            patient.medicalHistory.map((item, idx) => (
+              <p key={idx}>• {item}</p>
+            ))}
           <div className="line"></div>
 
           <h5>Lý do đến khám</h5>
-          <p>• Đau ngực dữ dội, khó thở, vã mồ hôi </p>
-          <p>• Triệu chứng xuất hiện khoảng 3 giờ trước khi nhập viện</p>
-          <p>• Tiền sử tăng huyết áp, có yếu tố nguy cơ bệnh tim mạch</p>
+          {patient.examinationReasons &&
+            patient.examinationReasons.map((item, idx) => (
+              <p key={idx}>• {item}</p>
+            ))}
           <div className="line"></div>
 
           <h5>Liệu trình chữa trị</h5>
-          <p>• Nhập viện cấp cứu, thực hiện xét nghiệm nhanh</p>
-          <p>• Chẩn đoán: Hội chứng mạch vành cấp</p>
-          <p>• Điều trị bằng thuốc chống đông máu và giãn mạch</p>
-          <p>• Theo dõi sát ECG và huyết áp</p>
+          {patient.treatmentPlan &&
+            patient.treatmentPlan.map((item, idx) => <p key={idx}>• {item}</p>)}
           <div className="line"></div>
 
           <h5>Tình trạng hiện tại</h5>
-          <p>• Đã qua cơn nguy hiểm, nhưng vẫn cần theo dõi sát sao</p>
-          <p>• Huyết áp: 140/90 mmHg</p>
-          <p>• Mạch: 85 lần/phút</p>
-          <p>• Đang sử dụng oxy hỗ trợ</p>
+          {patient.currentStatus &&
+            patient.currentStatus.map((item, idx) => <p key={idx}>• {item}</p>)}
           <div className="line"></div>
 
           <h5>Xét nghiệm đã thực hiện</h5>
-          <p>• Điện tâm đồ (ECG): Xuất hiện dấu hiệu nhồi máu cơ tim</p>
-          <p>• Xét nghiệm men tim: Tăng cao (Troponin I: 0.5 ng/ml)</p>
-          <p>• Siêu âm tim: Rối loạn vận động vùng tim</p>
-          <p>• Xét nghiệm máu: Đường huyết 7.8 mmol/L, cholesterol cao</p>
+          {patient.tests &&
+            patient.tests.map((item, idx) => <p key={idx}>• {item}</p>)}
           <div className="line"></div>
 
           <h5>Nhật ký theo dõi</h5>
-          <p>
-            • Ngày 1: Bệnh nhân nhập viện cấp cứu, thực hiện xét nghiệm và chẩn
-            đoán. Được chỉ định thuốc chống đông máu và giãn mạch.
-          </p>
-          <p>
-            • Ngày 2: Tình trạng ổn định hơn, giảm đau ngực, vẫn cần theo dõi
-            huyết áp và ECG.
-          </p>
-          <p>
-            • Ngày 3: Dự kiến thực hiện chụp mạch vành để đánh giá mức độ tổn
-            thương.
-          </p>
+          {patient.diary &&
+            patient.diary.map((item, idx) => <p key={idx}>• {item}</p>)}
         </div>
       </div>
     </div>
