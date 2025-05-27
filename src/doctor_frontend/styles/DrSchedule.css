@@ -1,13 +1,12 @@
 .background {
-  background-color: lightgray;
-  margin: 0px;
+  background-color: rgb(250, 250, 250);
   border: 0.1px solid lightgray;
   height: auto;
 }
 
 .container {
   background-color: white;
-  height: auto;
+  min-height: 78vh;
   margin: 50px 150px 0 150px;
 }
 
@@ -28,11 +27,10 @@
   padding-bottom: 50px;
 }
 
-h2 {
+h25 {
   color: #0067ab;
   font-size: 26px;
   margin-left: 80px;
-  margin-bottom: 35px;
 }
 
 .line {
@@ -40,8 +38,7 @@ h2 {
   background: #ddd;
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: 180px;
-  width: 65%;
+  width: 80%;
 }
 
 button {

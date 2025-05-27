@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import connectDB from "./config/connectDB.js";
-// import userRoutes from "./routes/userRoutes.js";
+import Schedule from "./model/drSchedule.js";
 
 const app = express();
 app.use(cors());
@@ -13,23 +13,13 @@ mongoose.connect("mongodb://localhost:27017/Skyemec", {
   useUnifiedTopology: true,
 });
 
-connectDB();
-
-const scheduleSchema = new mongoose.Schema({
-  month: Number,
-  year: Number,
-  day: String,
-  task: String,
-});
-
-const Schedule = mongoose.model("Schedule", scheduleSchema);
-
 app.get("/schedule", async (req, res) => {
-  const { month, year } = req.query;
-  const data = await Schedule.find({
-    month: parseInt(month),
-    year: parseInt(year),
-  });
+  const { month, year, day } = req.query;
+  const query = {};
+  if (month) query.month = parseInt(month);
+  if (year) query.year = parseInt(year);
+  console.log("Query:", query);
+  const data = await Schedule.find(query);
   res.json(data);
 });
 

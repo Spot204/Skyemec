@@ -19,13 +19,13 @@ const Oder_doctor = () => {
     }));
   }, []);
 
- const [users, setUsers] = useState([]);
-    useEffect(() => {
-      axios
-        .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
-        .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
-        .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
-    }, []);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
+      .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
+      .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
+  }, []);
 
   return (
     <div className="Bodysd-middle">

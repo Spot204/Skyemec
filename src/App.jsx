@@ -6,11 +6,13 @@ import Header from "./user_fontend/components/Header";
 import Body from "./user_fontend/components/Body";
 import Body_Search_doctor from "./user_fontend/components/Body_Search_doctor";
 import Footer from "./user_fontend/components/Footer";
-import Login from "./login/components/Body";
-import Schedule from "./doctor_frontend/components/DrSchedule";
+import Login from "./login/components/Login";
+import DrSchedule from "./doctor_frontend/components/DrSchedule";
+import DrProfile from "./doctor_frontend/components/DrProfile";
 import Department from "./user_fontend/components/Department";
 import Search_doctor from "./user_fontend/components/Search_doctor";
 import Oder_doctor from "./user_fontend/components/Oder_Doctor";
+import PatientProfile from "./doctor_frontend/components/PatientProfile";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState("home");
@@ -20,8 +22,7 @@ const App = () => {
     <Router>
       <Header />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/home" element={<Body />} />
+        <Route path="/home" element={<Body />} />
         <Route
           path="/search_doctor"
           element={
@@ -54,7 +55,11 @@ const App = () => {
               <Department text="cap_cuu" />
             </>
           }
-        /> */}
+        />
+        <Route path="/patientprofile" element={<PatientProfile />} />
+        <Route path="/drprofile" element={<DrProfile />} />
+        <Route path="/drschedule" element={<DrSchedule />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
       <Footer />

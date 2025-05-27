@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const DrSchedule = () => {
-  const [month, setMonth] = useState(0);
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
 
   const handleNext = () => {
-    if (month === 11) {
-      setMonth(0);
+    if (month === 12) {
+      setMonth(1);
       setYear(year + 1);
     } else {
       setMonth(month + 1);
@@ -16,8 +16,8 @@ const DrSchedule = () => {
   };
 
   const handlePrev = () => {
-    if (month === 0) {
-      setMonth(11);
+    if (month === 1) {
+      setMonth(12);
       setYear(year - 1);
     } else {
       setMonth(month - 1);
@@ -27,19 +27,20 @@ const DrSchedule = () => {
   const [scheduleData, setScheduleData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/schedule?month=${month + 1}&year=${year}`
-        );
-        setScheduleData(response.data);
-      } catch (error) {
-        console.error("Lỗi khi lấy dữ liệu:", error);
-      }
-    };
-
-    fetchData();
+    fetch(`http://localhost:5000/schedule?month=${month}&year=${year}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Schedule data:", data);
+        setScheduleData(data);
+      })
+      .catch((error) => console.error("Error fetching schedule:", error));
   }, [month, year]);
+
+  const grouped = scheduleData.reduce((acc, item) => {
+    acc[item.day] = acc[item.day] || [];
+    acc[item.day].push(item);
+    return acc;
+  }, {});
 
   return (
     <div className="background">
@@ -47,67 +48,30 @@ const DrSchedule = () => {
         <div style={{ textAlign: "center", padding: "20px" }}>
           <button onClick={handlePrev}>&lt;</button>
           <span className="date">
-            {[month]}, {year}
+            Tháng {month}, {year}
           </span>
           <button onClick={handleNext}>&gt;</button>
         </div>
-
-        <h2>Ngày hẹn khám</h2>
+        <h25>Lịch trình làm việc</h25>
         <div className="scheduled">
-          {scheduleData.map((item, index) => (
-            <div key={index}>
-              {index !== 0 && <div className="line"></div>}
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  gap: "10px",
-                }}
-              >
+          {Object.keys(grouped)
+            .sort((a, b) => a - b)
+            .map((day) => (
+              <div key={day}>
                 <div
                   className="day"
-                  style={{
-                    flex: 1,
-                    fontWeight: "bold",
-                    fontSize: "26px",
-                    textAlign: "left",
-                  }}
+                  style={{ fontWeight: "bold", fontSize: "24px" }}
                 >
-                  {item.day}
+                  Ngày {day}
                 </div>
-                <div style={{ flex: 4, textAlign: "left" }}>{item.task}</div>
+                {grouped[day].map((item, idx) => (
+                  <div key={idx} style={{ margin: "15px 20px" }}>
+                    {item.time} - {item.task}
+                  </div>
+                ))}
+                <div className="line"></div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        <h2 style={{ marginTop: "50px" }}>Lịch làm việc</h2>
-        <div className="worktime">
-          {scheduleData.map((item, index) => (
-            <div key={index}>
-              {index !== 0 && <div className="line"></div>}
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  gap: "10px",
-                }}
-              >
-                <div
-                  className="day"
-                  style={{
-                    flex: 1,
-                    fontWeight: "bold",
-                    fontSize: "26px",
-                    textAlign: "left",
-                  }}
-                >
-                  {item.day}
-                </div>
-                <div style={{ flex: 4, textAlign: "left" }}>{item.task}</div>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
