@@ -1,5 +1,6 @@
 import "../styles/DrSchedule.css";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const DrSchedule = () => {
   const [month, setMonth] = useState(0);
@@ -23,45 +24,22 @@ const DrSchedule = () => {
     }
   };
 
-  const months = [
-    "Tháng 1",
-    "Tháng 2",
-    "Tháng 3",
-    "Tháng 4",
-    "Tháng 5",
-    "Tháng 6",
-    "Tháng 7",
-    "Tháng 8",
-    "Tháng 9",
-    "Tháng 10",
-    "Tháng 11",
-    "Tháng 12",
-  ];
-
   const [scheduleData, setScheduleData] = useState([]);
 
   useEffect(() => {
-    // Thay đổi sau: sử dụng MongoDB để tạo db gồm day & task, sau đó cần kết hợp bổ sung chọn tháng & năm
     const fetchData = async () => {
-      const response = [
-        {
-          day: "20",
-          task: "Họp nhóm, gửi báo cáo, làm việc với khách hàng",
-        },
-        {
-          day: "21",
-          task: "Code tính năng mới, kiểm tra hệ thống, viết tài liệu",
-        },
-        {
-          day: "22",
-          task: "Thảo luận dự án, tổng kết tuần, lập kế hoạch mới",
-        },
-      ];
-      setScheduleData(response);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/schedule?month=${month + 1}&year=${year}`
+        );
+        setScheduleData(response.data);
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu:", error);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [month, year]);
 
   return (
     <div className="background">
@@ -69,10 +47,11 @@ const DrSchedule = () => {
         <div style={{ textAlign: "center", padding: "20px" }}>
           <button onClick={handlePrev}>&lt;</button>
           <span className="date">
-            {months[month]}, {year}
+            {[month]}, {year}
           </span>
           <button onClick={handleNext}>&gt;</button>
         </div>
+
         <h2>Ngày hẹn khám</h2>
         <div className="scheduled">
           {scheduleData.map((item, index) => (

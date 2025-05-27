@@ -1,20 +1,36 @@
-const express = require("express");
-const cors = require("cors");
-const connectDB = require("./config/connectDB.js");
-const userRoutes = reouire('./routes/userRoutes.js');
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import connectDB from "./config/connectDB.js";
+// import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Kết nối MongoDB
+mongoose.connect("mongodb://localhost:27017/Skyemec", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 connectDB();
 
-// API test
-app.use.apply('/api', userRoutes);
-
-// Khởi động server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server chạy trên port ${PORT}`);
+const scheduleSchema = new mongoose.Schema({
+  month: Number,
+  year: Number,
+  day: String,
+  task: String,
 });
+
+const Schedule = mongoose.model("Schedule", scheduleSchema);
+
+app.get("/schedule", async (req, res) => {
+  const { month, year } = req.query;
+  const data = await Schedule.find({
+    month: parseInt(month),
+    year: parseInt(year),
+  });
+  res.json(data);
+});
+
+app.listen(5000, () => console.log("Server chạy trên cổng 5000"));
