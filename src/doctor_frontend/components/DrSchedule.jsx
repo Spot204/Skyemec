@@ -1,4 +1,4 @@
-import "../styles/Body.css";
+import "../styles/DrSchedule.css";
 import React, { useState, useEffect } from "react";
 
 const DrSchedule = () => {

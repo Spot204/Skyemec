@@ -1,28 +1,26 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/Skyemec.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faMagnifyingGlass, faUser, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Header.css";
-import React from "react";
 
-const Header = ({ setCurrentPage }) => {
-  const [isOpen, setIsOpen] = useState(null);
 
-  const handleMouseEnter = (menu) => {
-    setIsOpen(menu);
-  };
-  const handleMouseLeave = () => {
-    setIsOpen(null);
-  };
+
+const Header = () => {
+ const [isOpen, setIsOpen] = useState(null);
+  const navigate = useNavigate(); 
+
+  const handleMouseEnter = (menu) => setIsOpen(menu);
+  const handleMouseLeave = () => setIsOpen(null);
+
   return (
     <nav className="Header-navbar">
       <img
         className="Header-logo"
         src={logo}
         alt="logo"
-        onClick={() => setCurrentPage("home")}
+        onClick={() => navigate("home")}
       />
       <ul className="Header-navbar-list">
         <li
@@ -36,27 +34,30 @@ const Header = ({ setCurrentPage }) => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list">
-                <li className="Header-dropdown-item">Nội khoa</li>
-                <li className="Header-dropdown-item">Ngoại khoa</li>
-                <li className="Header-dropdown-item">Nhi khoa</li>
-                <li className="Header-dropdown-item">Sản phụ khoa</li>
-                <li className="Header-dropdown-item">Da liễu</li>
-                <li className="Header-dropdown-item">Mắt</li>
-                <li className="Header-dropdown-item">Tai mũi họng</li>
-                <li className="Header-dropdown-item">Răng hàm mặt</li>
-                <li className="Header-dropdown-item">Tâm lý</li>
-                <li className="Header-dropdown-item">Thần kinh</li>
-                <li className="Header-dropdown-item">Tiêu hóa</li>
-                <li className="Header-dropdown-item">Tim mạch</li>
+                <li className="Header-dropdown-item" onClick={()=>navigate("emergency")}>Cấp cứu</li>
+                <li className="Header-dropdown-item">Trung tâm Tim mạch</li>
+                <li className="Header-dropdown-item">Chấn thương chỉnh hình - Y học thể thao</li>
+                <li className="Header-dropdown-item">Trung tâm Nhi</li>
+                <li className="Header-dropdown-item">Trung tâm Ung bướu</li>
+                <li className="Header-dropdown-item">Tiêu hóa - Gan mật</li>
+                <li className="Header-dropdown-item">Trung tâm Mắt Vinmec-Alina</li>
+                <li className="Header-dropdown-item">Trung tâm Thẩm mỹ Vinmec-View</li>
+                <li className="Header-dropdown-item">Miễn dịch - Dị ứng</li>
+                <li className="Header-dropdown-item">Trung tâm Công nghệ cao</li>
+                <li className="Header-dropdown-item">Trung tâm sức khỏe phụ nữ</li>
+                <li className="Header-dropdown-item">Sức khỏe tổng quát</li>
+                <li className="Header-dropdown-item">Viện nghiên cứu Tế bào gốc và Công nghệ Gen</li>
+                <li className="Header-dropdown-item">Trung tâm Vacxin</li>
+                <li className="Header-dropdown-item">Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông</li>
               </ul>
             </div>
           )}
         </li>
         <li className="Header-nav-item">
-          <span onClick={() => setCurrentPage("oder_doctor")}>Đặt lịch</span>
+          <span onClick={() => navigate("oder_doctor")}>Đặt lịch</span>
         </li>
         <li className="Header-nav-item">
-          <span onClick={() => setCurrentPage("search_doctor")}>
+          <span onClick={() => navigate("search_doctor")}>
             Tìm bác sĩ
           </span>
         </li>

@@ -1,0 +1,55 @@
+.Dl-body-middle{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #ddd;
+}
+#Dl-middle{
+  transform:translateX(150px) ;
+}
+
+.Dl-body{
+  display: flex;
+  justify-content: center;
+}
+
+.Dl-grid-container {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: auto;
+}
+
+.Dl-department-card {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #bbb;
+}
+
+.Dl-department-card img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.Dl-grid-container{
+  h3{
+    cursor: pointer;
+    max-width: fit-content;
+    margin-left: 10px;
+  }
+  a{
+    cursor: pointer;
+  }
+}
+.Dl-department-card h3:hover{
+  color: #0076c0;
+}
+.Dl-department-card a:hover{
+  color: #0076c0;
+}

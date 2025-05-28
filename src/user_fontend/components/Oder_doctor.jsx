@@ -2,7 +2,8 @@ import "../styles/Oder_doctor.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import axios from "axios";
 
 const Oder_doctor = () => {
   const options = ["dfasdf", "dafsdfasdf", "dafsdfasdf"];
@@ -18,31 +19,13 @@ const Oder_doctor = () => {
     }));
   }, []);
 
-  const CustomInput = ({ defaultPlaceholder, type }) => {
-    const [searchValue, setSearchValue] = useState(defaultPlaceholder);
-
-    const handleFocus = () => {
-      setSearchValue("");
-    };
-    const handleBlur = (e) => {
-      if (!e.target.value) {
-        setSearchValue(defaultPlaceholder);
-      }
-    };
-
-    return (
-      <div className="Bodysd-input-container">
-        <input
-          type={type}
-          className="Bodysd-input-field"
-          value={searchValue}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-      </div>
-    );
-  };
+ const [users, setUsers] = useState([]);
+    useEffect(() => {
+      axios
+        .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
+        .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
+        .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
+    }, []);
 
   return (
     <div className="Bodysd-middle">
@@ -118,7 +101,12 @@ const Oder_doctor = () => {
             <div className="Bodysd-information-name-sex">
               <p className="discription">Họ và tên </p>
               <div>
-                <CustomInput defaultPlaceholder="Nhập họ và tên" type="text" />
+                <input
+                  placeholder="Nhập họ và tên"
+                  className="Bodysd-input-field"
+                  id="Bodysd-input-name"
+                  type="text"
+                />
                 <label>
                   <input
                     type="radio"
@@ -142,7 +130,11 @@ const Oder_doctor = () => {
               </div>
             </div>
             <p className="discription"> Số điện thoại</p>
-            <CustomInput defaultPlaceholder="Nhập số điện thoại" type="text" />
+            <input
+              className="Bodysd-input-field"
+              placeholder="Nhập số điện thoại"
+              type="text"
+            />
 
             <p className="Bodysd-information-item-note">
               *Lưu ý: Hệ thống chỉ gửi SMS được cho Thuê bao nội địa, nếu quý
@@ -152,13 +144,18 @@ const Oder_doctor = () => {
           </div>
           <div className="Bodysd-information-right">
             <p className="discription">Ngày tháng năm sinh </p>
-            <CustomInput
-              defaultPlaceholder="Nhập ngày tháng năm sinh"
+            <input
+              className="Bodysd-input-field"
+              placeholder="Nhập ngày tháng năm sinh"
               type="date"
             />
             <p></p>
             <p className="discription">Email </p>
-            <CustomInput defaultPlaceholder="Nhập email" type="text" />
+            <input
+              className="Bodysd-input-field"
+              placeholder="Nhập email"
+              type="text"
+            />
           </div>
         </div>
         <div className="Bodysd-reason">
