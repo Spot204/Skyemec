@@ -12,6 +12,7 @@ import DrProfile from "./doctor_frontend/components/DrProfile";
 import Department from "./user_fontend/components/Department";
 import Search_doctor from "./user_fontend/components/Search_doctor";
 import Oder_doctor from "./user_fontend/components/Oder_Doctor";
+import PatientList from "./doctor_frontend/components/PatientList";
 import PatientProfile from "./doctor_frontend/components/PatientProfile";
 
 const App = () => {
@@ -56,8 +57,9 @@ const App = () => {
             </>
           }
         />
-        <Route path="/patientprofile" element={<PatientProfile />} />
-        <Route path="/drprofile" element={<DrProfile />} />
+        <Route path="/patientlist" element={<PatientList />} />
+        <Route path="/patients/:id" element={<PatientProfile />} />
+        <Route path="/drprofile/:id" element={<DrProfile />} />
         <Route path="/drschedule" element={<DrSchedule />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<div>Page not found</div>} />

@@ -4,11 +4,13 @@ import mongoose from "mongoose";
 import connectDB from "./config/connectDB.js";
 import DrSchedule from "./model/drSchedule.js";
 import Patients from "./routes/patientRoutes.js";
+import drRoutes from "./routes/drRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/patients", Patients);
+app.use("/api/doctors", drRoutes);
 
 mongoose.connect("mongodb://localhost:27017/Skyemec", {
   useNewUrlParser: true,

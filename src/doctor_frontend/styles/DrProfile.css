@@ -1,4 +1,5 @@
 .drprofile-cover {
+  background-color: rgb(250, 250, 250);
   margin: 0px;
   border: 0.1px solid rgb(250, 250, 250);
 }
@@ -8,7 +9,7 @@
   justify-content: center;
   display: flex;
   height: auto;
-  margin: 30px 0 0 150px;
+  margin: 30px 150px 0 150px;
 }
 
 .drprofile-top-text {
@@ -18,6 +19,10 @@
   left: 620px;
   font-size: 60px;
   font-weight: bold;
+}
+
+.drprofile-top-img {
+  max-width: 100%;
 }
 
 .drprofile-navigator {
@@ -49,7 +54,7 @@
 }
 
 .drpro-general {
-  margin-top: 70px;
+  margin-top: 20px;
 }
 
 .doctor {
@@ -69,7 +74,6 @@
 
 .drpro-img img {
   width: 100%;
-  height: auto;
   position: relative;
   z-index: 1;
   object-fit: contain;
@@ -123,7 +127,7 @@ label {
   font-size: 20px;
 }
 
-button {
+.patient-signin {
   width: 90%;
   padding: 12px;
   background-color: #51be9d;
@@ -136,6 +140,6 @@ button {
   margin-left: 25px;
 }
 
-button:hover {
+.patient-signin:hover {
   background-color: #4a9f8b;
 }
