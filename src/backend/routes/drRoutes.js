@@ -1,24 +1,24 @@
 import express from "express";
-import Dr from "../models/Dr";
-import bcrypt from "bcrypt";
+import DrProfile from "../model/DrProfile.js";
 
 const router = express.Router();
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
+router.get("/", async (req, res) => {
   try {
-    const user = await Dr.findOne({ email });
-    if (!user)
-      return res.status(400).json({ message: "Sai email hoặc mật khẩu!" });
+    const doctors = await DrProfile.find();
+    res.json(doctors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(400).json({ message: "Sai email hoặc mật khẩu!" });
-
-    res.json({ message: "Đăng nhập thành công!" });
-  } catch (error) {
-    res.status(500).json({ message: "Lỗi server!", error });
+router.get("/:id", async (req, res) => {
+  try {
+    const doctor = await DrProfile.findById(req.params.id);
+    if (!doctor) return res.status(404).json({ message: "Not found" });
+    res.json(doctor);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 

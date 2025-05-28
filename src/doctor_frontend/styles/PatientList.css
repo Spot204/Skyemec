@@ -1,0 +1,155 @@
+.palist-cover {
+  background-color: rgb(250, 250, 250);
+  margin: 0px;
+  border: 0.1px solid rgb(250, 250, 250);
+}
+
+.palist-container {
+  background-color: white;
+  justify-content: center;
+  min-height: 32vh;
+  margin: 30px 150px 0 150px;
+}
+
+.palist-top-text {
+  position: absolute;
+  color: rgb(250, 250, 250);
+  top: 250px;
+  left: 520px;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.palist-top-img {
+  max-width: 100%;
+}
+
+.palist-navigator {
+  color: #0067ab;
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.palist-navigator-2 {
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  cursor: text;
+}
+
+.palist-search-bar {
+  border-radius: 25px;
+  width: 600px;
+  height: 50px;
+  border: 1px solid rgb(150, 150, 150);
+  cursor: text;
+  margin: 0 0 0 320px;
+  font-size: 20px;
+  text-indent: 55px;
+}
+
+.palist-search-bar::placeholder {
+  text-indent: 55px;
+}
+
+.patient-main-list {
+  width: 100%;
+  padding: 20px;
+}
+
+.palist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+  margin-left: 14px;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+.palist-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px 0 16px 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.palist-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.palist-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.palist-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  color: #0067ab;
+  cursor: pointer;
+}
+
+.palist-info p {
+  margin: 0;
+  font-size: 21px;
+  color: #333;
+  cursor: pointer;
+}
+
+.line {
+  height: 1px;
+  background: #ddd;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.delete-selected-profiles {
+  padding: 12px;
+  background-color: #f53535;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 150px;
+}
+
+.delete-selected-profiles:hover {
+  background-color: #d32f2f;
+}
+
+.see-patient-profile {
+  width: 90%;
+  padding: 12px;
+  background-color: #51be9d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  margin-top: 50px;
+  margin-left: 25px;
+}
+
+.see-patient-profile:hover {
+  background-color: #4a9f8b;
+}
