@@ -1,13 +1,42 @@
-import "../styles/Oder_doctor.css"
+import "../styles/Oder_doctor.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
-import React, { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Oder_doctor = () => {
-  const options = ["dfasdf", "dafsdfasdf", "dafsdfasdf"];
+  const navigate = useNavigate();
+  const options = [
+    "Skyemec Hà Đông",
+    "Skyemec Thanh Xuân",
+    "Skyemec Cầu Giấy",
+    "Skyemec Tuyên Quang",
+    "Skyemec Tuyên Quang",
+    "Skyemec Bắc Ninh",
+  ];
+  const khoa = [
+    "Cấp cứu",
+    "Trung tâm Tim mạch",
+    "Chấn thương chỉnh hình - Y học thể thao",
+    "Trung tâm Nhi",
+    "Trung tâm Ung bướu",
+    "Tiêu hóa - Gan mật",
+    "Trung tâm Mắt Vinmec-Alina",
+    "Trung tâm Thẩm mỹ Vinmec-View",
+    "Miễn dịch - Dị ứng",
+    "Trung tâm Công nghệ cao",
+    " Trung tâm sức khỏe phụ nữ",
+    "Sức khỏe tổng quát",
+    "Viện nghiên cứu Tế bào gốc và Công nghệ Gen",
+    "Trung tâm Vacxin",
+    "Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông",
+  ];
+  // Đã bỏ state showTimeSlots và logic click outside, chỉ cần selectedDate
+
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [selectedHospital, setSelectedHospital] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
 
   const [formData, setFormData] = useState({
     gender: "",
@@ -48,10 +77,9 @@ const Oder_doctor = () => {
     generateSchedule(selected);
   };
 
-
   const generateSchedule = (date) => {
     let schedule = [];
-    let dayOfWeek = date.getDay(); 
+    let dayOfWeek = date.getDay();
     let now = new Date();
     let currentHour = now.getHours() + now.getMinutes() / 60; // Lấy giờ hiện tại
 
@@ -65,7 +93,9 @@ const Oder_doctor = () => {
 
     for (let time = startTime; time <= endTime; time += 0.5) {
       let isPast =
-        date.toDateString() === now.toDateString() && time <= currentHour;
+        date.toDateString() === now.toDateString()
+          ? time <= currentHour
+          : false;
       schedule.push({
         time: `${Math.floor(time)}:${time % 1 === 0 ? "00" : "30"}`,
         isPast,
@@ -78,8 +108,9 @@ const Oder_doctor = () => {
   return (
     <div className="Bodysd-middle">
       <div className="Bodysd-navigation">
-        <span className="Bodysd-home">
-          Trang chủ <FontAwesomeIcon icon={faAngleRight} />
+        <span className="Bodysd-home" onClick={() => navigate("/home")}>
+          Trang chủ
+          <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span className="Bodysd-search-doctor">Đặt phòng khám</span>
       </div>
@@ -95,6 +126,15 @@ const Oder_doctor = () => {
                 id="Oder-local"
                 options={options}
                 label="Chọn cơ sở khám"
+                value={selectedHospital}
+                onChange={(val) => {
+                  // Nếu Dropdown1 trả về object, lấy .value hoặc .label, loại bỏ khoảng trắng
+                  const v =
+                    typeof val === "string"
+                      ? val
+                      : val?.value || val?.label || "";
+                  setSelectedHospital(v.trim());
+                }}
               />
             </div>
             <div className="Bodysd-oder-item">
@@ -103,9 +143,17 @@ const Oder_doctor = () => {
               </label>
               <Dropdown1
                 id="Oder-specialty"
-                options={options}
+                options={khoa}
                 label="Chọn chuyên khoa"
-              ></Dropdown1>
+                value={selectedDepartment}
+                onChange={(val) => {
+                  const v =
+                    typeof val === "string"
+                      ? val
+                      : val?.value || val?.label || "";
+                  setSelectedDepartment(v.trim());
+                }}
+              />
             </div>
             <div className="Bodysd-oder-item">
               <label htmlFor="" className="discription">
@@ -122,7 +170,12 @@ const Oder_doctor = () => {
             <label className="Bodysd-oder-date">Thời gian khám</label>
             <div className="Bodysd-oder-date">
               <div
-                className="Bodysd-oder-boxdate"
+                className={`Bodysd-oder-boxdate${
+                  selectedDate &&
+                  selectedDate.toDateString() === new Date().toDateString()
+                    ? " selected-date"
+                    : ""
+                }`}
                 onClick={() => handleSelectDate("today")}
               >
                 <div>
@@ -143,7 +196,17 @@ const Oder_doctor = () => {
                 </div>
               </div>
               <div
-                className="Bodysd-oder-boxdate"
+                className={`Bodysd-oder-boxdate${
+                  selectedDate &&
+                  selectedDate.toDateString() ===
+                    (() => {
+                      let d = new Date();
+                      d.setDate(d.getDate() + 1);
+                      return d.toDateString();
+                    })()
+                    ? " selected-date"
+                    : ""
+                }`}
                 onClick={() => handleSelectDate("tomorrow")}
               >
                 <div>
@@ -158,13 +221,23 @@ const Oder_doctor = () => {
                         "Thứ Năm",
                         "Thứ Sáu",
                         "Thứ Bảy",
-                      ][new Date().getDay() + 1]
+                      ][(new Date().getDay() + 1) % 7]
                     }
                   </label>
                 </div>
               </div>
               <div
-                className="Bodysd-oder-boxdate"
+                className={`Bodysd-oder-boxdate${
+                  selectedDate &&
+                  selectedDate.toDateString() ===
+                    (() => {
+                      let d = new Date();
+                      d.setDate(d.getDate() + 2);
+                      return d.toDateString();
+                    })()
+                    ? " selected-date"
+                    : ""
+                }`}
                 onClick={() => handleSelectDate("dayAfterTomorrow")}
               >
                 <div>
@@ -179,14 +252,38 @@ const Oder_doctor = () => {
                         "Thứ Năm",
                         "Thứ Sáu",
                         "Thứ Bảy",
-                      ][new Date().getDay() + 2]
+                      ][(new Date().getDay() + 2) % 7]
                     }
                   </label>
                 </div>
               </div>
               <div
-                className="Bodysd-oder-boxdate"
+                className={`Bodysd-oder-boxdate${
+                  selectedDate &&
+                  (() => {
+                    const today = new Date();
+                    return (
+                      selectedDate > today &&
+                      selectedDate.toDateString() !== today.toDateString() &&
+                      selectedDate.toDateString() !==
+                        (() => {
+                          let d = new Date();
+                          d.setDate(d.getDate() + 1);
+                          return d.toDateString();
+                        })() &&
+                      selectedDate.toDateString() !==
+                        (() => {
+                          let d = new Date();
+                          d.setDate(d.getDate() + 2);
+                          return d.toDateString();
+                        })()
+                    );
+                  })()
+                    ? " selected-date"
+                    : ""
+                }`}
                 onClick={() => handleSelectDate("custom")}
+                style={{ position: "relative" }}
               >
                 <div>
                   <input
@@ -198,7 +295,11 @@ const Oder_doctor = () => {
                       generateSchedule(new Date(e.target.value));
                       setShowDatePicker(false); // Ẩn Date Picker sau khi chọn
                     }}
-                    value="Ngày khác"
+                    value={
+                      selectedDate
+                        ? selectedDate.toISOString().split("T")[0]
+                        : ""
+                    }
                   />
                   <br />
                   <label>Ngày khác</label>
@@ -208,21 +309,52 @@ const Oder_doctor = () => {
 
             {/* Hiển thị lịch làm việc */}
             {selectedDate && (
-              <div className="schedule">
+              <div
+                className="schedule"
+                style={{
+                  zIndex: 20,
+                  background: "#fff",
+                  borderRadius: 8,
+                  boxShadow: "0 2px 8px #0001",
+                  padding: 16,
+                  position: "relative",
+                }}
+              >
                 <h4>Lịch làm việc ngày {selectedDate?.toLocaleDateString()}</h4>
+                {/* Không cần chọn cơ sở khám và chuyên khoa để chọn khung giờ */}
                 <ul>
-                  {schedule.map((slot, index) => (
-                    <li
-                      key={index}
-                      className={`slot-item ${
-                        slot.isPast ? "disabled-slot" : ""
-                      } ${selectedSlot === slot.time ? "selected-slot" : ""}`}
-                      onClick={() => setSelectedSlot(slot.time)}
-                    >
-                      {slot.time}
-                    </li>
-                  ))}
+                  {schedule.map((slot, index) => {
+                    const canSelect = !slot.isPast;
+                    const disabled = slot.isPast;
+                    return (
+                      <li
+                        key={index}
+                        className={`slot-item${
+                          disabled
+                            ? " disabled-slot"
+                            : canSelect
+                            ? " active-slot"
+                            : ""
+                        }${selectedSlot === slot.time ? " selected-slot" : ""}`}
+                        onClick={() => {
+                          if (canSelect) setSelectedSlot(slot.time);
+                        }}
+                        style={{
+                          cursor: canSelect ? "pointer" : "not-allowed",
+                        }}
+                      >
+                        {slot.time}
+                      </li>
+                    );
+                  })}
                 </ul>
+                {selectedSlot && (
+                  <div
+                    style={{ marginTop: 8, color: "#51be9d", fontWeight: 500 }}
+                  >
+                    Đã chọn khung giờ: {selectedSlot}
+                  </div>
+                )}
               </div>
             )}
             <label className="Bodysd-oder-note">

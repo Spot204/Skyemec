@@ -1,7 +1,22 @@
+.Bodysd-oder-boxdate.selected-date {
+  background-color: #51be9d;
+  color: white;
+  cursor: pointer;
+}
+.Bodysd-oder-boxdate.selected-date input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.Bodysd-middle{
+  background-color: #f7f7f7;
+}
+.Bodysd-navigation {
+  font-size: 20px;
+}
+
 .Bodysd-oder-doctor {
   background-color: white;
   padding: 40px 30px;
-  width: 1200px;
+  width: 1000px;
 }
 
 .Bodysd-oder {
@@ -24,29 +39,40 @@
   display: flex;
 }
 
+
 .Bodysd-oder-boxdate {
   height: 80px;
   width: 80px;
   border-radius: 10px;
-  background-color: gray;
+  background-color: #f7f7f7;
   margin-right: 10px;
-  color: white;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  h3 {
-    padding: 0;
-    margin: 0;
-  }
-  label {
-    margin: 0;
-    padding: 0;
-    font-size: 13px;
-    font-weight: 300;
-  }
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Đảo màu từ đen sang trắng */
 }
+.Bodysd-oder-boxdate h3 {
+  padding: 0;
+  margin: 0;
+}
+.Bodysd-oder-boxdate label {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 300;
+}
+.Bodysd-oder-boxdate input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0); 
+}
+
+.Bodysd-oder-boxdate:hover {
+  background-color: #51be9d;
+  color: white;
+  cursor: pointer;
+}
+
+.Bodysd-oder-boxdate:hover input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 .Bodysd-oder-note {
@@ -145,21 +171,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
 }
 
 .schedule ul li {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #0073e6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 2px solid #51be9d;
+  background: #f7f7f7;
+  color: #222;
   text-align: center;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 1px 1px;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
 .schedule ul li:hover {
-  background: #0073e6;
-  color: white;
+  background: #e6f7f1;
+  border-color: #51be9d;
+  color: #222;
 }
 .disabled-slot {
   opacity: 0.5;
@@ -171,8 +203,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .slot-item {
   cursor: pointer;
-  padding: 5px;
+  padding: 2px 6px;
+  border: 2px solid #51be9d;
+  border-radius: 4px;
+  margin: 1px 1px;
+  background: #f7f7f7;
+  color: #222;
+  font-weight: 500;
+  font-size: 13px;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 .slot-item:hover {
-  background-color: #ddd; /* Hiệu ứng khi di chuột */
+  background-color: #e6f7f1;
+  border-color: #51be9d;
+}
+
+.selected-slot {
+  background-color: #51be9d !important;
+  color: #fff !important;
+  border-color: #007a5a !important;
+  font-weight: bold;
+  box-shadow: 0 0 0 2px #007a5a33;
+  z-index: 1;
 }

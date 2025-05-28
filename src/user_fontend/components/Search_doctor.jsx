@@ -12,8 +12,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DoctorList from "./List_doctor";
 import Dropdown from "./Dropdown";
+import { useNavigate } from "react-router-dom";
 
 const Search_doctor = () => {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
 
   const doctors = [];
@@ -29,7 +31,7 @@ const Search_doctor = () => {
     <div>
       <div className="Bodysd-middle">
         <div className="Bodysd-navigation">
-          <span className="Bodysd-home">
+          <span className="Bodysd-home" onClick={() => navigate("/home")}>
             Trang chủ <FontAwesomeIcon icon={faAngleRight} />
           </span>
           <span className="Bodysd-search-doctor">Chuyên gia y tế</span>
@@ -130,8 +132,8 @@ const Search_doctor = () => {
           </div>
         </div>
       </div>
-      <p id="Bodysd-header">Danh sách Bác sĩ - Chuyên gia</p>
       <div className="Bodysd-bottom">
+        <label id="Bodysd-header">Danh sách Bác sĩ - Chuyên gia</label>
         <DoctorList doctors={doctors} />
       </div>
     </div>

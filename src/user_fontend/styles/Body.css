@@ -1,3 +1,4 @@
+
 .Body-top {
     padding: 10px 0 0 0;
 
@@ -113,8 +114,8 @@
 .Body-middle-information {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 80px;
+    width: auto;
+    gap: 20px;
 
     .Body-middle-infor-item {
         width: 300px;
@@ -124,6 +125,11 @@
         font-size: 30px;
         color: #0076c0;
     }
+}
+.Body-middle-infor-item-bottom{
+    display: block;
+    font-size: 17px;
+    
 }
 
 .Body-middle-infor-item-top {

@@ -17,6 +17,7 @@ import image14 from "../assets/image14.png";
 import image15 from "../assets/image15.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const departments = [
   { name: "Cấp cứu", 
@@ -72,10 +73,11 @@ const departments = [
 ];
 
 const DepartmentList = () => {
+    const navigate = useNavigate();
   return (
     <div className="Dl-body-middle">
       <div className="Bodysd-navigation" id="Dl-middle">
-        <span className="Bodysd-home">
+        <span className="Bodysd-home" onClick={()=> navigate('/home')}>
           Trang chủ <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span className="Bodysd-search-doctor">Chuyên khoa</span>
