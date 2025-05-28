@@ -17,7 +17,7 @@ import DepartmentList from "./user_fontend/components/DepartmentList";
 import Department from "./user_fontend/components/Department";
 import Department_body from "./user_fontend/components/Department_body";
 import Search_doctor from "./user_fontend/components/Search_doctor";
-import Oder_doctor from "./user_fontend/components/Oder_Doctor";
+// import Oder_doctor from "./user_fontend/components/Oder_Doctor";
 import PatientList from "./doctor_frontend/components/PatientList";
 import PatientProfile from "./doctor_frontend/components/PatientProfile";
 
