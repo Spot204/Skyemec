@@ -1,27 +1,25 @@
 import "../styles/PatientProfile.css";
 import patient1 from "../assets/empty-ava.jpg";
+import patient2 from "../assets/empty-ava-1.jpg";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import topimage from "../assets/Docimage1.jpg";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const PatientProfile = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [patients, setPatients] = useState([]);
+  const [patient, setPatients] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/patients")
-      .then((res) => {
-        console.log("DATA:", res.data);
-        setPatients(res.data);
-      })
+      .get(`http://localhost:5000/api/patients/${id}`)
+      .then((res) => setPatients(res.data))
       .catch((err) => console.error(err));
-  }, []);
-
-  const patient = patients[0];
+  }, [id]);
 
   if (!patient) return <div>Đang tải dữ liệu...</div>;
 
@@ -31,11 +29,14 @@ const PatientProfile = () => {
       <div className="papro-top-text">
         <a>THÔNG TIN BỆNH NHÂN</a>
       </div>
-      <img className="papro-top-image" src={topimage} alt="patient" />
+      <img className="papro-top-img" src={topimage} alt="patient" />
       <span onClick={() => navigate("")} className="papro-navigator">
         Trang chủ <FontAwesomeIcon icon={faAngleRight} /> {"  "}
       </span>
-      <span onClick={() => navigate("")} className="papro-navigator-2">
+      <span
+        onClick={() => navigate("/patientlist")}
+        className="papro-navigator-2"
+      >
         Hồ sơ bệnh án <FontAwesomeIcon icon={faAngleRight} />
       </span>
       <span className="papro-navigator-3">
@@ -46,12 +47,15 @@ const PatientProfile = () => {
         <div className="patient">
           <div className="papro-col1">
             <div className="papro-img">
-              <img src={patient1} alt="Ảnh 1" />
+              <img
+                src={patient.gender === "Nữ" ? patient2 : patient1}
+                alt="Ảnh bệnh nhân"
+              />
             </div>
             <div className="papro-info">
               <h6>Bệnh nhân</h6>
               <h4>{patient.name}</h4>
-              <button>Sửa thông tin</button>
+              <button className="edit-patient-info">Sửa thông tin</button>
             </div>
           </div>
           <div className="papro-general">

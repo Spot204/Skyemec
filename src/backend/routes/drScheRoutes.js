@@ -1,7 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const { getSchedules } = require("../controllers/scheduleController");
+import DrSchedule from "../model/DrSchedule.js";
 
-router.get("/", getSchedules);
-
-module.exports = router;
+router.get("/drschedule", async (req, res) => {
+  try {
+    const data = await DrSchedule.find();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
