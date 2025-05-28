@@ -117,11 +117,6 @@ const App = () => {
             </>
           }
         />
-        <Route path="/patientlist" element={<PatientList />} />
-        <Route path="/patients/:id" element={<PatientProfile />} />
-        <Route path="/drprofile/:id" element={<DrProfile />} />
-        <Route path="/drschedule" element={<DrSchedule />} />
-        <Route path="/login" element={<Login />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>
