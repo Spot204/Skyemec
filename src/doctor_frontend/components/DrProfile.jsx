@@ -2,23 +2,44 @@ import "../styles/DrProfile.css";
 import dr1 from "../assets/dr-pho-hoang-dang-mich.PNG";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import topimage from "../assets/Docimage1.jpg";
+import { useNavigate } from "react-router-dom";
 
 const DrProfile = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="background">
-      <div className="container1">
+    <div className="drprofile-cover">
+      <div className="drprofile-top-text">
+        <h155>THÔNG TIN BÁC SĨ</h155>
+      </div>
+      <img className="drprofile-top-image" src={topimage} alt="doctor" />
+      <span onClick={() => navigate("/home")} className="drprofile-navigator">
+        Trang chủ <FontAwesomeIcon icon={faAngleRight} /> {"  "}
+      </span>
+      <span
+        onClick={() => navigate("/search_doctor")}
+        className="drprofile-navigator-2"
+      >
+        Tìm bác sĩ <FontAwesomeIcon icon={faAngleRight} />
+      </span>
+      <span className="drprofile-navigator-3">
+        {"  "}
+        Cố vấn chuyên môn Phó Hoàng Đăng Mịch
+      </span>
+      <div className="drpro-container">
         <div className="doctor">
-          <div className="col1">
-            <div className="img">
+          <div className="drpro-col1">
+            <div className="drpro-img">
               <img src={dr1} alt="Ảnh 1" />
             </div>
-            <div className="role">
+            <div className="dr-role">
               <h3>Giáo sư, Phó giáo sư, Tiến sĩ, Cố vấn chuyên môn</h3>
               <h1>Cố vấn chuyên môn Phó Hoàng Đăng Mịch</h1>
               <button>Đăng ký khám</button>
             </div>
           </div>
-          <div className="general">
+          <div className="drpro-general">
             <h2>Giới thiệu</h2>
             <p>
               PGS.TS. Cố vấn chuyên môn Hoàng Đăng Mịch đã có hơn 32 năm kinh
@@ -35,7 +56,7 @@ const DrProfile = () => {
               Bệnh viện Đa khoa Quốc tế Vinmec Hạ Long.
             </p>
           </div>
-          <h3 className="tong_quan">Tổng quan</h3>
+          <h3 className="dr-tong_quan">Tổng quan</h3>
           <div className="line"></div>
           <p>Tác phong diện mạo</p>
           <div className="line"></div>
@@ -43,17 +64,17 @@ const DrProfile = () => {
           <div className="line"></div>
           <p>Chuyên môn</p>
           <div className="line"></div>
-          <h3 className="tong_quan">Chi tiết lượt đánh giá</h3>
+          <h3 className="dr-tong_quan">Chi tiết lượt đánh giá</h3>
           <p>5*</p>
           <p>4*</p>
           <p>3*</p>
           <p>2*</p>
           <p>1*</p>
 
-          <h3 className="tong_quan">Nhận xét về bác sĩ</h3>
+          <h3 className="dr-tong_quan">Nhận xét về bác sĩ</h3>
         </div>
 
-        <div className="info">
+        <div className="dr-info">
           <h2>Chuyên môn</h2>
           <p>Cố vấn chuyên môn khối Nội</p>
           <div className="line"></div>

@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const UserShema = new mongoose.Schema({
-  location: { type: String, require: true },
-  specialty: { type: String, require: true },
-  doctorname: { type: String, require: true },
-  date: { type: Date, require: true },
-  username: { type: String, require: true },
+const UserSchema = new mongoose.Schema({
+  location: { type: String, required: true },
+  specialty: { type: String, required: true },
+  doctorname: { type: String, required: true },
+  date: { type: Date, required: true },
+  username: { type: String, required: true },
   sex: { type: String, enum: ["Nam", "Nữ"] },
-  phonenumber: { type: String, require: true },
-  dateofbrith: { type: Date, require: true },
+  phonenumber: { type: String, required: true },
+  dateofbirth: { type: Date, required: true },
 });
 
-const User = mongoose.model("User", UserShema);
+const User = mongoose.model("User", UserSchema);
 export default User;

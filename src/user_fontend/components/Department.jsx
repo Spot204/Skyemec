@@ -7,8 +7,10 @@ import image21 from "../assets/image21.jpg";
 import Department_body from "./Department_body";
 import List_doctor from "./List_doctor";
 import { Container } from "postcss";
+import { useNavigate } from 'react-router-dom';
 
 const Department = ({ text }) => {
+  const navigate = useNavigate();
   const [contents, setContents] = useState({}); // Khởi tạo object rỗng
   const [selectedTab, setSelectedTab] = useState("general");
 
@@ -20,7 +22,7 @@ const Department = ({ text }) => {
   }, []);
 
   // Kiểm tra dữ liệu trước khi render
-  if (!contents[text] || !contents[text].sections[selectedTab]) {
+  if (!contents[text]) {
     return <p>Đang tải dữ liệu...</p>;
   }
 
@@ -28,10 +30,10 @@ const Department = ({ text }) => {
     <div className="Department-Container">
     <div className="Department-body">
       <div className="Bodysd-navigation" id="Department-middle">
-        <span className="Bodysd-home">
+        <span className="Bodysd-home"onClick={()=> navigate('/home')}>
           Trang chủ <FontAwesomeIcon icon={faAngleRight} />
         </span>
-        <span id="Department-text">
+        <span id="Department-text" onClick={()=> navigate('/khoa')}>
           Chuyên khoa <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span>{contents[text].name}</span>
@@ -79,9 +81,9 @@ const Department = ({ text }) => {
         </ul>
 
         <div className="Department-middle-text">
-          {Array.isArray(contents[text].sections[selectedTab].notes)
-            ? contents[text].sections[selectedTab].notes.join(", ")
-            : contents[text].sections[selectedTab].notes}
+          {contents[text] && contents[text].information && (
+            <div>{contents[text].information}</div>
+          )}
         </div>
       </div>
       {selectedTab === "list_doctor" ? (

@@ -1,20 +1,14 @@
-const express = require("express");
-const cors = require("cors");
-const connectDB = require("./config/connectDB.js");
-const userRoutes = reouire('./routes/userRoutes.js');
-
+import express from "express";
+import cors from "cors";
+import userRoutes from "./routes/userRoutes.js";
+import connectDB from "./config/connectDB.js";
+import Patients from "./routes/patientRoutes.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/patients", Patients);
+app.use("/api/appointment/create", userRoutes);
 
-// Kết nối MongoDB
 connectDB();
-
-// API test
-app.use.apply('/api', userRoutes);
-
-// Khởi động server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server chạy trên port ${PORT}`);
-});

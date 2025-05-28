@@ -1,48 +1,123 @@
-//import React, { useState } from "react";
 import React from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Header from "./user_fontend/components/Header";
 import Body from "./user_fontend/components/Body";
 import Body_Search_doctor from "./user_fontend/components/Body_Search_doctor";
 import Footer from "./user_fontend/components/Footer";
-import Login from "./login/components/Body";
-import Schedule from "./doctor_frontend/components/DrSchedule";
+import Login from "./login/components/Login";
+import DrSchedule from "./doctor_frontend/components/DrSchedule";
+import DrProfile from "./doctor_frontend/components/DrProfile";
+import DepartmentList from "./user_fontend/components/DepartmentList";
 import Department from "./user_fontend/components/Department";
-import Search_doctor from "./user_fontend/components/Search_doctor"; 
-import Oder_doctor from "./user_fontend/components/Oder_Doctor";
+import Department_body from "./user_fontend/components/Department_body";
+import Search_doctor from "./user_fontend/components/Search_doctor";
+import Oder_doctor from "./user_fontend/components/Oder_doctor";
+import PatientProfile from "./doctor_frontend/components/PatientProfile";
 
 const App = () => {
   //const [currentPage, setCurrentPage] = useState("home");
+  const headers = [
+    "Giới thiệu Skyemec, Tầm nhìn & Sứ mệnh",
+    "Giá trị cốt lõi",
+  ];
 
+  const notes = [
+    "Skyemec là hệ thống y tế không vì lợi nhuận do Tập đoàn Vingroup đầu tư phát triển, với tầm nhìn trở thành một hệ thống y tế hàn lâm vươn tầm quốc tế thông qua những nghiên cứu đột phá, nhằm mang lại chất lượng điều trị xuất sắc và dịch vụ chăm sóc hoàn hảo.","Skyemec cam kết phát triển hệ thống y tế hàn lâm vươn tầm quốc tế thông qua những nghiên cứu đột phá, nhằm mang lại chất lượng điều trị xuất sắc và dịch vụ chăm sóc hoàn hảo. ","hăm sóc bằng Tài năng, Y đức và Sự thấu cảm. ",
+    "Không ngừng sáng tạo và đổi mới nhằm mang lại các giải pháp tốt nhất cho người bệnh.","Chịu trách nhiệm cao nhất với bệnh nhân và người nhà của họ về y đức, kỹ năng, tri thức và các tiêu chuẩn chuyên môn tại Vinmec.","Cam kết chỉ làm những điều tốt nhất cho bệnh nhân, mang lại độ tin cậy cao nhất cho cộng đồng.",
+
+  ];
+
+  const images = [
+    "/src/assets/image90.png",
+    "/src/assets/image91.jpg",
+
+  ];
   const [topText, setTopText] = useState("DANH SÁCH BÁC SĨ - CHUYÊN GIA");
   return (
-    <>
-      <Header />
-      <Login />
-      {/* {currentPage === "home" && <Body setCurrentPage={setCurrentPage} />}
-      {currentPage === "home" ? (
-        <Body />
-      ) : (
-        <Body_Search_doctor
-          activeComponent={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
-      {currentPage !== "home" &&
-        currentPage !== "oder_doctor" &&
-        currentPage !== "search_doctor" && <div>Page not found</div>} */}
-    </>
     <Router>
       <Header />
       <Routes>
-        <Route path="/home" element={<Body />} />
-        <Route path="/search_doctor" element={<><Body_Search_doctor topText={"DANH SÁCH BÁC SĨ - CHUYÊN GIA"} setTopText={setTopText}/><Search_doctor /></>} />
-        <Route path="/oder_doctor" element={<><Body_Search_doctor topText="ĐẶT LỊCH KHÁM BỆNH" setTopText={setTopText}/><Oder_doctor/></>}/>
-        <Route path="/emergency" element={<><Body_Search_doctor topText="Cấp cứu" setTopText={setTopText}/><Department text="cap_cuu"/></>} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/home"
+          element={
+            <>
+              <Body />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/search_doctor"
+          element={
+            <>
+              <Body_Search_doctor
+                topText={"DANH SÁCH BÁC SĨ - CHUYÊN GIA"}
+                setTopText={setTopText}
+              />
+              <Search_doctor />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/oder_doctor"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="ĐẶT LỊCH KHÁM BỆNH"
+                setTopText={setTopText}
+              />
+              <Oder_doctor />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/emergency"
+          element={
+            <>
+              <Body_Search_doctor topText="Cấp cứu" setTopText={setTopText} />
+              <Department text="cap_cuu" />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/khoa"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Chuyên khoa"
+                setTopText={setTopText}
+              />
+              <DepartmentList />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/information"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Giới thiệu về Skyemec"
+                setTopText={setTopText}
+              />
+              <Department_body headers={headers} notes={notes} images={images} />
+              <Footer />
+            </>
+          }
+        />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
-      <Footer />
     </Router>
   );
 };
