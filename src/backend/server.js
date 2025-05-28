@@ -5,6 +5,10 @@ import connectDB from "./config/connectDB.js";
 import Patients from "./routes/patientRoutes.js";
 import drRoutes from "./routes/drRoutes.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+const PORT = process.env.PORT || 5050;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
