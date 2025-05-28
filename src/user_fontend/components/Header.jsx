@@ -7,9 +7,16 @@ import {
   faUser,
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faUser,
+  faAngleDown,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/Header.css";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(null);
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(null);
   const navigate = useNavigate();
 
@@ -176,6 +183,9 @@ const Header = () => {
       <div className="Header-navbar-right">
         <div className="Header-login">
           <FontAwesomeIcon icon={faUser} />
+          <span className="login" onClick={() => navigate("login")}>
+            Đăng nhập
+          </span>
           <span className="login" onClick={() => navigate("login")}>
             Đăng nhập
           </span>

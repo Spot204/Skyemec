@@ -1,4 +1,4 @@
-import "../styles/Body.css";
+import "../styles/Login.css";
 import React, { useState } from "react";
 import Background from "../assets/1.webp";
 import axios from "axios";
@@ -26,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="login-container">
       <img className="img" src={Background} alt="Background" />
       <div className="border">
         <div className="form-section">
