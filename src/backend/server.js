@@ -31,3 +31,9 @@ app.get("/schedule", async (req, res) => {
 });
 
 app.listen(5000, () => console.log("Server chạy trên cổng 5000"));
+app.use("/api/appointment", userRoutes);
+
+connectDB();
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

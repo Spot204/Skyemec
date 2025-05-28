@@ -29,6 +29,7 @@ const Oder_doctor = () => {
       // Có thể reset form tại đây nếu muốn
     } catch (err) {
       alert("Có lỗi khi gửi thông tin!");
+      console.error("Lỗi khi gửi thông tin:", err);
     }
   };
   const navigate = useNavigate();
@@ -73,15 +74,6 @@ const Oder_doctor = () => {
       gender: e.target.value,
     }));
   }, []);
-
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
-      .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
-      .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
-  }, []);
-
   const [selectedDate, setSelectedDate] = useState(null);
   const [schedule, setSchedule] = useState([]);
   const [showDatePicker, setShowDatePicker] = useState(false); // Ẩn Date Picker mặc định
