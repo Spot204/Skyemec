@@ -54,7 +54,9 @@
 .Bodysd-oder-boxdate h3 {
   padding: 0;
   margin: 0;
+  color: black;
 }
+
 .Bodysd-oder-boxdate label {
   margin: 0;
   padding: 0;
@@ -67,8 +69,11 @@
 
 .Bodysd-oder-boxdate:hover {
   background-color: #51be9d;
-  color: white;
+  color: white ;
   cursor: pointer;
+}
+.Bodysd-oder-boxdate:hover h3 {
+  color: white;
 }
 
 .Bodysd-oder-boxdate:hover input[type="date"]::-webkit-calendar-picker-indicator {

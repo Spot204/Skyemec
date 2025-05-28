@@ -3,7 +3,6 @@ import "../styles/Department.css";
 const Department_body = ({ headers, notes, images }) => {
   return (
     <div className="Db-body">
-      <h3>Thông tin chi tiết</h3>
       <div className="Department-sections">
         {headers.map((header, index) => (
           <div

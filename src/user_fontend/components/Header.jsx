@@ -7,16 +7,10 @@ import {
   faUser,
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faMagnifyingGlass,
-  faUser,
-  faAngleDown,
-} from "@fortawesome/free-solid-svg-icons";
+
 import "../styles/Header.css";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(null);
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(null);
   const navigate = useNavigate();
 
@@ -154,9 +148,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-contact">
-                <li className="Header-dropdown-item">Đặt lịch khám</li>
-                <li className="Header-dropdown-item">Tư vấn sức khỏe</li>
-                <li className="Header-dropdown-item">Hỗ trợ kỹ thuật</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("oder_doctor")}>Đặt lịch khám</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("customer_service")}>Chăm sóc khác hàng</li>
               </ul>
             </div>
           )}
@@ -173,8 +166,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-about">
-                <li className="Header-dropdown-item">Giới thiệu</li>
-                <li className="Header-dropdown-item">Tin tức</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("information")}>Giới thiệu</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("news")}>Tin tức</li>
               </ul>
             </div>
           )}
@@ -186,13 +179,10 @@ const Header = () => {
           <span className="login" onClick={() => navigate("login")}>
             Đăng nhập
           </span>
-          <span className="login" onClick={() => navigate("login")}>
-            Đăng nhập
-          </span>
         </div>
-        <div className="Header-search">
+        {/* <div className="Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
+        </div> */}
       </div>
     </nav>
   );

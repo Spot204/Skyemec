@@ -5,7 +5,32 @@ import Dropdown1 from "./Dropdown1";
 import { useState, useCallback, useRef, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { createAppointment } from "../services/Oder_doctor";
+
 const Oder_doctor = () => {
+  // Hàm xử lý gửi form đặt lịch
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      hospital: selectedHospital,
+      department: selectedDepartment,
+      date: selectedDate ? selectedDate.toISOString().split("T")[0] : "",
+      slot: selectedSlot,
+      gender: formData.gender,
+      name: document.getElementById("Bodysd-input-name")?.value || "",
+      phone: document.querySelector('input[placeholder="Nhập số điện thoại"]')?.value || "",
+      birthday: document.querySelector('input[placeholder="Nhập ngày tháng năm sinh"]')?.value || "",
+      email: document.querySelector('input[placeholder="Nhập email"]')?.value || "",
+      reason: document.querySelector(".Bodysd-inp-reason")?.value || "",
+    };
+    try {
+      await createAppointment(data);
+      alert("Đặt lịch thành công!");
+      // Có thể reset form tại đây nếu muốn
+    } catch (err) {
+      alert("Có lỗi khi gửi thông tin!");
+    }
+  };
   const navigate = useNavigate();
   const options = [
     "Skyemec Hà Đông",
@@ -32,12 +57,12 @@ const Oder_doctor = () => {
     "Trung tâm Vacxin",
     "Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông",
   ];
-  // Đã bỏ state showTimeSlots và logic click outside, chỉ cần selectedDate
 
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
 
+  const [agree, setAgree] = useState(false);
   const [formData, setFormData] = useState({
     gender: "",
   });
@@ -49,13 +74,13 @@ const Oder_doctor = () => {
     }));
   }, []);
 
-  //  const [users, setUsers] = useState([]);
-  //     useEffect(() => {
-  //       axios
-  //         .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
-  //         .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
-  //         .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
-  //     }, []);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
+      .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
+      .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
+  }, []);
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [schedule, setSchedule] = useState([]);
@@ -434,16 +459,30 @@ const Oder_doctor = () => {
             placeholder="Nguyên nhân"
           />
           <br />
-          <input type="checkbox" className="Bodysd-inp-agree" /> Tôi đã đọc và
-          đồng ý với Chính sách bảo vệ dữ liệu cá nhân của Vinmec và chấp thuận
-          để Vinmec xử lý dữ liệu cá nhân của tôi theo quy định của pháp luật về
-          bảo vệ dữ liệu cá nhân.
+          <input
+            type="checkbox"
+            className="Bodysd-inp-agree"
+            checked={agree}
+            onChange={(e) => setAgree(e.target.checked)}
+          />{" "}
+          Tôi đã đọc và đồng ý với Chính sách bảo vệ dữ liệu cá nhân của Vinmec
+          và chấp thuận để Vinmec xử lý dữ liệu cá nhân của tôi theo quy định
+          của pháp luật về bảo vệ dữ liệu cá nhân.
           <br />
         </div>
-        <button className="btn-supmit">Gửi thông tin</button>
+        <button
+          className="btn-supmit"
+          onClick={handleSubmit}
+          disabled={!agree}
+          style={{
+            opacity: agree ? 1 : 0.5,
+            cursor: agree ? "pointer" : "not-allowed",
+          }}
+        >
+          Gửi thông tin
+        </button>
       </div>
     </div>
   );
 };
-
 export default Oder_doctor;

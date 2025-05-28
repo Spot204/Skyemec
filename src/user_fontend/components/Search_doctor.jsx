@@ -17,6 +17,13 @@ import { useNavigate } from "react-router-dom";
 const Search_doctor = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState([]);
+  const [selectedExpertise, setSelectedExpertise] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState([]);
+  const [selectedJob, setSelectedJob] = useState([]);
+  const [selectedRank, setSelectedRank] = useState([]);
+  const [selectedDegree, setSelectedDegree] = useState([]);
+  const [selectedRate, setSelectedRate] = useState([]);
 
   const doctors = [];
 
@@ -52,6 +59,7 @@ const Search_doctor = () => {
                 "Vinmec Đà Nẵng",
                 "Vinmec Nha Trang",
               ]}
+              onChange={setSelectedLocation}
             />
           </div>
           <div className="Bodysd-filter-item" id="icon-expertise">
@@ -73,25 +81,26 @@ const Search_doctor = () => {
                 "Tai-Mũi-Họng",
                 "Da liễu",
               ]}
+              onChange={setSelectedExpertise}
             />
           </div>
           <div className="Bodysd-filter-item" id="icon-language">
             <FontAwesomeIcon icon={faGlobe} className="Bodysd-filter-icon" />
-            <Dropdown label="Ngôn ngữ" options={["Tiếng Việt", "Tiếng Anh"]} />
+            <Dropdown label="Ngôn ngữ" options={["Tiếng Việt", "Tiếng Anh"]} onChange={setSelectedLanguage} />
           </div>
           <div className="Bodysd-filter-item" id="icon-job">
             <FontAwesomeIcon
               icon={faBriefcaseMedical}
               className="Bodysd-filter-icon"
             />
-            <Dropdown label="Nghề nghiệp" options={["Bác sĩ", "Chuyên gia"]} />
+            <Dropdown label="Nghề nghiệp" options={["Bác sĩ", "Chuyên gia"]} onChange={setSelectedJob} />
           </div>
           <div className="Bodysd-filter-item" id="icon-rank">
             <FontAwesomeIcon
               icon={faGraduationCap}
               className="Bodysd-filter-icon"
             />
-            <Dropdown label="Học hàm" options={["Giáo sư", "Phó Giáo sư"]} />
+            <Dropdown label="Học hàm" options={["Giáo sư", "Phó Giáo sư"]} onChange={setSelectedRank} />
           </div>
           <div className="Bodysd-filter-item" id="icon-degree">
             <FontAwesomeIcon
@@ -101,6 +110,7 @@ const Search_doctor = () => {
             <Dropdown
               label="Học vị"
               options={["Tiến sĩ", "Thạc sĩ", "Cử nhân"]}
+              onChange={setSelectedDegree}
             />
           </div>
           <div className="Bodysd-filter-item" id="icon-rate">
@@ -112,6 +122,7 @@ const Search_doctor = () => {
             <Dropdown
               label="Số điểm đánh giá"
               options={["5", "4", "3", "2", "1"]}
+              onChange={setSelectedRate}
             />
           </div>
           <div className="Bodysd-filter-item" id="icon-search">
@@ -128,7 +139,24 @@ const Search_doctor = () => {
               onBlur={handleBlur}
               onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button id="bun-search">Tìm kiếm</button>
+            <button
+              id="bun-search"
+              onClick={() => {
+                // Xử lý lọc hoặc gửi dữ liệu tìm kiếm ở đây
+                console.log({
+                  selectedLocation,
+                  selectedExpertise,
+                  selectedLanguage,
+                  selectedJob,
+                  selectedRank,
+                  selectedDegree,
+                  selectedRate,
+                  searchValue,
+                });
+              }}
+            >
+              Tìm kiếm
+            </button>
           </div>
         </div>
       </div>
