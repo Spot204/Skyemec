@@ -6,7 +6,7 @@ import {
   faCalendar,
   faUserDoctor,
 } from "@fortawesome/free-solid-svg-icons";
-import Oder_doctor from "./Oder_Doctor";
+import Oder_doctor from "./Oder_doctor";
 import Search_doctor from "./Search_doctor";
 import { useState } from "react";
 import Department from "./Department";

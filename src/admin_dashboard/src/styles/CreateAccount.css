@@ -1,0 +1,92 @@
+.create-account {
+  max-width: 600px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #005566;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 85, 102, 0.15);
+}
+
+.create-account h2 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.ca-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ca-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.ca-input,
+.ca-select,
+.ca-textarea {
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1.5px solid #005566;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+  outline-offset: 2px;
+}
+
+.ca-input:focus,
+.ca-select:focus,
+.ca-textarea:focus {
+  border-color: #0077cc;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.5);
+}
+
+.ca-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.ca-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.ca-btn {
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 85, 102, 0.3);
+}
+
+.ca-btn-save {
+  background-color: #005566;
+  color: #fff;
+}
+
+.ca-btn-save:hover {
+  background-color: #0077cc;
+  box-shadow: 0 4px 10px rgba(0, 119, 204, 0.6);
+}
+
+.ca-btn-cancel {
+  background-color: #f3f3f3;
+  color: #005566;
+  border: 1.5px solid #005566;
+}
+
+.ca-btn-cancel:hover {
+  background-color: #e0f0ff;
+  border-color: #0077cc;
+  color: #0077cc;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.4);
+}

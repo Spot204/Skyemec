@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../styles/Dropdown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-const Dropdown = ({ options, label }) => {
+const Dropdown = ({ options, label, onChange }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -22,18 +22,28 @@ const Dropdown = ({ options, label }) => {
   }, []);
 
   const handleCheckboxChange = (option) => {
-    setSelectedOptions((prev) =>
-      prev.includes(option)
-        ? prev.filter((o) => o !== option)
-        : [...prev, option]
-    );
+    setSelectedOptions((prev) => {
+      let newSelected;
+      if (prev.includes(option)) {
+        newSelected = prev.filter((o) => o !== option);
+      } else {
+        newSelected = [...prev, option];
+      }
+      return newSelected;
+    });
   };
+
+  // Gọi onChange mỗi khi selectedOptions thay đổi
+  useEffect(() => {
+    if (onChange) onChange(selectedOptions);
+  }, [selectedOptions, onChange]);
 
   return (
     <div className="Bodysd-dropdown-container" ref={dropdownRef}>
       <button
         className="Bodysd-dropdown-button"
         onClick={() => setIsOpen(!isOpen)}
+        type="button"
       >
         {isOpen ? (
           <>

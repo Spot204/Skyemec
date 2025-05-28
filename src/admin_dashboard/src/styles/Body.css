@@ -1,0 +1,224 @@
+.Body-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .Body-top {
+    position: relative;
+    padding-bottom: 60px;
+  }
+  
+  .slider-image {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .slider-image:active {
+    cursor: grabbing;
+  }
+  
+  /* Dots của slider */
+  .slick-dots li button::before {
+    font-size: 15px !important;
+    color: #333 !important;
+    margin-top: 30px !important;
+    position: absolute !important;
+  }
+  
+  /* Phần slogan và nút Xem thêm nằm overlay góc trái trên ảnh slider */
+  .Body-top-connect {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    max-width: 520px;
+    background: transparent; /* hoặc none nếu không muốn nền */
+    padding: 0;
+    color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* căn trái */
+    gap: 12px; /* khoảng cách giữa slogan và nút */
+  }
+  
+  .Body-top-connect-text {
+    font-size: 36px;
+    font-weight: bolder;
+    color: white;
+    line-height: 1.3;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  }
+  
+  .Body-top-connect-button {
+    font-size: 18px;
+    background-color: #51be9d;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 28px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 123, 80, 0.6);
+  }
+  
+  .Body-top-connect-button:hover {
+    background-color: #429d7c;
+  }
+  
+  
+  /* Phần 3 ô Gọi tổng đài - Đặt lịch Hẹn - Tìm bác sĩ */
+  .Body-top-extension {
+    max-width: 900px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    display: flex;
+    gap: 40px;
+    padding: 20px 30px;
+    margin: 20px 40px 0 40px;
+    cursor: default;
+    position: relative;
+    z-index: 5;
+  }
+  
+  .Body-top-item {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 200px;
+  }
+  
+  .Body-top-extension-icon {
+    font-size: 25px;
+    color: #0076c0;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  
+  .Body-top-item-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Body-top-item-text-top {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 4px;
+    cursor: pointer;
+  }
+  
+  .Body-top-item-text-top:hover {
+    color: #0076c0;
+  }
+  
+  .Body-top-item-text-down {
+    font-size: 14px;
+    color: #b1b1b1;
+  }
+  
+  /* BODY MIDDLE */
+  
+  #Body-middle-header {
+    margin-top: 90px;
+    margin-left: 40px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0076c0;
+  }
+  
+  .Body-middle {
+    display: flex;
+    margin-top: 20px;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .Body-middle-doctor {
+    width: 350px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .Body-middle-information {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+  }
+  
+  .Body-middle-infor-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .Body-infor-icon {
+    font-size: 30px;
+    color: #0076c0;
+  }
+  
+  .Body-middle-infor-item-top {
+    color: #0076c0;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .Body-middle-infor-item-bottom {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+  }
+  
+  /* PHẦN DƯỚI */
+  
+  .space {
+    height: 100px;
+    background-color: #0076c0;
+    margin-top: 40px;
+  }
+  
+  .Body-bottom {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    padding: 0 40px 40px 40px;
+  }
+  
+  .Body-bottom-images {
+    max-width: 500px;
+    max-height: 400px;
+    flex: 1 1 400px;
+  }
+  
+  .Body-bottom-slider-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .Body-bottom-about-Skyemec {
+    flex: 1 1 500px;
+    max-width: 600px;
+  }
+  
+  .Body-bottom-about-Skyemec-infor {
+    padding-left: 10px;
+  }
+  
+  .Body-bottom-header {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  .Body-bottom-label {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+  }
+  

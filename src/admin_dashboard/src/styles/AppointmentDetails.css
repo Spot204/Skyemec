@@ -1,0 +1,43 @@
+.AppointmentDetails-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #d1e7e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 8px rgba(0, 85, 102, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+  }
+  
+  .AppointmentDetails-container h3 {
+    margin-bottom: 15px;
+    color: #004050;
+  }
+  
+  .AppointmentDetails-container p {
+    margin: 6px 0;
+    font-size: 15px;
+  }
+  
+  .AppointmentDetails-container strong {
+    color: #005566;
+  }
+  
+  .btn-close {
+    background-color: #ccc;
+    color: #333;
+    margin-top: 15px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-close:hover {
+    background-color: #aaa;
+    color: white;
+  }
+  

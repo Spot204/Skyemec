@@ -29,6 +29,8 @@
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 10;
+    max-height: fit-content;
+    display: block;
 }
 
 .Bodysd-oder-dropdown-item {

@@ -7,6 +7,7 @@ import {
   faUser,
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
+
 import "../styles/Header.css";
 
 const Header = () => {
@@ -42,32 +43,88 @@ const Header = () => {
                 >
                   Cấp cứu
                 </li>
-                <li className="Header-dropdown-item">Trung tâm Tim mạch</li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Trung tâm Tim mạch
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Chấn thương chỉnh hình - Y học thể thao
                 </li>
-                <li className="Header-dropdown-item">Trung tâm Nhi</li>
-                <li className="Header-dropdown-item">Trung tâm Ung bướu</li>
-                <li className="Header-dropdown-item">Tiêu hóa - Gan mật</li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Trung tâm Nhi
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Trung tâm Ung bướu
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Tiêu hóa - Gan mật
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Trung tâm Mắt Vinmec-Alina
                 </li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Trung tâm Thẩm mỹ Vinmec-View
                 </li>
-                <li className="Header-dropdown-item">Miễn dịch - Dị ứng</li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Miễn dịch - Dị ứng
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Trung tâm Công nghệ cao
                 </li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Trung tâm sức khỏe phụ nữ
                 </li>
-                <li className="Header-dropdown-item">Sức khỏe tổng quát</li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Sức khỏe tổng quát
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Viện nghiên cứu Tế bào gốc và Công nghệ Gen
                 </li>
-                <li className="Header-dropdown-item">Trung tâm Vacxin</li>
-                <li className="Header-dropdown-item">
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
+                  Trung tâm Vacxin
+                </li>
+                <li
+                  className="Header-dropdown-item"
+                  onClick={() => navigate("emergency")}
+                >
                   Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông
                 </li>
               </ul>
@@ -91,9 +148,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-contact">
-                <li className="Header-dropdown-item">Đặt lịch khám</li>
-                <li className="Header-dropdown-item">Tư vấn sức khỏe</li>
-                <li className="Header-dropdown-item">Hỗ trợ kỹ thuật</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("oder_doctor")}>Đặt lịch khám</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("customer_service")}>Chăm sóc khác hàng</li>
               </ul>
             </div>
           )}
@@ -110,10 +166,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-about">
-                <li className="Header-dropdown-item">Giới thiệu</li>
-                <li className="Header-dropdown-item">Tin tức</li>
-                <li className="Header-dropdown-item">Sự kiện</li>
-                <li className="Header-dropdown-item">Tuyển dụng</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("information")}>Giới thiệu</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("news")}>Tin tức</li>
               </ul>
             </div>
           )}
@@ -126,9 +180,9 @@ const Header = () => {
             Đăng nhập
           </span>
         </div>
-        <div className="Header-search">
+        {/* <div className="Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
+        </div> */}
       </div>
     </nav>
   );

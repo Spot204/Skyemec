@@ -1,0 +1,111 @@
+/* ContactList.css */
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #005566;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 15px 0;
+  font-weight: 600;
+  font-size: 22px;
+  color: #0077cc;
+}
+
+.searchInput {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.searchInput:focus {
+  border-color: #005a99;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.noResult {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.listItem {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+}
+
+.listItem:hover {
+  background-color: #e1f0f6;
+}
+
+.contactHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.contactName {
+  color: #005566;
+}
+
+.status {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+}
+
+.status.new {
+  background-color: #0077cc;
+}
+
+.status.replied {
+  background-color: #28a745;
+}
+
+.status.pending {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.contactSubject {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.contactEmailDate {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+}

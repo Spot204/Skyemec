@@ -1,0 +1,55 @@
+.container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+    box-sizing: border-box;
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: #0077cc;
+    margin-bottom: 15px;
+  }
+  
+  .info p {
+    margin: 6px 0;
+    font-size: 16px;
+  }
+  
+  .textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    resize: vertical;
+  }
+  
+  .button {
+    background-color: #0077cc;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:disabled {
+    background-color: #a0c4e3;
+    cursor: not-allowed;
+  }
+  
+  .button:hover:not(:disabled) {
+    background-color: #005a99;
+  }
+  

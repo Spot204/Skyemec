@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./config/connectDB.js";
-import DrSchedule from "./model/drSchedule.js";
 import Patients from "./routes/patientRoutes.js";
 import drRoutes from "./routes/drRoutes.js";
 

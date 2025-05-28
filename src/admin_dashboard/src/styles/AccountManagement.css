@@ -1,0 +1,36 @@
+.account-management {
+    max-width: 900px;
+    margin: 30px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+  }
+  
+  .account-management h2 {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .account-management input[type="text"] {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1.5px solid #005566;
+    width: 300px;
+  }
+  
+  .account-management button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .account-management button:hover {
+    background-color: #0077cc;
+    color: white;
+  }
+  

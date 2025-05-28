@@ -1,0 +1,17 @@
+.AppointmentManagement-container {
+    padding: 20px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #005566;
+    background-color: #fff;
+  }
+  
+  .title {
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 28px;
+    border-bottom: 2px solid #005566;
+    padding-bottom: 8px;
+  }
+  
