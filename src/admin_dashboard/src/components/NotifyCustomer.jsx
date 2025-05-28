@@ -21,9 +21,9 @@ const NotifyCustomer = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <h2>Gửi thông báo cho khách hàng</h2>
-      <label htmlFor="subject" className={styles.label}>
+      <label htmlFor="subject" className="label">
         Tiêu đề thông báo
       </label>
       <input
@@ -32,10 +32,10 @@ const NotifyCustomer = () => {
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         placeholder="Nhập tiêu đề thông báo"
-        className={styles.input}
+        className="input"
       />
 
-      <label htmlFor="message" className={styles.label}>
+      <label htmlFor="message" className="label">
         Nội dung thông báo
       </label>
       <textarea
@@ -44,11 +44,11 @@ const NotifyCustomer = () => {
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Nhập nội dung thông báo"
         rows={6}
-        className={styles.textarea}
+        className="textarea"
       />
 
       <button
-        className={styles.button}
+        className="button"
         onClick={handleSendNotification}
         disabled={isSending || !subject.trim() || !message.trim()}
       >
