@@ -29,7 +29,7 @@ const Body_Search_doctor = ({ topText, setTopText }) => {
             className="Bodysd-top-exten-item"
             id="Calendar"
             onClick={() => {
-              navigate("/oder_doctor");
+              navigate("/user/oder_doctor");
               setTopText("ĐẶT LỊCH KHÁM BỆNH");
             }}
           >
@@ -41,7 +41,7 @@ const Body_Search_doctor = ({ topText, setTopText }) => {
             id="Doctor"
             onClick={() => {
               setTopText("DANH SÁCH BÁC SĨ - CHUYÊN GIA");
-              navigate("/search_doctor");
+              navigate("/user/search_doctor");
             }}
           >
             <FontAwesomeIcon className="icon" icon={faUserDoctor} />

@@ -8,14 +8,17 @@ import { useNavigate } from "react-router-dom";
 import { createAppointment } from "../services/Oder_doctor";
 
 const Oder_doctor = () => {
+  // State để lưu bác sĩ được chọn
+  const [selectedDoctor, setSelectedDoctor] = useState("");
   // Hàm xử lý gửi form đặt lịch
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       hospital: selectedHospital,
       department: selectedDepartment,
+      doctor: selectedDoctor,
       date: selectedDate ? selectedDate.toISOString().split("T")[0] : "",
-      slot: selectedSlot,
+      slot: selectedSlot ? String(selectedSlot) : "",
       gender: formData.gender,
       name: document.getElementById("Bodysd-input-name")?.value || "",
       phone: document.querySelector('input[placeholder="Nhập số điện thoại"]')?.value || "",
@@ -23,12 +26,34 @@ const Oder_doctor = () => {
       email: document.querySelector('input[placeholder="Nhập email"]')?.value || "",
       reason: document.querySelector(".Bodysd-inp-reason")?.value || "",
     };
+
+    // Validate bắt buộc nhập
+    if (!data.hospital.trim() || !data.department.trim() || !data.doctor.trim() || !data.date.trim() || !data.slot.trim() || !data.gender.trim() || !data.name.trim() || !data.phone.trim() || !data.birthday.trim() || !data.email.trim() || !data.reason.trim()) {
+      alert("Vui lòng nhập đầy đủ tất cả các trường bắt buộc!");
+      return;
+    }
+
+    // Validate số điện thoại
+    const phoneRegex = /^\d{9,11}$/;
+    if (!phoneRegex.test(data.phone)) {
+      alert("Số điện thoại phải là số và có độ dài từ 9 đến 11 ký tự!");
+      return;
+    }
+
+    // Validate email
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(data.email)) {
+      alert("Email không đúng định dạng!");
+      return;
+    }
+
     try {
       await createAppointment(data);
       alert("Đặt lịch thành công!");
       // Có thể reset form tại đây nếu muốn
     } catch (err) {
       alert("Có lỗi khi gửi thông tin!");
+      console.log("Lỗi khi gửi thông tin:", err);
     }
   };
   const navigate = useNavigate();
@@ -73,15 +98,6 @@ const Oder_doctor = () => {
       gender: e.target.value,
     }));
   }, []);
-
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/users") // Gọi API từ server Node.js
-      .then((response) => setUsers(response.data)) // Lưu dữ liệu vào state
-      .catch((error) => console.error("Lỗi khi lấy danh sách user:", error));
-  }, []);
-
   const [selectedDate, setSelectedDate] = useState(null);
   const [schedule, setSchedule] = useState([]);
   const [showDatePicker, setShowDatePicker] = useState(false); // Ẩn Date Picker mặc định
@@ -133,7 +149,7 @@ const Oder_doctor = () => {
   return (
     <div className="Bodysd-middle">
       <div className="Bodysd-navigation">
-        <span className="Bodysd-home" onClick={() => navigate("/home")}>
+        <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
           Trang chủ
           <FontAwesomeIcon icon={faAngleRight} />
         </span>
@@ -184,11 +200,18 @@ const Oder_doctor = () => {
               <label htmlFor="" className="discription">
                 Bác sĩ
               </label>
-              <Dropdown1
-                id="Oder-doctor"
-                options={options}
-                label="Chọn bác sĩ muốn khám"
-              ></Dropdown1>
+            {/* Dropdown chọn bác sĩ, có lưu value và onChange */}
+            <Dropdown1
+              id="Oder-doctor"
+              options={options}
+              label="Chọn bác sĩ muốn khám"
+              value={selectedDoctor}
+              onChange={(val) => {
+                // Lấy giá trị bác sĩ được chọn
+                const v = typeof val === "string" ? val : val?.value || val?.label || "";
+                setSelectedDoctor(v.trim());
+              }}
+            />
             </div>
           </div>
           <div className="discription">
