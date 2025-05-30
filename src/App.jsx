@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
+import App_doctor from "./doctor_frontend/App_doctor";
 // Nếu có App_admin và App_doctor thì import thêm:
 // import App_admin from "./admin_dashboard/App_admin";
 // import App_doctor from "./doctor_frontend/App_doctor";
@@ -15,7 +16,6 @@ const App = () => {
         <Route path="/user" element={<Navigate to="/user/home" replace />} />
         <Route path="/user/*" element={<App_user />} />
 
-
         {/* Trang đăng nhập */}
         <Route path="/login/*" element={<Login />} />
 
@@ -23,7 +23,10 @@ const App = () => {
         {/* <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} /> */}
 
         {/* Nếu có doctor dashboard thì bỏ comment dòng dưới */}
-        {/* <Route path="/doctor" element={<Navigate to="/doctor/home" replace />} /> */}
+        <Route path="/doctor/*" element={<Navigate to="/doctor/drprofile" replace />} />
+        
+        {/* Trang bác sĩ */}
+
         {/* Nếu có admin dashboard */}
         {/* <Route path="/admin/*" element={<App_admin />} /> */}
 

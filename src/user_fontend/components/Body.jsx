@@ -62,7 +62,7 @@ const Body = () => {
           <span className="Body-top-connect-text">
             Chăm sóc bằng tài năng, y đức và sự thấu cảm
           </span>
-          <button className="Body-top-connect-button">Xem thêm</button>
+          <button className="Body-top-connect-button" onClick={()=>navigate("/user/oder_doctor")}>Xem thêm</button>
         </div>
         <div className="Body-top-extension">
           <div className="Body-top-item" id="contact">

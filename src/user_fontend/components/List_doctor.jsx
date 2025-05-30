@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStethoscope } from "@fortawesome/free-solid-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationCap";
 import { faHospital } from "@fortawesome/free-regular-svg-icons";
+import { Navigate } from "react-router-dom";
 
 const DoctorList = ({ doctors }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +20,7 @@ const DoctorList = ({ doctors }) => {
 
   // Chuyển đến trang được chọn
   const goToPage = (page) => setCurrentPage(page);
-
+  const navigate = Navigate()
   return (
     <div className="Form-list-doctor">
       <ul className="List-doctor">
@@ -27,7 +28,7 @@ const DoctorList = ({ doctors }) => {
           <li className="List-doctor-item" key={index}>
             <div className="List-doctor-item-left">
               <img src="" alt="" className="img-doctor" />
-              <button className="btn-register-for-examination">
+              <button className="btn-register-for-examination" onClick={() => navigate("/doctor/drprofile")}>
                 Đăng ký khám
               </button>
             </div>

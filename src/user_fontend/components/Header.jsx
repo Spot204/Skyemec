@@ -69,7 +69,7 @@ const Header = () => {
                 </li>
                 <li
                   className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
+                  onClick={() => navigate("/doctor/drprofile")}
                 >
                   Tiêu hóa - Gan mật
                 </li>
