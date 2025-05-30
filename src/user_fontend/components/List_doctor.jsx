@@ -28,12 +28,12 @@ const DoctorList = ({ doctors }) => {
           <li className="List-doctor-item" key={index}>
             <div className="List-doctor-item-left">
               <img src="" alt="" className="img-doctor" />
-              <button className="btn-register-for-examination" onClick={() => navigate("/doctor/drprofile")}>
+              <button className="btn-register-for-examination" onClick={()=>navigate("/user/oder_doctor")} >
                 Đăng ký khám
               </button>
             </div>
             <div className="List-doctor-item-right">
-              <p className="Doctor-name">{doctor.name}</p>
+              <p className="Doctor-name"onClick={() => navigate("/doctor/drprofile")}>{doctor.name}</p>
               <div className="Doctor-rank">
                 <FontAwesomeIcon icon={faGraduationCap} />
                 {doctor.rank}

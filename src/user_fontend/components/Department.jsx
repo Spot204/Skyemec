@@ -15,7 +15,7 @@ const Department = ({ text }) => {
   const [selectedTab, setSelectedTab] = useState("general");
 
   useEffect(() => {
-    fetch("/data/data.json") // Đảm bảo file JSON nằm trong thư mục public
+    fetch("/dist/data/data.json") // Đảm bảo file JSON nằm trong thư mục public
       .then((response) => response.json())
       .then((data) => setContents(data))
       .catch((error) => console.error("Lỗi tải dữ liệu", error));
