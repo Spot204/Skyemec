@@ -23,7 +23,7 @@ const Header = () => {
         className="Header-logo"
         src={logo}
         alt="logo"
-        onClick={() => navigate("home")}
+        onClick={() => navigate("/user/home")}
       />
       <ul className="Header-navbar-list">
         <li
@@ -37,105 +37,30 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list">
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Cấp cứu
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Tim mạch
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Chấn thương chỉnh hình - Y học thể thao
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Nhi
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Ung bướu
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Tiêu hóa - Gan mật
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Mắt Vinmec-Alina
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Thẩm mỹ Vinmec-View
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Miễn dịch - Dị ứng
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Công nghệ cao
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm sức khỏe phụ nữ
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Sức khỏe tổng quát
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Viện nghiên cứu Tế bào gốc và Công nghệ Gen
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Vacxin
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông
-                </li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Cấp cứu</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Trung tâm Tim mạch</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Chấn thương chỉnh hình - Y học thể thao</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Trung tâm Nhi</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Ung bướu</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Tiêu hóa - Gan mật</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Trung tâm Mắt Vinmec-Alina</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Trung tâm Thẩm mỹ Vinmec-View</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Miễn dịch - Dị ứng</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Công nghệ cao</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Trung tâm sức khỏe phụ nữ</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Sức khỏe tổng quát</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Viện nghiên cứu Tế bào gốc và Công nghệ Gen</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Trung tâm Vacxin</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông</li>
               </ul>
             </div>
           )}
         </li>
         <li className="Header-nav-item">
-          <span onClick={() => navigate("oder_doctor")}>Đặt lịch</span>
+          <span onClick={() => navigate("/user/oder_doctor")}>Đặt lịch</span>
         </li>
         <li className="Header-nav-item">
-          <span onClick={() => navigate("search_doctor")}>Tìm bác sĩ</span>
+          <span onClick={() => navigate("/user/search_doctor")}>Tìm bác sĩ</span>
         </li>
         <li
           className="Header-nav-item"
@@ -148,8 +73,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-contact">
-                <li className="Header-dropdown-item"onClick={() => navigate("oder_doctor")}>Đặt lịch khám</li>
-                <li className="Header-dropdown-item"onClick={() => navigate("customer_service")}>Chăm sóc khác hàng</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("/user/oder_doctor")}>Đặt lịch khám</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("/user/customer_service")}>Chăm sóc khác hàng</li>
               </ul>
             </div>
           )}
@@ -166,8 +91,8 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list" id="Header-dropmenu-about">
-                <li className="Header-dropdown-item"onClick={() => navigate("information")}>Giới thiệu</li>
-                <li className="Header-dropdown-item"onClick={() => navigate("news")}>Tin tức</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("/user/information")}>Giới thiệu</li>
+                <li className="Header-dropdown-item"onClick={() => navigate("/user/news")}>Tin tức</li>
               </ul>
             </div>
           )}
@@ -176,7 +101,7 @@ const Header = () => {
       <div className="Header-navbar-right">
         <div className="Header-login">
           <FontAwesomeIcon icon={faUser} />
-          <span className="login" onClick={() => navigate("login")}>
+          <span className="login" onClick={() => navigate("/login/login")}> 
             Đăng nhập
           </span>
         </div>

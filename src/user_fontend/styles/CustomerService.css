@@ -1,0 +1,50 @@
+.CS-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+}
+.CS-middle-container{
+    background-color: white;
+    padding: 40px 30px;
+}
+
+.CS-ipt-item{
+    width: 700px;
+    margin: 0;
+    height: 10px;
+    border-radius: 0px;
+    border: 1px solid #ccc;
+    color: gray;
+}
+#CS-Note{
+    height: 100px;
+    width: 730px;
+    border: 1px solid gray
+}
+.CS-button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.CS-button{
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    background-color: #51be9d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.CS-button:hover{
+    background-color: #45a88b;
+}
+.CS-p-text{
+    font-size: 20px;
+    color: #0076c0;
+    margin-top: 10px;
+    margin: 0;
+}

@@ -38,7 +38,7 @@ const Search_doctor = () => {
     <div>
       <div className="Bodysd-middle">
         <div className="Bodysd-navigation">
-          <span className="Bodysd-home" onClick={() => navigate("/home")}>
+          <span className="Bodysd-home" onClick={() => navigate("/user/home")}>
             Trang chủ <FontAwesomeIcon icon={faAngleRight} />
           </span>
           <span className="Bodysd-search-doctor">Chuyên gia y tế</span>
@@ -52,12 +52,12 @@ const Search_doctor = () => {
             <Dropdown
               label="Lựa chọn cơ sở"
               options={[
-                "Vinmec Hạ Long",
-                "Vinmec Smart City",
-                "Vinmec Central Park",
-                "Vinmec Phú Quốc",
-                "Vinmec Đà Nẵng",
-                "Vinmec Nha Trang",
+                "Skyemec Hà Đông",
+                "Skyemec Thanh Xuân",
+                "Skyemec Cầu Giấy",
+                "Skyemec Tuyên Quang",
+                "Skyemec Tuyên Quang",
+                "Skyemec Bắc Ninh",
               ]}
               onChange={setSelectedLocation}
             />
@@ -86,21 +86,33 @@ const Search_doctor = () => {
           </div>
           <div className="Bodysd-filter-item" id="icon-language">
             <FontAwesomeIcon icon={faGlobe} className="Bodysd-filter-icon" />
-            <Dropdown label="Ngôn ngữ" options={["Tiếng Việt", "Tiếng Anh"]} onChange={setSelectedLanguage} />
+            <Dropdown
+              label="Ngôn ngữ"
+              options={["Tiếng Việt", "Tiếng Anh"]}
+              onChange={setSelectedLanguage}
+            />
           </div>
           <div className="Bodysd-filter-item" id="icon-job">
             <FontAwesomeIcon
               icon={faBriefcaseMedical}
               className="Bodysd-filter-icon"
             />
-            <Dropdown label="Nghề nghiệp" options={["Bác sĩ", "Chuyên gia"]} onChange={setSelectedJob} />
+            <Dropdown
+              label="Nghề nghiệp"
+              options={["Bác sĩ", "Chuyên gia"]}
+              onChange={setSelectedJob}
+            />
           </div>
           <div className="Bodysd-filter-item" id="icon-rank">
             <FontAwesomeIcon
               icon={faGraduationCap}
               className="Bodysd-filter-icon"
             />
-            <Dropdown label="Học hàm" options={["Giáo sư", "Phó Giáo sư"]} onChange={setSelectedRank} />
+            <Dropdown
+              label="Học hàm"
+              options={["Giáo sư", "Phó Giáo sư"]}
+              onChange={setSelectedRank}
+            />
           </div>
           <div className="Bodysd-filter-item" id="icon-degree">
             <FontAwesomeIcon

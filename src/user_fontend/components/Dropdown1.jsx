@@ -3,9 +3,9 @@ import "../styles/Dropdown1.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-const Dropdown1 = ({ options, label }) => {
+// Sửa: nhận thêm value và onChange từ props để đồng bộ state với component cha
+const Dropdown1 = ({ options, label, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); // Chỉ lưu một giá trị
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -22,14 +22,14 @@ const Dropdown1 = ({ options, label }) => {
   }, []);
 
   const handleSelect = (option) => {
-    setSelectedOption(option); // Cập nhật giá trị đã chọn
+    if (onChange) onChange(option); // Gọi callback để cập nhật state ở component cha
     setIsOpen(false); // Đóng dropdown sau khi chọn
   };
 
   return (
     <div className="Bodysd-oder-dropdown-container" ref={dropdownRef}>
       <div className="Bodysd-oder-select" onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption || label} {/* Hiển thị giá trị đã chọn */}
+        {value || label} {/* Hiển thị giá trị đã chọn từ props */}
         <FontAwesomeIcon
           icon={faAngleDown}
           className="Bodysd-oder-select-icon"

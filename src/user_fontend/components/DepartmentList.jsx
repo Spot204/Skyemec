@@ -82,7 +82,7 @@ const DepartmentList = () => {
   return (
     <div className="Dl-body-middle">
       <div className="Bodysd-navigation" id="Dl-middle">
-        <span className="Bodysd-home" onClick={() => navigate("/home")}>
+        <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
           Trang chủ <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span className="Bodysd-search-doctor">Chuyên khoa</span>
@@ -94,10 +94,10 @@ const DepartmentList = () => {
               <img
                 src={dept.image}
                 alt={dept.name}
-                onClick={() => navigate(dept.path)}
+                onClick={() => navigate(`/user${dept.path}`)}
               />
-              <h3 onClick={() => navigate(dept.path)}>{dept.name}</h3>
-              <a onClick={() => navigate(dept.path)}>More</a>
+              <h3 onClick={() => navigate(`/user${dept.path}`)}>{dept.name}</h3>
+              <a onClick={() => navigate(`/user${dept.path}`)}>More</a>
             </div>
           ))}
         </div>

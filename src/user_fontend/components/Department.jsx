@@ -15,7 +15,7 @@ const Department = ({ text }) => {
   const [selectedTab, setSelectedTab] = useState("general");
 
   useEffect(() => {
-    fetch("/data/data.json") // Đảm bảo file JSON nằm trong thư mục public
+    fetch("/dist/data/data.json") // Đảm bảo file JSON nằm trong thư mục public
       .then((response) => response.json())
       .then((data) => setContents(data))
       .catch((error) => console.error("Lỗi tải dữ liệu", error));
@@ -30,10 +30,10 @@ const Department = ({ text }) => {
     <div className="Department-Container">
     <div className="Department-body">
       <div className="Bodysd-navigation" id="Department-middle">
-        <span className="Bodysd-home"onClick={()=> navigate('/home')}>
+        <span className="Bodysd-home"onClick={()=> navigate('/user/home')}>
           Trang chủ <FontAwesomeIcon icon={faAngleRight} />
         </span>
-        <span id="Department-text" onClick={()=> navigate('/khoa')}>
+        <span id="Department-text" onClick={()=> navigate('/user/khoa')}>
           Chuyên khoa <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span>{contents[text].name}</span>

@@ -62,7 +62,7 @@ const Body = () => {
           <span className="Body-top-connect-text">
             Chăm sóc bằng tài năng, y đức và sự thấu cảm
           </span>
-          <button className="Body-top-connect-button">Xem thêm</button>
+          <button className="Body-top-connect-button" onClick={()=>navigate("/user/oder_doctor")}>Xem thêm</button>
         </div>
         <div className="Body-top-extension">
           <div className="Body-top-item" id="contact">
@@ -80,7 +80,7 @@ const Body = () => {
           <div
             className="Body-top-item"
             id="schedule"
-            onClick={() => navigate("/oder_doctor")}
+            onClick={() => navigate("/user/oder_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
@@ -96,7 +96,7 @@ const Body = () => {
           <div
             className="Body-top-item"
             id="search-doctor"
-            onClick={() => navigate("/search_doctor")}
+            onClick={() => navigate("/user/search_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
