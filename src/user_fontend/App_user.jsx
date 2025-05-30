@@ -1,13 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-
-
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Body_Search_doctor from "./components/Body_Search_doctor";
@@ -37,13 +30,14 @@ const App = () => {
   const images = ["/src/assets/image90.png", "/src/assets/image91.jpg"];
   const [topText, setTopText] = useState("DANH SÁCH BÁC SĨ - CHUYÊN GIA");
   return (
-    <Router>
+    <>
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route index element={<Navigate to="home" replace />} />
+        <Route path="/" element={<Navigate to="home" replace />} />
         {/* Khi user nhấn đăng nhập, điều hướng sang app doctor, không render login ở đây */}
         <Route
-          path="/home"
+          path="home"
           element={
             <>
               <Body />
@@ -52,7 +46,7 @@ const App = () => {
           }
         />
         <Route
-          path="/search_doctor"
+          path="search_doctor"
           element={
             <>
               <Body_Search_doctor
@@ -65,7 +59,7 @@ const App = () => {
           }
         />
         <Route
-          path="/oder_doctor"
+          path="oder_doctor"
           element={
             <>
               <Body_Search_doctor
@@ -78,7 +72,7 @@ const App = () => {
           }
         />
         <Route
-          path="/emergency"
+          path="emergency"
           element={
             <>
               <Body_Search_doctor topText="Cấp cứu" setTopText={setTopText} />
@@ -88,7 +82,7 @@ const App = () => {
           }
         />
         <Route
-          path="/khoa"
+          path="khoa"
           element={
             <>
               <Body_Search_doctor
@@ -101,7 +95,7 @@ const App = () => {
           }
         />
         <Route
-          path="/information"
+          path="information"
           element={
             <>
               <Body_Search_doctor
@@ -117,10 +111,10 @@ const App = () => {
             </>
           }
         />
-        <Route path="/customer_service" element={<CustomerService />} />
+        <Route path="customer_service" element={<CustomerService />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
-    </Router>
+    </>
   );
 };
 

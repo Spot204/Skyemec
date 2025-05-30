@@ -80,7 +80,7 @@ const Body = () => {
           <div
             className="Body-top-item"
             id="schedule"
-            onClick={() => navigate("/oder_doctor")}
+            onClick={() => navigate("/user/oder_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
@@ -96,7 +96,7 @@ const Body = () => {
           <div
             className="Body-top-item"
             id="search-doctor"
-            onClick={() => navigate("/search_doctor")}
+            onClick={() => navigate("/user/search_doctor")}
           >
             <FontAwesomeIcon
               className="Body-top-extension-icon"

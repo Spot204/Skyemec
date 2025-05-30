@@ -38,7 +38,7 @@ const Search_doctor = () => {
     <div>
       <div className="Bodysd-middle">
         <div className="Bodysd-navigation">
-          <span className="Bodysd-home" onClick={() => navigate("/home")}>
+          <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
             Trang chủ <FontAwesomeIcon icon={faAngleRight} />
           </span>
           <span className="Bodysd-search-doctor">Chuyên gia y tế</span>

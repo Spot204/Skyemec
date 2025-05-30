@@ -149,7 +149,7 @@ const Oder_doctor = () => {
   return (
     <div className="Bodysd-middle">
       <div className="Bodysd-navigation">
-        <span className="Bodysd-home" onClick={() => navigate("/home")}>
+        <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
           Trang chủ
           <FontAwesomeIcon icon={faAngleRight} />
         </span>

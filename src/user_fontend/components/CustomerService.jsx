@@ -4,6 +4,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
 import { useState } from "react";
 import axios from "axios";
+import { createReport } from "../services/Oder_doctor";
 
 const options = [
   "Skyemec Hà Đông",
@@ -62,7 +63,7 @@ const CustomerService = () => {
       note,
     };
     try {
-      await axios.post("http://localhost:5050/api/customer-service/create", data);
+      await createReport(data);
       alert("Gửi yêu cầu thành công!");
       setName(""); setBirthday(""); setPhone(""); setEmail(""); setPid(""); setSelectedHospital(""); setSelectedService(""); setNote("");
     } catch (err) {
@@ -74,7 +75,7 @@ const CustomerService = () => {
   return (
     <div className="CS-container">
       <div className="Bodysd-navigation">
-        <span className="Bodysd-home" onClick={() => navigate("/home")}> 
+        <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
           Trang chủ <FontAwesomeIcon icon={faAngleRight} />
         </span>
         <span className="Bodysd-search-doctor">chắm sóc khác hàng</span>
