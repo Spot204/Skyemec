@@ -12,8 +12,6 @@ import Search_doctor from "./components/Search_doctor";
 import Oder_doctor from "./components/Oder_doctor";
 import CustomerService from "./components/CustomerService";
 
-
-
 const App = () => {
   //const [currentPage, setCurrentPage] = useState("home");
   const headers = ["Giới thiệu Skyemec, Tầm nhìn & Sứ mệnh", "Giá trị cốt lõi"];
@@ -77,6 +75,58 @@ const App = () => {
             <>
               <Body_Search_doctor topText="Cấp cứu" setTopText={setTopText} />
               <Department text="cap_cuu" />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="cardiology"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Trung tâm Tim mạch"
+                setTopText={setTopText}
+              />
+              <Department text="tim_mach" />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="orthopedics"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Chấn thương chỉnh hình - Y học thể thao"
+                setTopText={setTopText}
+              />
+              <Department text="chan_thuong_chinh_hinh" />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="kids"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Trung tâm Nhi"
+                setTopText={setTopText}
+              />
+              <Department text="nhi" />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="oncology"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Trung tâm Ung bướu"
+                setTopText={setTopText}
+              />
+              <Department text="ung_buou" />
               <Footer />
             </>
           }

@@ -37,96 +37,21 @@ const Header = () => {
             <div className="dropdown-container">
               <div className="triangle"></div>
               <ul className="Header-dropdown-list">
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Cấp cứu
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Tim mạch
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Chấn thương chỉnh hình - Y học thể thao
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Nhi
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Ung bướu
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Tiêu hóa - Gan mật
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Mắt Vinmec-Alina
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Thẩm mỹ Vinmec-View
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Miễn dịch - Dị ứng
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Công nghệ cao
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm sức khỏe phụ nữ
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Sức khỏe tổng quát
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Viện nghiên cứu Tế bào gốc và Công nghệ Gen
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("/user/emergency")}
-                >
-                  Trung tâm Vacxin
-                </li>
-                <li
-                  className="Header-dropdown-item"
-                  onClick={() => navigate("emergency")}
-                >
-                  Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông
-                </li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Cấp cứu</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Trung tâm Tim mạch</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Chấn thương chỉnh hình - Y học thể thao</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Trung tâm Nhi</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Ung bướu</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Tiêu hóa - Gan mật</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Trung tâm Mắt Vinmec-Alina</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Trung tâm Thẩm mỹ Vinmec-View</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Miễn dịch - Dị ứng</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Công nghệ cao</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/emergency")}>Trung tâm sức khỏe phụ nữ</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/cardiology")}>Sức khỏe tổng quát</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/orthopedics")}>Viện nghiên cứu Tế bào gốc và Công nghệ Gen</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/kids")}>Trung tâm Vacxin</li>
+                <li className="Header-dropdown-item" onClick={() => navigate("/user/oncology")}>Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông</li>
               </ul>
             </div>
           )}
