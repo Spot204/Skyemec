@@ -1,0 +1,130 @@
+[
+    {
+      "username": "nguyenthanhanh22",
+      "password": "Pass1234!",
+      "role": "doctor",
+      "fullName": "Nguyễn Thị Hạnh",
+      "phoneNumber": "0918765432",
+      "gender": "Female",
+      "dateOfBirth": "1985-08-15",
+      "address": "Số 21, phố Hàng Bông, Hà Nội",
+      "doctorInfo": {
+        "position": "Phó Trưởng Khoa Nội tổng quát",
+        "department": "Khoa Nội tổng quát",
+        "specialty": [
+          "Điều trị các bệnh nội khoa phổ biến",
+          "Quản lý bệnh lý mãn tính như tiểu đường, huyết áp",
+          "Tư vấn dinh dưỡng và phòng bệnh",
+          "Theo dõi bệnh nhân sau điều trị"
+        ],
+        "licenseNumber": "DHYT998877",
+        "workSchedule": [
+          {"day": "Monday", "start": "08:00", "end": "12:00"},
+          {"day": "Wednesday", "start": "13:00", "end": "17:00"},
+          {"day": "Friday", "start": "08:00", "end": "12:00"}
+        ],
+        "education": [
+          "Thạc sĩ Y học, Đại học Y Hà Nội, 2012"
+        ],
+        "introduction": "Bác sĩ Nguyễn Thị Hạnh có nhiều năm kinh nghiệm trong điều trị các bệnh lý nội tổng quát. Cô được đánh giá cao về kỹ năng lâm sàng và tận tâm với bệnh nhân. Bác sĩ cũng tích cực tham gia các hoạt động nghiên cứu và đào tạo tại Vinmec Hà Đông.",
+        "experience": [
+          "8 năm công tác tại Bệnh viện Bạch Mai",
+          "6 năm làm việc tại Vinmec Hà Đông",
+          "Nghiên cứu về quản lý bệnh mãn tính"
+        ],
+        "organizationMemberships": [
+          "Hội Nội khoa Việt Nam"
+        ],
+        "publications": [
+          "\"Quản lý bệnh tiểu đường hiệu quả\" (2016)",
+          "\"Tư vấn dinh dưỡng cho người cao tuổi\" (2019)"
+        ]
+      }
+    },
+    {
+      "username": "phamvandung55",
+      "password": "Pass1234!",
+      "role": "doctor",
+      "fullName": "Phạm Văn Dũng",
+      "phoneNumber": "0903344556",
+      "gender": "Male",
+      "dateOfBirth": "1975-11-12",
+      "address": "Số 78, đường Nguyễn Trãi, Hà Nội",
+      "doctorInfo": {
+        "position": "Trưởng Khoa Chấn thương chỉnh hình",
+        "department": "Khoa Chấn thương chỉnh hình",
+        "specialty": [
+          "Phẫu thuật chỉnh hình và phục hồi chức năng",
+          "Điều trị các tổn thương thể thao và tai nạn lao động",
+          "Tư vấn và phẫu thuật nội soi khớp",
+          "Quản lý đau sau phẫu thuật"
+        ],
+        "licenseNumber": "DHYT554433",
+        "workSchedule": [
+          {"day": "Tuesday", "start": "08:00", "end": "12:00"},
+          {"day": "Thursday", "start": "13:00", "end": "17:00"},
+          {"day": "Saturday", "start": "08:00", "end": "12:00"}
+        ],
+        "education": [
+          "Tiến sĩ Y học, Đại học Y Hà Nội, 2010"
+        ],
+        "introduction": "Bác sĩ Phạm Văn Dũng là chuyên gia trong lĩnh vực chấn thương chỉnh hình với nhiều năm kinh nghiệm điều trị các ca phức tạp. Ông đã từng công tác tại nhiều bệnh viện lớn trong và ngoài nước, góp phần nâng cao chất lượng điều trị tại Vinmec Bắc Ninh.",
+        "experience": [
+          "10 năm công tác tại Bệnh viện Việt Đức",
+          "7 năm tại Vinmec Bắc Ninh",
+          "Tham gia đào tạo và hội thảo quốc tế"
+        ],
+        "organizationMemberships": [
+          "Hội Chấn thương chỉnh hình Việt Nam"
+        ],
+        "publications": [
+          "\"Kỹ thuật phẫu thuật nội soi khớp gối\" (2014)",
+          "\"Phục hồi chức năng sau chấn thương\" (2017)"
+        ]
+      }
+    },
+    {
+      "username": "tranthimai88",
+      "password": "Pass1234!",
+      "role": "doctor",
+      "fullName": "Trần Thị Mai",
+      "phoneNumber": "0988776655",
+      "gender": "Female",
+      "dateOfBirth": "1980-04-05",
+      "address": "Số 12, phố Đinh Tiên Hoàng, Hà Nội",
+      "doctorInfo": {
+        "position": "Trưởng Bộ môn Nhi",
+        "department": "Khoa Nhi",
+        "specialty": [
+          "Điều trị các bệnh nhi khoa thường gặp và phức tạp",
+          "Miễn dịch dị ứng ở trẻ em",
+          "Tư vấn dinh dưỡng và phát triển cho trẻ",
+          "Nghiên cứu và ứng dụng vacxin"
+        ],
+        "licenseNumber": "DHYT776655",
+        "workSchedule": [
+          {"day": "Monday", "start": "08:00", "end": "12:00"},
+          {"day": "Wednesday", "start": "13:00", "end": "17:00"},
+          {"day": "Friday", "start": "08:00", "end": "12:00"}
+        ],
+        "education": [
+          "Tiến sĩ Y học, Đại học Y Hà Nội, 2009",
+          "Phó Giáo sư, 2017"
+        ],
+        "introduction": "Bác sĩ Trần Thị Mai có nhiều kinh nghiệm trong lĩnh vực nhi khoa, đặc biệt về các bệnh lý miễn dịch và dị ứng ở trẻ em. Bà là giảng viên đại học và có nhiều công trình nghiên cứu được công nhận trong nước và quốc tế.",
+        "experience": [
+          "12 năm công tác tại Bệnh viện Nhi Trung ương",
+          "6 năm tại Vinmec Thanh Xuân",
+          "Giảng viên và nghiên cứu viên"
+        ],
+        "organizationMemberships": [
+          "Hội Nhi khoa Việt Nam"
+        ],
+        "publications": [
+          "\"Bệnh dị ứng ở trẻ em\" (2015)",
+          "\"Phát triển vacxin mới cho trẻ em\" (2019)"
+        ]
+      }
+    }
+  ]
+  
