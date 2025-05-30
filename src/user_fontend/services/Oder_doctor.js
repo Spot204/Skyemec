@@ -1,5 +1,4 @@
 import axios from "axios";
-import e from "express";
 export const createAppointment = async (data) => {
   return await axios.post("http://localhost:5050/api/appointment/create", data);
 };

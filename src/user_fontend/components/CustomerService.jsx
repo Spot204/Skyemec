@@ -11,7 +11,7 @@ const options = [
   "Skyemec Thanh Xuân",
   "Skyemec Cầu Giấy",
   "Skyemec Tuyên Quang",
-  "Skyemec Tuyên Quang",
+  "Skyemec Hà Tĩnh",
   "Skyemec Bắc Ninh",
 ];
 const services = [

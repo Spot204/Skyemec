@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
