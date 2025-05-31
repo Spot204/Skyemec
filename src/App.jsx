@@ -2,10 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
 import App_doctor from "./doctor_frontend/App_doctor";
-// Nếu có App_admin và App_doctor thì import thêm:
-// import App_admin from "./admin_dashboard/App_admin";
-// import App_doctor from "./doctor_frontend/App_doctor";
-
+import AdminApp from "./admin_dashboard/AdminApp";
 
 const App = () => {
   return (
@@ -18,22 +15,14 @@ const App = () => {
 
         {/* Trang đăng nhập */}
         <Route path="/login/*" element={<Login />} />
-
-        {/* Nếu có admin dashboard thì bỏ comment dòng dưới */}
-        {/* <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} /> */}
-
-        {/* Nếu có doctor dashboard thì bỏ comment dòng dưới */}
         <Route path="/doctor/*" element={<Navigate to="/doctor/drprofile" replace />} />
-        
-        {/* Trang bác sĩ */}
+        {/* Admin dashboard */}
+        {/* Truy cập /admin sẽ redirect sang /admin/dashboard */}
+        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+        {/* AdminApp xử lý tất cả route con dưới /admin */}
+        <Route path="/admin/*" element={<AdminApp />} />
 
-        {/* Nếu có admin dashboard */}
-        {/* <Route path="/admin/*" element={<App_admin />} /> */}
-
-        {/* Nếu có doctor dashboard */}
-        {/* <Route path="/doctor/*" element={<App_doctor />} /> */}
-
-        {/* 404 fallback */}
+        {/* Fallback 404 */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>

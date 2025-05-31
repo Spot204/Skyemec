@@ -1,5 +1,5 @@
 import React from "react";
-import "../sstyles/NewsCategoryFilter.css";
+import "../styles/NewsCategoryFilter.css";
 
 const NewsCategoryFilter = ({ categories, selectedCategory, onSelectCategory }) => {
   return (

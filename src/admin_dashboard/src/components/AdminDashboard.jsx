@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Header from "./Header"; // Header của bạn
 import AccountManagement from "./AccountManagement";
 import UpdateAccount from "./UpdateAccount";
 import ManagePermissions from "./ManagePermissions";
@@ -51,8 +50,7 @@ export default function AdminDashboard() {
 
   return (
     <>
-      {/* Header nhận props setCurrentPage để gọi thay đổi trang */}
-      <Header setCurrentPage={setCurrentPage} />
+      {/* Bỏ Header khỏi đây */}
 
       {/* Phần nội dung thay đổi theo trang */}
       <main style={{ padding: "20px" }}>
