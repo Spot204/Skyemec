@@ -1,3 +1,5 @@
+// Lấy thông tin bệnh nhân theo email hoặc id
+import PatientProfile from "../model/PatientProfile.js";
 import express from "express";
 import Appointment from "../model/Appointment.js";
 import Report from "../model/Report.js";
@@ -54,6 +56,8 @@ router.post("/report", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+router.post
 
 
 // Gửi email thông báo
