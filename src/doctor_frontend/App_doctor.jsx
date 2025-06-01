@@ -8,8 +8,9 @@ import DrMedicine from "./components/DrMedicine";
 import DrHeader from "./components/DrHeader";
 import DrFooter from "../user_fontend/components/Footer";
 import MedProfile from "./components/MedProfile";
+import Footer from "../user_fontend/components/Footer";
 
-const App = () => {
+const DrApp = () => {
   return (
     <>
       <Routes>
@@ -79,5 +80,21 @@ const App = () => {
     </>
   );
 };
+const App = () => {
+  return (
+    <>
+      <Routes>
+        <Route
+          path="doctor/drprofile/:id"
+          element={
+            <>
+              <DrProfile /> <Footer />
+            </>
+          }
+        />
+      </Routes>
+    </>
+  );
+};
 
-export default App;
+export default DrApp;

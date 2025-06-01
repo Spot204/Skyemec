@@ -7,9 +7,9 @@ import drRoutes from "./routes/drRoutes.js";
 import drScheRoutes from "./routes/drScheRoutes.js";
 import drNews from "./routes/drNewsRoutes.js";
 import MedRoutes from "./routes/drMedRoutes.js";
-import drScheRoutes from "./routes/drScheRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import loginRoutes from "./routes/loginRoutes.js";
 
-import dotenv from "dotenv";
 dotenv.config();
 
 // Kiểm tra biến môi trường

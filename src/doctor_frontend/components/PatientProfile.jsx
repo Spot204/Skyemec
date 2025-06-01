@@ -5,7 +5,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import topimage from "../assets/Docimage1.jpg";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -84,7 +84,6 @@ const PatientProfile = () => {
     }
   };
 
-  // Helper để render input hoặc text cho từng trường
   const renderField = (label, field, type = "text") => {
     if (editMode || addingField === field) {
       return (
@@ -139,30 +138,56 @@ const PatientProfile = () => {
     );
   };
 
+  function AutoResizeTextarea({ value, onChange, name, placeholder }) {
+    const textareaRef = useRef(null);
+
+    useEffect(() => {
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height =
+          textareaRef.current.scrollHeight + "px";
+      }
+    }, [value]);
+
+    return (
+      <textarea
+        ref={textareaRef}
+        className="patient-edit-textarea"
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        style={{ minHeight: 60, overflow: "hidden" }}
+      />
+    );
+  }
+
   const renderArrayField = (label, field) => {
     if (editMode || addingField === field) {
+      const value =
+        typeof form[field] === "string"
+          ? form[field]
+          : Array.isArray(form[field])
+          ? form[field].join("\n")
+          : "";
+
       return (
         <p className="patient-edit-p">
-          {label}:{" "}
-          <textarea
-            className="patient-edit-textarea"
+          <AutoResizeTextarea
             name={field}
-            value={Array.isArray(form[field]) ? form[field].join("\n") : ""}
+            value={value}
             onChange={(e) =>
               setForm({
                 ...form,
-                [field]: e.target.value
-                  .split("\n")
-                  .map((item) => item.trim())
-                  .filter((item) => item),
+                [field]: e.target.value,
               })
             }
-            rows={3}
             placeholder="Mỗi dòng là một mục"
           />
         </p>
       );
     }
+
     if (!patient[field] || patient[field].length === 0) {
       return (
         <p className="patient-edit-p">
@@ -219,6 +244,18 @@ const PatientProfile = () => {
   } else if (patient.relatives && typeof patient.relatives === "object") {
     relatives = [patient.relatives];
   }
+
+  const dataToSave = {
+    ...form,
+    diary:
+      typeof form.diary === "string"
+        ? form.diary
+            .split("\n")
+            .map((line) => line.trim())
+            .filter((line) => line)
+        : form.diary,
+    // ...các trường array khác nếu cần
+  };
 
   return (
     <div className="papro-cover">
