@@ -1,5 +1,4 @@
 import "../styles/DrProfile.css";
-import dr1 from "../assets/dr-pho-hoang-dang-mich.PNG";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import topimage from "../assets/Docimage1.jpg";
@@ -31,7 +30,10 @@ const DrProfile = () => {
         <a>THÔNG TIN BÁC SĨ</a>
       </div>
       <img className="drprofile-top-img" src={topimage} alt="doctor" />
-      <span onClick={() => navigate("/user/home")} className="drprofile-navigator">
+      <span
+        onClick={() => navigate("/user/home")}
+        className="drprofile-navigator"
+      >
         Trang chủ <FontAwesomeIcon icon={faAngleRight} /> {"  "}
       </span>
       <span
@@ -56,7 +58,12 @@ const DrProfile = () => {
               <h1>
                 {doctor.role} {doctor.name}
               </h1>
-              <button className="patient-signin" onClick={()=>navigate("/user/search_doctor")}>Đăng ký khám</button>
+              <button
+                className="patient-signin"
+                onClick={() => navigate("/user/search_doctor")}
+              >
+                Đăng ký khám
+              </button>
             </div>
           </div>
           <div className="drpro-general">
@@ -72,29 +79,29 @@ const DrProfile = () => {
           {doctor.specialty.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Nơi làm việc</h2>
           <p>{doctor.workplace}</p>
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Quá trình đào tạo</h2>
           {doctor.education.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Kinh nghiệm làm việc</h2>
           {doctor.experience.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Thành viên của các tổ chức</h2>
           {doctor.organizations.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Sách, báo và công trình nghiên cứu</h2>
           {doctor.publications.map((item, idx) => (

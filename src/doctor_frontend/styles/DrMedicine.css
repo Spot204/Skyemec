@@ -1,0 +1,105 @@
+.drmed-cover {
+  background-color: rgb(250, 250, 250);
+  margin: 0px;
+  border: 0.1px solid rgb(250, 250, 250);
+}
+
+.drmed-container {
+  background-color: white;
+  justify-content: center;
+  min-height: 32vh;
+  margin: 30px 150px 0 150px;
+}
+
+.drmed-top-text {
+  position: absolute;
+  color: rgb(250, 250, 250);
+  top: 230px;
+  left: 610px;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.drmed-top-img {
+  max-width: 100%;
+}
+
+.drmed-navigator {
+  color: #0067ab;
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.drmed-navigator-2 {
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  cursor: text;
+}
+
+.drmed-search-icon {
+  font-size: 24px;
+  position: relative;
+  top: 1px;
+  left: 373px;
+  color: rgb(50, 50, 50);
+}
+
+.drmed-search-bar {
+  border-radius: 25px;
+  width: 800px;
+  height: 50px;
+  border: 1px solid rgb(150, 150, 150);
+  cursor: text;
+  margin: 0 0 0 330px;
+  font-size: 20px;
+  text-indent: 55px;
+}
+
+.drmed-search-bar::placeholder {
+  text-indent: 55px;
+}
+
+.drmed-list {
+  padding: 20px;
+  display: flex;
+  margin: 0 0 0 200px;
+  font-size: 22px;
+}
+
+.drmed-list-ul {
+  width: 500px;
+}
+
+.drmed-list-item {
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+.drmed-list-item:hover {
+  color: #0067ab;
+  text-decoration: underline;
+}
+
+.drmed-flex p {
+  font-size: 20px;
+}
+
+.drmed-line {
+  height: 1px;
+  width: 90%;
+  background: #ddd;
+  margin: 10px 0 20px 0;
+}
+
+/* h2 {
+  font-size: 30px;
+  color: #0067ab;
+  margin-left: 100px;
+  padding-top: 20px;
+} */

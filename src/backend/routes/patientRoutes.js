@@ -24,4 +24,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Cập nhật thông tin bệnh nhân theo id
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedPatient = await Patient.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updatedPatient)
+      return res.status(404).json({ message: "Patient not found" });
+    res.json(updatedPatient);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;
