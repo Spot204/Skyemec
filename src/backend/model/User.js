@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
 const workScheduleSchema = new mongoose.Schema({
-  day: String, // Thay đổi từ [Object] thành schema cụ thể nếu cần
+  day: String,
   start: String,
   end: String,
 });
 
 const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  role: String, // 'admin', 'doctor', 'user'
-  fullName: String,
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ["admin", "doctor"], required: true }, // ❌ loại bỏ "user"
+  fullName: { type: String, required: true },
   phoneNumber: String,
   gender: String,
   dateOfBirth: Date,
@@ -18,15 +18,11 @@ const userSchema = new mongoose.Schema({
   doctorInfo: {
     specialty: String,
     licenseNumber: String,
-    workSchedule: [workScheduleSchema], // Sử dụng schema thay vì [Object]
+    workSchedule: [workScheduleSchema],
     department: String,
   },
-  userInfo: {
-    medicalHistory: String,
-    insuranceInfo: String,
-  },
+  // ❌ Bỏ userInfo
 });
 
-const User = mongoose.model("Account", userSchema);
-
+const User = mongoose.model("Account", userSchema, "Account");
 export default User;

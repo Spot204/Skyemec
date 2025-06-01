@@ -1,11 +1,15 @@
+// src/components/Login.jsx
 import "../styles/Login.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Background from "../assets/1.webp";
-import axios from "axios";
+import { login } from "../sevices/LoginSevice"; // đường dẫn cần đúng
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [isChecked, setIsChecked] = useState(false);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleChange = () => {
@@ -15,13 +19,26 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
-      alert("Đăng nhập thành công! Token: " + response.data.token);
+      const result = await login(username, password); // gọi API
+      const { token, user } = result;
+
+      // Lưu token + user vào localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      alert("Đăng nhập thành công!");
+
+      // Chuyển hướng theo role
+      if (user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else if (user.role === "doctor") {
+        navigate("/doctor/drprofile");
+      } else {
+        alert("Vai trò không hợp lệ!");
+      }
     } catch (error) {
-      alert("Lỗi đăng nhập: " + error.response.data.message);
+      console.error("Lỗi đăng nhập:", error);
+      alert("Lỗi đăng nhập: " + (error.message || "Vui lòng thử lại"));
     }
   };
 
@@ -33,15 +50,17 @@ const Login = () => {
           <h2>Đăng nhập</h2>
           <form onSubmit={handleLogin}>
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Username"
               required
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
               placeholder="Mật khẩu"
               required
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="save-password">

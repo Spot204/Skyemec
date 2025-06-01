@@ -5,24 +5,37 @@ import App_doctor from "./doctor_frontend/App_doctor";
 import AdminApp from "./admin_dashboard/AdminApp";
 
 const App = () => {
+  // Kiểm tra xem đã đăng nhập chưa
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <Router>
       <Routes>
-        {/* Điều hướng root về trang user hoặc trang đăng nhập */}
+        {/* Default: chuyển đến user landing page */}
         <Route path="/" element={<Navigate to="/user" replace />} />
-        <Route path="/user" element={<Navigate to="/user/home" replace />} />
         <Route path="/user/*" element={<App_user />} />
 
         {/* Trang đăng nhập */}
-        <Route path="/login/*" element={<Login />} />
-        <Route path="/doctor/*" element={<Navigate to="/doctor/drprofile" replace />} />
-        {/* Admin dashboard */}
-        {/* Truy cập /admin sẽ redirect sang /admin/dashboard */}
-        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-        {/* AdminApp xử lý tất cả route con dưới /admin */}
-        <Route path="/admin/*" element={<AdminApp />} />
+        <Route
+          path="/login/*"
+          element={
+            user?.role === "admin" ? (
+              <Navigate to="/admin/dashboard" replace />
+            ) : user?.role === "doctor" ? (
+              <Navigate to="/doctor/drprofile" replace />
+            ) : (
+              <Login />
+            )
+          }
+        />
 
-        {/* Fallback 404 */}
+        {/* Doctor: nếu chưa login thì chặn (hoặc dùng ProtectedRoute riêng nếu cần) */}
+        <Route path="/doctor/*" element={user?.role === "doctor" ? <App_doctor /> : <Navigate to="/login" />} />
+
+        {/* Admin */}
+        <Route path="/admin/*" element={user?.role === "admin" ? <AdminApp /> : <Navigate to="/login" />} />
+
+        {/* Fallback */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>
