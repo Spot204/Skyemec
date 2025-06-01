@@ -17,13 +17,13 @@ const App = () => {
         <Route path="/" element={<Navigate to="/user" replace />} />
         <Route path="/user" element={<Navigate to="/user/home" replace />} />
         <Route path="/user/*" element={<App_user />} />
-
         {/* Trang đăng nhập */}
         <Route path="/login/*" element={<Login />} />
         <Route
-          path="/doctor/*"
-          element={<Navigate to="/doctor/drprofile" replace />}
+          path="/doctor"
+          element={<Navigate to="/doctor/drhome" replace />}
         />
+        <Route path="/doctor/*" element={<App_doctor />} />
         {/* Admin dashboard */}
         {/* Truy cập /admin sẽ redirect sang /admin/dashboard */}
         <Route
@@ -32,7 +32,6 @@ const App = () => {
         />
         {/* AdminApp xử lý tất cả route con dưới /admin */}
         <Route path="/admin/*" element={<AdminApp />} />
-
         {/* Fallback 404 */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>

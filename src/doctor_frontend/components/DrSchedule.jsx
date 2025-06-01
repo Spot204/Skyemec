@@ -121,7 +121,6 @@ const DrSchedule = () => {
                   grouped[day]
                     .slice()
                     .sort((a, b) => {
-                      // Chuyển "HH:mm" thành số phút
                       const toMinutes = (t) => {
                         const [h, m] = t.split(":").map(Number);
                         return h * 60 + m;
