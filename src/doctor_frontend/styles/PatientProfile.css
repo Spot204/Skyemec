@@ -15,7 +15,7 @@
 .papro-top-text {
   position: absolute;
   color: rgb(250, 250, 250);
-  top: 250px;
+  top: 230px;
   left: 520px;
   font-size: 60px;
   font-weight: bold;
@@ -115,7 +115,7 @@ p {
   padding: 20px;
 }
 
-.line {
+.papro-line {
   height: 1px;
   background: #ddd;
   margin-bottom: 20px;
@@ -141,4 +141,64 @@ label {
 
 .edit-patient-info:hover {
   background-color: #4a9f8b;
+}
+
+.patient-edit-p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.patient-edit-button {
+  background-color: #51be9d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 12px 40px;
+  position: relative;
+  left: 40px;
+  top: 10px;
+}
+
+.patient-edit-button-cancel {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 12px 40px;
+  position: relative;
+  left: 60px;
+  top: 10px;
+}
+
+.patient-edit-button:hover {
+  background-color: #4a9f8b;
+}
+
+.patient-edit-button-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.patient-edit-input {
+  width: 90%;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: text;
+  margin: 10px;
+}
+
+.patient-edit-textarea {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: text;
+  margin: 10px;
 }

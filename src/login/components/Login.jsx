@@ -1,9 +1,9 @@
-// src/components/Login.jsx
 import "../styles/Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "../assets/1.webp";
-import { login } from "../sevices/LoginSevice"; // đường dẫn cần đúng
+import Logo from "../assets/Skyemec.png";
+import { login } from "../sevices/LoginSevice"; // chú ý đường dẫn chính xác
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,16 +19,16 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const result = await login(username, password); // gọi API
+      const result = await login(username, password); // gọi API từ service
       const { token, user } = result;
 
-      // Lưu token + user vào localStorage
+      // Lưu vào localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
       alert("Đăng nhập thành công!");
 
-      // Chuyển hướng theo role
+      // Phân luồng theo role
       if (user.role === "admin") {
         navigate("/admin/dashboard");
       } else if (user.role === "doctor") {
@@ -45,6 +45,12 @@ const Login = () => {
   return (
     <div className="login-container">
       <img className="img" src={Background} alt="Background" />
+      <img
+        className="logo"
+        src={Logo}
+        alt="Logo"
+        onClick={() => navigate("/user/home")}
+      />
       <div className="border">
         <div className="form-section">
           <h2>Đăng nhập</h2>

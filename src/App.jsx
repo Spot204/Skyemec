@@ -4,18 +4,28 @@ import Login from "./login/App_login";
 import App_doctor from "./doctor_frontend/App_doctor";
 import AdminApp from "./admin_dashboard/AdminApp";
 
+// Hàm lấy user từ localStorage
+const getUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
+};
+
 const App = () => {
-  // Kiểm tra xem đã đăng nhập chưa
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = getUser();
 
   return (
     <Router>
       <Routes>
-        {/* Default: chuyển đến user landing page */}
+        {/* Mặc định: redirect tới trang user */}
         <Route path="/" element={<Navigate to="/user" replace />} />
+
+        {/* Trang user luôn public */}
         <Route path="/user/*" element={<App_user />} />
 
-        {/* Trang đăng nhập */}
+        {/* Trang đăng nhập: nếu đã login thì redirect theo role */}
         <Route
           path="/login/*"
           element={
@@ -29,13 +39,31 @@ const App = () => {
           }
         />
 
-        {/* Doctor: nếu chưa login thì chặn (hoặc dùng ProtectedRoute riêng nếu cần) */}
-        <Route path="/doctor/*" element={user?.role === "doctor" ? <App_doctor /> : <Navigate to="/login" />} />
+        {/* Doctor route: yêu cầu đăng nhập đúng role */}
+        <Route
+          path="/doctor/*"
+          element={
+            user?.role === "doctor" ? (
+              <App_doctor />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
-        {/* Admin */}
-        <Route path="/admin/*" element={user?.role === "admin" ? <AdminApp /> : <Navigate to="/login" />} />
+        {/* Admin route: yêu cầu đăng nhập đúng role */}
+        <Route
+          path="/admin/*"
+          element={
+            user?.role === "admin" ? (
+              <AdminApp />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
-        {/* Fallback */}
+        {/* 404 fallback */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>

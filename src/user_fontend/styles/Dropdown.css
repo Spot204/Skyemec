@@ -1,12 +1,13 @@
 .Bodysd-dropdown-container {
     position: relative;
     display: inline-block;
+    height: auto;
 }
 
 .Bodysd-dropdown-button {
     width: 100%;
-    
-    padding: 10px;
+    height: auto;
+    padding: 0 10px;
     border: transparent;
     border-radius: 5px;
     background-color: #fff;

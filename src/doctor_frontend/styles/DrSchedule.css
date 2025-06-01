@@ -4,10 +4,10 @@
   height: auto;
 }
 
-.container {
+.drsche-container {
   background-color: white;
   min-height: 78vh;
-  margin: 50px 150px 0 150px;
+  margin: 30px 150px 0 150px;
 }
 
 .date {
@@ -28,14 +28,14 @@
   padding-bottom: 50px;
 }
 
-h25 {
+.drsche-container h3 {
   color: #0067ab;
   font-size: 26px;
   margin-left: 80px;
   font-weight: bold;
 }
 
-.line {
+.drsche-line {
   height: 1px;
   background: #ddd;
   margin-bottom: 20px;
@@ -59,4 +59,22 @@ h25 {
 .change-month:hover {
   background-color: #4a9f8b;
   color: white;
+}
+
+.drsche-navigator {
+  color: #0067ab;
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.drsche-navigator-2 {
+  position: relative;
+  top: 10px;
+  left: 150px;
+  font-size: 20px;
+  cursor: text;
 }

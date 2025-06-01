@@ -7,6 +7,14 @@
   top: 0;
   left: 0;
 }
+.logo{
+  width: 200px !important;
+  height: auto !important;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
 
 .border {
   background-color: white;

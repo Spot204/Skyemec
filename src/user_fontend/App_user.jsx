@@ -11,6 +11,7 @@ import Department_body from "./components/Department_body";
 import Search_doctor from "./components/Search_doctor";
 import Oder_doctor from "./components/Oder_doctor";
 import CustomerService from "./components/CustomerService";
+import DrProfile from "../doctor_frontend/components/DrProfile";
 
 const App = () => {
   //const [currentPage, setCurrentPage] = useState("home");
@@ -39,6 +40,15 @@ const App = () => {
           element={
             <>
               <Body />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="drprofile/:id"
+          element={
+            <>
+              <DrProfile />
               <Footer />
             </>
           }

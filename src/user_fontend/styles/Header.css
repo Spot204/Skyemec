@@ -6,13 +6,13 @@ body{
     margin: 0;
 }
 
-.body {
+.User-body {
     background-color: white;
     margin: 0 ;
     padding: 0;
 }
 
-.Header-navbar {
+.User-Header-navbar {
     background-color: #fff;
     color: #005566;
     padding: 0px 100px;
@@ -21,20 +21,20 @@ body{
     align-items: center;
 }
 
-.Header-logo {
+.User-Header-logo {
     height: auto;
     width: 130px;
 }
 
-.Header-navbar-list {
+.User-Header-navbar-list {
     display: flex;
     list-style: none;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0;
     margin: 0;
 }
 
-.Header-nav-item {
+.User-Header-nav-item {
     padding: 20px 20px;
     font-size: 23px;
     color: #005566;
@@ -47,24 +47,28 @@ body{
     }
 }
 
-.Header-navbar-right {
+.User-Header-navbar-right {
     display: flex;
 
-    .Header-login {
+    .User-Header-login {
         font-size: 21px;
         margin-right: 20px;
 
-        .login {
+        .User-login {
             margin-left: 5px;
+            cursor: pointer;
+        }
+        FontAwesomeIcon{
+            cursor: pointer;
         }
     }
 
-    .Header-search {
+    .User-Header-search {
         font-size: 21px;
     }
 }
 
-.triangle {
+.User-triangle {
     width: 0px;
     height: 0px;
     border-left: 10px solid transparent;
@@ -74,11 +78,11 @@ body{
     top: 5px;
     left: 50%;
     transform: translateX(40%);
-    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
     z-index: 9;
 }
 
-.dropdown-container {
+.User-dropdown-container {
     position: absolute;
     padding: 10px;
     top: 50px;
@@ -86,14 +90,14 @@ body{
     z-index: 10;
 }
 
-.Header-dropdown-list {
+.User-Header-dropdown-list {
     position: absolute;
     background-color: #fff;
     width: 800px;
     height: auto;
     list-style-type: none;
     z-index: 10;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     padding: 10px;
     display: grid;
@@ -115,7 +119,7 @@ body{
 
 }
 
-.Header-dropdown-item {
+.User-Header-dropdown-item {
     padding-top: 10px;
     padding: 10px;
     font-size: 15px;
@@ -123,27 +127,27 @@ body{
     border-bottom: 1px solid #f3f3f3;
 }
 
-.Header-nav-item span:hover {
+.User-Header-nav-item span:hover {
     color: #0077cc;
     cursor: pointer;
 }
 
-.Header-login:hover {
+.User-Header-login:hover {
     color: #0077cc;
     cursor: pointer;
 }
 
-.Header-search:hover {
+.User-Header-search:hover {
     color: #0077cc;
     cursor: pointer;
 }
 
-.Header-logo:hover {
+.User-Header-logo:hover {
     color: #0077cc;
     cursor: pointer;
 }
 
-.Header-dropdown-item:hover {
+.User-Header-dropdown-item:hover {
     background-color: #f0f0f0;
     cursor: pointer;
 }

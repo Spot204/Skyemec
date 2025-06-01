@@ -13,6 +13,7 @@ import {
 import DoctorList from "./List_doctor";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+import { searchDoctor, searchDoctorByFilter } from "../services/Search_doctor";
 
 const Search_doctor = () => {
   const navigate = useNavigate();
@@ -24,16 +25,26 @@ const Search_doctor = () => {
   const [selectedRank, setSelectedRank] = useState([]);
   const [selectedDegree, setSelectedDegree] = useState([]);
   const [selectedRate, setSelectedRate] = useState([]);
+  const [doctors, setDoctors] = useState([]);
 
-  const doctors = [];
-
+  // Lấy danh sách bác sĩ khi component mount (dùng searchDoctor, lấy tất cả nếu không truyền gì)
+  React.useEffect(() => {
+    searchDoctor()
+      .then((res) => {
+        // Nếu muốn setDoctors là object JSON (giữ nguyên toàn bộ response)
+        setDoctors(res.data);
+      })
+      .catch((err) => {
+        setDoctors([]);
+        console.log("Lỗi lấy danh sách bác sĩ:", err);
+      });
+  }, []);
   const handleFocus = () => setSearchValue("");
   const handleBlur = (e) => {
     if (!e.target.value) {
       setSearchValue("Nhập tên bác sĩ/chuyên gia...");
     }
   };
-
   return (
     <div>
       <div className="Bodysd-middle">
@@ -153,18 +164,22 @@ const Search_doctor = () => {
             />
             <button
               id="bun-search"
-              onClick={() => {
-                // Xử lý lọc hoặc gửi dữ liệu tìm kiếm ở đây
-                console.log({
-                  selectedLocation,
-                  selectedExpertise,
-                  selectedLanguage,
-                  selectedJob,
-                  selectedRank,
-                  selectedDegree,
-                  selectedRate,
-                  searchValue,
-                });
+              onClick={async () => {
+                // Gọi API tìm kiếm bác sĩ với các trường filter
+                const filter = {
+                  name: searchValue,
+                  hospital: selectedLocation[0] || undefined,
+                  specialty: selectedExpertise[0] || undefined,
+                  degree: selectedDegree[0] || undefined,
+                  rank: selectedRank[0] || undefined,
+                  // Có thể bổ sung các trường khác nếu backend hỗ trợ
+                };
+                try {
+                  const res = await searchDoctorByFilter(filter);
+                  setDoctors(res.data);
+                } catch (err) {
+                  console.log("Lỗi tìm kiếm bác sĩ:", err);
+                }
               }}
             >
               Tìm kiếm
