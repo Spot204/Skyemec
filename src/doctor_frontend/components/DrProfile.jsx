@@ -9,7 +9,6 @@ import axios from "axios";
 
 const avatarMap = {
   dr1: dr1,
-  // Thêm avatar sau
 };
 
 const DrProfile = () => {
@@ -18,8 +17,8 @@ const DrProfile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/doctors") // hoặc /api/doctors/:id nếu có nhiều bác sĩ
-      .then((res) => setDoctor(res.data[0])) // lấy bác sĩ đầu tiên, hoặc sửa lại cho phù hợp
+      .get("http://localhost:5050/api/doctors")
+      .then((res) => setDoctor(res.data[0]))
       .catch((err) => console.error(err));
   }, []);
 
@@ -31,7 +30,10 @@ const DrProfile = () => {
         <a>THÔNG TIN BÁC SĨ</a>
       </div>
       <img className="drprofile-top-img" src={topimage} alt="doctor" />
-      <span onClick={() => navigate("/home")} className="drprofile-navigator">
+      <span
+        onClick={() => navigate("/doctor/drhome")}
+        className="drprofile-navigator"
+      >
         Trang chủ <FontAwesomeIcon icon={faAngleRight} /> {"  "}
       </span>
       <span
@@ -73,29 +75,29 @@ const DrProfile = () => {
           {doctor.specialty.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Nơi làm việc</h2>
           <p>{doctor.workplace}</p>
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Quá trình đào tạo</h2>
           {doctor.education.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Kinh nghiệm làm việc</h2>
           {doctor.experience.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Thành viên của các tổ chức</h2>
           {doctor.organizations.map((item, idx) => (
             <p key={idx}>{item}</p>
           ))}
-          <div className="line"></div>
+          <div className="drprofile-line"></div>
 
           <h2>Sách, báo và công trình nghiên cứu</h2>
           {doctor.publications.map((item, idx) => (
