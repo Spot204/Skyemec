@@ -15,7 +15,6 @@ const App = () => {
 
         {/* Trang đăng nhập */}
         <Route path="/login/*" element={<Login />} />
-        <Route path="/doctor/*" element={<Navigate to="/doctor/drprofile" replace />} />
         {/* Admin dashboard */}
         {/* Truy cập /admin sẽ redirect sang /admin/dashboard */}
         <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />

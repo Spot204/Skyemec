@@ -2,10 +2,10 @@ import "../styles/Oder_doctor.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
-import { useState, useCallback, useRef, useEffect } from "react";
-import axios from "axios";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createAppointment } from "../services/Oder_doctor";
+import { searchDoctorByFilter } from "../services/Search_doctor";
 
 const Oder_doctor = () => {
   // State để lưu bác sĩ được chọn
@@ -21,14 +21,31 @@ const Oder_doctor = () => {
       slot: selectedSlot ? String(selectedSlot) : "",
       gender: formData.gender,
       name: document.getElementById("Bodysd-input-name")?.value || "",
-      phone: document.querySelector('input[placeholder="Nhập số điện thoại"]')?.value || "",
-      birthday: document.querySelector('input[placeholder="Nhập ngày tháng năm sinh"]')?.value || "",
-      email: document.querySelector('input[placeholder="Nhập email"]')?.value || "",
+      phone:
+        document.querySelector('input[placeholder="Nhập số điện thoại"]')
+          ?.value || "",
+      birthday:
+        document.querySelector('input[placeholder="Nhập ngày tháng năm sinh"]')
+          ?.value || "",
+      email:
+        document.querySelector('input[placeholder="Nhập email"]')?.value || "",
       reason: document.querySelector(".Bodysd-inp-reason")?.value || "",
     };
 
     // Validate bắt buộc nhập
-    if (!data.hospital.trim() || !data.department.trim() || !data.doctor.trim() || !data.date.trim() || !data.slot.trim() || !data.gender.trim() || !data.name.trim() || !data.phone.trim() || !data.birthday.trim() || !data.email.trim() || !data.reason.trim()) {
+    if (
+      !data.hospital.trim() ||
+      !data.department.trim() ||
+      !data.doctor.trim() ||
+      !data.date.trim() ||
+      !data.slot.trim() ||
+      !data.gender.trim() ||
+      !data.name.trim() ||
+      !data.phone.trim() ||
+      !data.birthday.trim() ||
+      !data.email.trim() ||
+      !data.reason.trim()
+    ) {
       alert("Vui lòng nhập đầy đủ tất cả các trường bắt buộc!");
       return;
     }
@@ -53,7 +70,6 @@ const Oder_doctor = () => {
       // Có thể reset form tại đây nếu muốn
     } catch (err) {
       alert("Có lỗi khi gửi thông tin!");
-      console.log("Lỗi khi gửi thông tin:", err);
     }
   };
   const navigate = useNavigate();
@@ -66,31 +82,53 @@ const Oder_doctor = () => {
     "Skyemec Bắc Ninh",
   ];
   const khoa = [
-    "Cấp cứu",
-    "Trung tâm Tim mạch",
-    "Chấn thương chỉnh hình - Y học thể thao",
-    "Trung tâm Nhi",
-    "Trung tâm Ung bướu",
-    "Tiêu hóa - Gan mật",
-    "Trung tâm Mắt Vinmec-Alina",
-    "Trung tâm Thẩm mỹ Vinmec-View",
-    "Miễn dịch - Dị ứng",
-    "Trung tâm Công nghệ cao",
-    " Trung tâm sức khỏe phụ nữ",
-    "Sức khỏe tổng quát",
-    "Viện nghiên cứu Tế bào gốc và Công nghệ Gen",
-    "Trung tâm Vacxin",
-    "Trung tâm Y Học Cổ Truyền Skyemec - Sao Phương Đông",
+    "Nội tiết",
+    "Tim mạch",
+    "Nhi",
+    "Ngoại chấn thương chỉnh hình",
+    "Gây mê - điều trị đau",
+    "Nội tổng quát",
+    "Thần kinh",
+    "Mắt",
+    "Tai-Mũi-Họng",
+    "Da liễu",
   ];
 
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
-
   const [agree, setAgree] = useState(false);
   const [formData, setFormData] = useState({
     gender: "",
   });
+  const [doctors, setDoctors] = useState([]);
+  useEffect(() => {
+    async function fetchDoctors() {
+      try {
+        const filter = {
+          hospital: selectedHospital,
+          specialty: selectedDepartment,
+        };
+        const res = await searchDoctorByFilter(filter);
+        setDoctors(res.data);
+      } catch (err) {
+        setDoctors([]);
+        console.error("Lỗi lấy danh sách bác sĩ:", err);
+      }
+    }
+    // Chỉ gọi khi đã chọn ít nhất 1 trường
+    if (selectedHospital || selectedDepartment) {
+      fetchDoctors();
+    } else {
+      setDoctors([]);
+    }
+  }, [selectedHospital, selectedDepartment]);
+
+  const filteredDoctors = doctors.filter(
+    (doc) =>
+      (!selectedHospital || doc.workplace === selectedHospital) &&
+      (!selectedDepartment || doc.specialty.includes(selectedDepartment))
+  );
 
   const handleGenderChange = useCallback((e) => {
     setFormData((prevState) => ({
@@ -112,26 +150,21 @@ const Oder_doctor = () => {
       setShowDatePicker(true); // Hiển thị Date Picker khi chọn "Ngày khác"
       return;
     }
-
     setShowDatePicker(false); // Ẩn Date Picker nếu chọn một ngày cụ thể
     setSelectedDate(selected);
     generateSchedule(selected);
   };
-
   const generateSchedule = (date) => {
     let schedule = [];
     let dayOfWeek = date.getDay();
     let now = new Date();
     let currentHour = now.getHours() + now.getMinutes() / 60; // Lấy giờ hiện tại
-
     if (dayOfWeek === 0) {
       setSchedule(["Chủ Nhật nghỉ làm"]);
       return;
     }
-
     let startTime = 8;
     let endTime = dayOfWeek === 6 ? 11.5 : 16.5; // Thứ 7 kết thúc lúc 11h30, ngày thường lúc 16h30
-
     for (let time = startTime; time <= endTime; time += 0.5) {
       let isPast =
         date.toDateString() === now.toDateString()
@@ -145,11 +178,10 @@ const Oder_doctor = () => {
 
     setSchedule(schedule);
   };
-
   return (
     <div className="Bodysd-middle">
       <div className="Bodysd-navigation">
-        <span className="Bodysd-home" onClick={() => navigate("/user/home")}> 
+        <span className="Bodysd-home" onClick={() => navigate("/user/home")}>
           Trang chủ
           <FontAwesomeIcon icon={faAngleRight} />
         </span>
@@ -200,18 +232,21 @@ const Oder_doctor = () => {
               <label htmlFor="" className="discription">
                 Bác sĩ
               </label>
-            {/* Dropdown chọn bác sĩ, có lưu value và onChange */}
-            <Dropdown1
-              id="Oder-doctor"
-              options={options}
-              label="Chọn bác sĩ muốn khám"
-              value={selectedDoctor}
-              onChange={(val) => {
-                // Lấy giá trị bác sĩ được chọn
-                const v = typeof val === "string" ? val : val?.value || val?.label || "";
-                setSelectedDoctor(v.trim());
-              }}
-            />
+              {/* Dropdown chọn bác sĩ, có lưu value và onChange */}
+              <Dropdown1
+                id="Oder-doctor"
+                options={doctors.map((doc) => doc.name)}
+                label="Chọn bác sĩ muốn khám"
+                value={selectedDoctor}
+                onChange={(val) => {
+                  // Lấy giá trị bác sĩ được chọn
+                  const v =
+                    typeof val === "string"
+                      ? val
+                      : val?.value || val?.label || "";
+                  setSelectedDoctor(v.trim());
+                }}
+              />
             </div>
           </div>
           <div className="discription">

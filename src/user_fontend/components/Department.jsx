@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Department.css";
-import image20 from "../assets/image20.jpg";
-import image21 from "../assets/image21.jpg";
 import Department_body from "./Department_body";
 import List_doctor from "./List_doctor";
-import { Container } from "postcss";
 import { useNavigate } from 'react-router-dom';
 
 const Department = ({ text }) => {

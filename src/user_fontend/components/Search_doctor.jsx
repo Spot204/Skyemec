@@ -13,7 +13,7 @@ import {
 import DoctorList from "./List_doctor";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
-import { searchDoctor } from "../services/Search_doctor";
+import { searchDoctor, searchDoctorByFilter } from "../services/Search_doctor";
 
 const Search_doctor = () => {
   const navigate = useNavigate();
@@ -164,23 +164,23 @@ const Search_doctor = () => {
             />
             <button
               id="bun-search"
-              // onClick={async () => {
-              //   // Gọi API tìm kiếm bác sĩ với các trường filter
-              //   const filter = {
-              //     name: searchValue,
-              //     hospital: selectedLocation[0] || undefined,
-              //     specialty: selectedExpertise[0] || undefined,
-              //     degree: selectedDegree[0] || undefined,
-              //     rank: selectedRank[0] || undefined,
-              //     // Có thể bổ sung các trường khác nếu backend hỗ trợ
-              //   };
-              //   try {
-              //     const res = await searchDoctor(filter);
-              //     setDoctors(res.data);
-              //   } catch (err) {
-              //     console.log("Lỗi tìm kiếm bác sĩ:", err);
-              //   }
-              // }}
+              onClick={async () => {
+                // Gọi API tìm kiếm bác sĩ với các trường filter
+                const filter = {
+                  name: searchValue,
+                  hospital: selectedLocation[0] || undefined,
+                  specialty: selectedExpertise[0] || undefined,
+                  degree: selectedDegree[0] || undefined,
+                  rank: selectedRank[0] || undefined,
+                  // Có thể bổ sung các trường khác nếu backend hỗ trợ
+                };
+                try {
+                  const res = await searchDoctorByFilter(filter);
+                  setDoctors(res.data);
+                } catch (err) {
+                  console.log("Lỗi tìm kiếm bác sĩ:", err);
+                }
+              }}
             >
               Tìm kiếm
             </button>

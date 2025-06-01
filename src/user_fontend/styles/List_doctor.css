@@ -1,70 +1,88 @@
 .List-doctor {
-    list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    width: 900px;
-    gap: 20px 10px;
-    justify-content: flex-start;
-    padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  gap: 20px 10px;
+  justify-content: flex-start;
+  padding: 0;
 }
-
+.img-doctor {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  margin-left: 10px;
+}
+.Doctor-name {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
 .List-doctor-item {
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    width: 430px;
-    min-height: 160px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    margin-bottom: 10px;
-    align-items: center;
-    padding: 10px 0;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  width: 49%;
+  min-height: 160px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  margin-bottom: 10px;
+  align-items: center;
+  padding: 10px 0;
+}
+.List-doctor-item-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn-register-for-examination {
-    width: 120px;
-    height: 40px;
-    border: 0px;
-    background-color: #0076c0;
-    border-radius: 5px;
-    color: white;
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background 0.2s;
+  width: 120px;
+  height: 40px;
+  border: 0px;
+  background-color: #0076c0;
+  border-radius: 5px;
+  color: white;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 .btn-register-for-examination:hover {
-    background-color: #005080;
+  background-color: #005080;
 }
 
 .List-doctor-item-right {
-    color: #0076c0;
-    margin-left: 18px;
-    flex: 1;
+  color: #0076c0;
+  margin-left: 18px;
+  flex: 1;
+}
+.List-doctor-item-right .Doctor-icon {
+  margin-right: 5px;
 }
 
 .btn-List-number {
-    background-color: aliceblue;
-    color: black;
-    border: 0;
-    border-radius: 20px;
-    margin: 0 3px;
-    min-width: 36px;
-    min-height: 36px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
+  background-color: aliceblue;
+  color: black;
+  border: 0;
+  border-radius: 20px;
+  margin: 0 3px;
+  min-width: 36px;
+  min-height: 36px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 .btn-List-number:hover,
 .btn-List-number.active {
-    background-color: #0076c0;
-    color: white;
+  background-color: #0076c0;
+  color: white;
 }
 
 .Form-list-doctor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
 }

@@ -9,11 +9,20 @@ const router = express.Router();
 
 // Đặt lịch khám: POST /api/appointment/create
 router.post("/create", async (req, res) => {
-  console.log("BODY BACKEND NHẬN:", req.body);
   try {
+    patient = new PatientProfile({
+      name,
+      phone,
+      birthDate: birthday,
+      gender,
+      address,
+      registeredHospital: hospital,
+      examinationDate: date,
+      examinationReasons: reason ? [reason] : [],
+    });
+    await patient.save();
     const appointment = new Appointment(req.body);
     await appointment.save();
-
     // Gửi email xác nhận đặt lịch khám
     const { email, name, hospital, birthday } = req.body;
     if (email) {
@@ -25,7 +34,6 @@ router.post("/create", async (req, res) => {
         console.error("Lỗi gửi email xác nhận:", mailErr);
       }
     }
-
     res.json(appointment);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -57,8 +65,7 @@ router.post("/report", async (req, res) => {
   }
 });
 
-router.post
-
+router.post;
 
 // Gửi email thông báo
 async function sendConfirmationEmail(to, subject, text) {
@@ -77,6 +84,5 @@ async function sendConfirmationEmail(to, subject, text) {
     text,
   });
 }
-
 
 export default router;
