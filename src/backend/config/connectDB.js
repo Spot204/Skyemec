@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config(); // Đọc file .env ở thư mục gốc
 
 const connectDB = async () => {
   try {

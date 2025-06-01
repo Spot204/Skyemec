@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown1 from "./Dropdown1";
 import { useState } from "react";
-import axios from "axios";
 import { createReport } from "../services/Oder_doctor";
 
 const options = [

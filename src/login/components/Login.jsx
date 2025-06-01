@@ -1,12 +1,15 @@
 import "../styles/Login.css";
 import React, { useState } from "react";
 import Background from "../assets/1.webp";
+import Logo from "../assets/Skyemec.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = () => {
     setIsChecked(!isChecked);
@@ -28,6 +31,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <img className="img" src={Background} alt="Background" />
+      <img className="logo" src={Logo} alt="Logo" onClick={()=>navigate('/user/home')}/>
       <div className="border">
         <div className="form-section">
           <h2>Đăng nhập</h2>

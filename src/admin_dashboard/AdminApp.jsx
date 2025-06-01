@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Header from "./src/components/Header";
-
 import AdminDashboard from "./src/components/AdminDashboard";
 import AccountManagement from "./src/components/AccountManagement";
-
 import AppointmentManagement from "./src/components/AppointmentManagement";
 import DoctorManagement from "./src/components/DoctorManagement";
 import SpecialtyManagement from "./src/components/SpecialtyManagement";
