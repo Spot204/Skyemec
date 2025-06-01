@@ -1,5 +1,5 @@
 import express from "express";
-import DrProfile from "../model/DrProfile.js";
+import DrProfile from "../model/drProfile.js";
 
 const router = express.Router();
 

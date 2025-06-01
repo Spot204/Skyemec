@@ -1,0 +1,16 @@
+{
+    "username": "newuser@example.com",
+    "password": "yourplaintextpassword",  
+    "role": "user",
+    "fullName": "Nguyen Thi Mai",
+    "phoneNumber": "0908765432",
+    "gender": "Female",
+    "dateOfBirth": "1995-05-20T00:00:00.000Z",
+    "address": "123 Mai Street, Hanoi",
+    "doctorInfo": {},
+    "userInfo": {
+      "medicalHistory": "No history",
+      "insuranceInfo": "INS0987654321"
+    }
+  }
+  
