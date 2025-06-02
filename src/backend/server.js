@@ -32,7 +32,7 @@ app.use(express.json()); // Middleware parse JSON, cần nằm trước routes
 connectDB();
 
 app.use("/api/patients", Patients);
-app.use("/api/doctors", drRoutes);
+app.use("/api/doctor", drRoutes);
 app.use("/api/appointment", userRoutes);
 app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
@@ -40,11 +40,6 @@ app.use("/api/medicines", MedRoutes);
 
 // Đăng ký các routes
 app.use("/api/login", loginRoutes); // Đăng ký login route
-
-app.use("/api/patients", Patients); // Đăng ký routes cho bệnh nhân
-app.use("/api/doctor", drRoutes); // Đăng ký routes cho bác sĩ
-app.use("/api/doctor-schedules", drScheRoutes); // Đăng ký routes cho lịch bác sĩ
-app.use("/api/appointment", userRoutes);
 
 // // Middleware xử lý lỗi 404
 // app.use((req, res, next) => {

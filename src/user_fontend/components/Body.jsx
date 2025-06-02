@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "../styles/Body.css";
 import slider1 from "../assets/slider1.png";
 import slider2 from "../assets/slider2.png";
@@ -19,22 +20,25 @@ import { faHeartPulse } from "@fortawesome/free-solid-svg-icons/faHeartPulse";
 import { faStethoscope } from "@fortawesome/free-solid-svg-icons";
 import { faShieldHeart } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import Contact from "./Contact";
 
 const sliders = [slider1, slider2, slider3, slider4];
 const images = [image1, image2, image3, image4];
 
 const Body = () => {
   const navigate = useNavigate();
+  const [showContact, setShowContact] = useState(false); // Thêm state này
+
   const settings = {
-    dots: true, // Hiển thị chấm chỉ báo
-    infinite: true, // Lặp lại vô tận
-    speed: 600, // Tốc độ trượt mượt hơn
-    slidesToShow: 1, // Chỉ hiển thị 1 ảnh mỗi lần
-    slidesToScroll: 1, // Khi trượt, chỉ cuộn từng ảnh một
-    swipe: true, // Hỗ trợ kéo trượt bằng chuột
-    arrows: false, // Hiển thị nút ❮ ❯ để điều hướng
-    autoplay: true, // Kích hoạt chế độ tự động trượt
-    autoplaySpeed: 3000, // Mỗi 3 giây sẽ tự động chuyển ảnh
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipe: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
   const settings_local = {
     dots: false,
@@ -65,7 +69,11 @@ const Body = () => {
           <button className="Body-top-connect-button" onClick={()=>navigate("/user/oder_doctor")}>Xem thêm</button>
         </div>
         <div className="Body-top-extension">
-          <div className="Body-top-item" id="contact">
+          <div
+            className="Body-top-item"
+            id="contact"
+            onClick={() => setShowContact(true)} // Thêm onClick ở đây
+          >
             <FontAwesomeIcon
               className="Body-top-extension-icon"
               icon={faPhone}
@@ -111,6 +119,16 @@ const Body = () => {
           </div>
         </div>
       </div>
+      {/* Modal Contact */}
+      {showContact && (
+        <div className="Body-contact-modal">
+          <div className="Body-contact-modal-bg" onClick={() => setShowContact(false)} />
+          <div className="Body-contact-modal-content">
+            <button className="Body-contact-close" onClick={() => setShowContact(false)}>Đóng</button>
+            <Contact />
+          </div>
+        </div>
+      )}
       <h1 id="Body-middle-header">Tại sao nên chọn Skyemec ?</h1>
       <div className="Body-middle">
         <img src={doctor1} alt="" className="Body-middle-doctor" />
@@ -194,4 +212,5 @@ const Body = () => {
     </div>
   );
 };
+
 export default Body;

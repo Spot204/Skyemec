@@ -55,8 +55,9 @@ const DrProfile = () => {
               <h3>
                 {doctor.degree}, {doctor.role}
               </h3>
+  
               <h1>
-                {doctor.role} {doctor.name}
+                {doctor.role}<br /> {doctor.name}
               </h1>
               <button
                 className="patient-signin"
