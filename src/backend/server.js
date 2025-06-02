@@ -38,7 +38,7 @@ app.use(express.json());
 connectDB();
 
 // Đăng ký routes
-app.use("/login", loginRoutes);
+
 app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes);
@@ -47,15 +47,11 @@ app.use("/api/patients", Patients);
 app.use("/api/doctor", drRoutes);
 app.use("/api/appointment", userRoutes);
 app.use("/schedule", drScheRoutes);
-app.use("/api/doctors", drRoutes);
-app.use("/api/appointment", userRoutes);
-app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
-app.use("/api/appointments", userRoutes);
 app.use("/api/reports", reportRoutes);
-app.use("/api/news", newsRoutes);
 app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
+app.use("/api/login", loginRoutes); // Đăng ký login route
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {
@@ -65,7 +61,7 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Lỗi server nội bộ" });
 });
-app.use("/api/login", loginRoutes); // Đăng ký login route
+
 
 // // Middleware xử lý lỗi 404
 // app.use((req, res, next) => {
