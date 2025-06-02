@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
-<<<<<<< HEAD
 
 // Import các routes quản lý tài khoản
 =======
@@ -30,7 +29,6 @@ import userRoutes from "./routes/userRoutes.js"; // appointments
 
 dotenv.config();
 
-// Kiểm tra biến môi trường
 if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
   console.error(
     "Biến môi trường MONGO_URI hoặc JWT_SECRET chưa được thiết lập!"
@@ -41,18 +39,8 @@ if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
 const PORT = process.env.PORT || 5050;
 const app = express();
 
-// Sử dụng các middleware
 app.use(cors());
-<<<<<<< HEAD
-app.use(express.json()); // Middleware để phân tích dữ liệu JSON từ body, cần nằm trước các routes
-
-=======
 app.use(express.json());
-app.use(express.json()); // Middleware parse JSON, cần nằm trước routes
-// app.use(bodyParser.json()); // Middleware parse JSON body
->>>>>>> f93f5459a1b51b8fff91e3883a6acbf4ad4634b5
-// Kết nối MongoDB
-
 connectDB();
 
 <<<<<<< HEAD
@@ -62,15 +50,6 @@ app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes); // <-- phải khai báo cái này
 app.use("/api", updateAccountRoutes);
-
-// Đăng ký các routes cho bệnh nhân, bác sĩ, thuốc, lịch hẹn
-app.use("/api/patients", Patients);
-app.use("/api/doctor", drRoutes);
-app.use("/api/appointment", userRoutes);
-app.use("/schedule", drScheRoutes);
-//app.use("/api/news", drNews);
-app.use("/api/medicines", MedRoutes);
-=======
 app.use("/api/patients", Patients);
 app.use("/api/doctors", drRoutes);
 app.use("/api/appointment", userRoutes);
@@ -98,7 +77,6 @@ app.use("/api/appointment", userRoutes);
 //   res.status(500).json({ message: "Lỗi server nội bộ" });
 // });
 
-// Khởi động server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
