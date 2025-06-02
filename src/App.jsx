@@ -1,4 +1,15 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useEffect } from "react";
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
@@ -27,12 +38,7 @@ const App = () => {
         <Route path="/user/*" element={<App_user />} />
 
         {/* Trang đăng nhập: nếu đã login thì redirect theo role */}
-        <Route
-          path="/login/*"
-          element={
-              <Login />      
-          }
-        />
+        <Route path="/login/*" element={<Login />} />
 
         {/* Doctor route: yêu cầu đăng nhập đúng role */}
         <Route

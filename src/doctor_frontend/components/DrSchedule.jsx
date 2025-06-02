@@ -21,14 +21,16 @@ const DrSchedule = () => {
     time: "",
     task: "",
   });
+  const doctorId = localStorage.getItem("doctorId");
 
   // Lấy dữ liệu lịch trình
   useEffect(() => {
-    fetch(`http://localhost:5050/schedule?month=${month}&year=${year}`)
+    if (!doctorId) return;
+    fetch(`http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`)
       .then((res) => res.json())
       .then(setScheduleData)
       .catch((error) => console.error("Error fetching schedule:", error));
-  }, [month, year]);
+  }, [month, year, doctorId]);
 
   // Mở rộng mặc định và scroll đến ngày hiện tại
   useEffect(() => {
@@ -87,11 +89,14 @@ const DrSchedule = () => {
       return;
     }
     try {
-      await fetch("http://localhost:5050/schedule", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newSchedule),
-      });
+      await fetch(
+        `http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newSchedule),
+        }
+      );
       setShowAdd(false);
       setNewSchedule({
         day: "",
@@ -101,7 +106,7 @@ const DrSchedule = () => {
         task: "",
       });
       // Reload schedule
-      fetch(`http://localhost:5050/schedule?month=${month}&year=${year}`)
+      fetch(`http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`)
         .then((res) => res.json())
         .then(setScheduleData);
     } catch (err) {

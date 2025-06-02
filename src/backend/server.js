@@ -38,14 +38,13 @@ app.use(express.json());
 connectDB();
 
 // Đăng ký routes
-
 app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes);
 app.use("/api", updateAccountRoutes);
 app.use("/api/patients", Patients);
-app.use("/api/doctor", drRoutes);
 app.use("/api/appointment", userRoutes);
+app.use("/api/doctors", drRoutes);
 app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
@@ -57,22 +56,11 @@ app.use("/login", loginRoutes); // Đăng ký login route
 app.use((req, res, next) => {
   res.status(404).json({ message: "API endpoint không tồn tại" });
 });
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Lỗi server nội bộ" });
 });
-
-
-// // Middleware xử lý lỗi 404
-// app.use((req, res, next) => {
-//   res.status(404).json({ message: "API endpoint không tồn tại" });
-// });
-
-// // Middleware xử lý lỗi chung
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).json({ message: "Lỗi server nội bộ" });
-// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

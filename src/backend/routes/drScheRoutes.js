@@ -1,26 +1,29 @@
 import express from "express";
-import DrSchedule from "../model/drSchedule.js";
+import Dr from "../model/drAccount.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const { month, year } = req.query;
-  const query = {};
-  if (month) query.month = parseInt(month);
-  if (year) query.year = parseInt(year);
+// Lấy lịch trình của bác sĩ theo id
+router.get("/:doctorId/schedule", async (req, res) => {
   try {
-    const data = await DrSchedule.find(query);
-    res.json(data);
+    const doctor = await Dr.findById(req.params.doctorId);
+    if (!doctor)
+      return res.status(404).json({ message: "Không tìm thấy bác sĩ" });
+    res.json(doctor.schedules || []);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-router.post("/", async (req, res) => {
+// Thêm lịch trình cho bác sĩ
+router.post("/:doctorId/schedule", async (req, res) => {
   try {
-    const schedule = new DrSchedule(req.body);
-    await schedule.save();
-    res.status(201).json(schedule);
+    const doctor = await Dr.findById(req.params.doctorId);
+    if (!doctor)
+      return res.status(404).json({ message: "Không tìm thấy bác sĩ" });
+    doctor.schedules.push(req.body);
+    await doctor.save();
+    res.status(201).json(doctor.schedules);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
