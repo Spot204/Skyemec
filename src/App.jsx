@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
 import App_doctor from "./doctor_frontend/App_doctor";
@@ -29,13 +30,7 @@ const App = () => {
         <Route
           path="/login/*"
           element={
-            user?.role === "admin" ? (
-              <Navigate to="/admin/dashboard" replace />
-            ) : user?.role === "doctor" ? (
-              <Navigate to="/doctor/drprofile" replace />
-            ) : (
-              <Login />
-            )
+              <Login />      
           }
         />
 
@@ -46,7 +41,7 @@ const App = () => {
             user?.role === "doctor" ? (
               <App_doctor />
             ) : (
-              <Navigate to="/login" replace />
+              <Navigate to="/login/login" replace />
             )
           }
         />
@@ -58,7 +53,7 @@ const App = () => {
             user?.role === "admin" ? (
               <AdminApp />
             ) : (
-              <Navigate to="/login" replace />
+              <Navigate to="/login/login" replace />
             )
           }
         />
