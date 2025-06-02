@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5050/api/news";
+const API_BASE_URL = "http://localhost:5050/api/newss";
 
 /**
  * Lấy danh sách tất cả tin tức
