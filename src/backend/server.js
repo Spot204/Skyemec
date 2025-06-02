@@ -47,12 +47,16 @@ app.use("/api/patients", Patients);
 app.use("/api/doctor", drRoutes);
 app.use("/api/appointment", userRoutes);
 app.use("/api/doctors", drRoutes);
-app.use("/api/doctor-schedules", drScheRoutes);
+app.use("/api/appointment", userRoutes);
+app.use("/api/doctors", drRoutes);
+app.use("/api/appointment", userRoutes);
+app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
 app.use("/api/appointments", userRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/news", newsRoutes);
+app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
 app.use("/api/doctor-list/nam123", DoctorListRoutes); // route mới tránh trùng
 app.use("/api/login", loginRoutes); // Đăng ký login route
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/D&SManagerment.css";
 import { fetchDoctors } from "../services/DoctorListServices";
+import { set } from "mongoose";
 
 const DoctorManagement = () => {
   const [doctors, setDoctors] = useState([]);
@@ -21,6 +22,18 @@ const DoctorManagement = () => {
       setLoading(false);
     }
   };
+  const searchDoctors = async (name) => {
+    setLoading(true);
+    try {
+      const data = await fetchDoctors(name);
+      setDoctors(data);
+    } catch (error) {
+      alert("Lỗi khi tìm kiếm bác sĩ");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     loadDoctors();
@@ -28,9 +41,7 @@ const DoctorManagement = () => {
 
   // Lọc danh sách bác sĩ theo tên (không phân biệt hoa thường)
   const filteredDoctors = doctors.filter((doc) =>
-    (doc.fullName || "")
-      .toLowerCase()
-      .includes(searchTerm.trim().toLowerCase())
+    (doc.fullName || "").toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
 
   return (
@@ -62,6 +73,13 @@ const DoctorManagement = () => {
           disabled={loading}
         />
       </div>
+      <button
+        id="ad-btn"
+        onClick={() => searchDoctors(searchTerm)}
+        disabled={loading}
+      >
+        Tìm kiếm
+      </button>
 
       {loading ? (
         <p>Đang tải danh sách bác sĩ...</p>
@@ -76,7 +94,11 @@ const DoctorManagement = () => {
           border="1"
         >
           <thead
-            style={{ backgroundColor: "#005566", color: "white", fontWeight: 600 }}
+            style={{
+              backgroundColor: "#005566",
+              color: "white",
+              fontWeight: 600,
+            }}
           >
             <tr>
               <th style={{ padding: 10 }}>ID</th>
@@ -89,7 +111,9 @@ const DoctorManagement = () => {
               filteredDoctors.map((doc) => (
                 <tr key={doc._id} style={{ backgroundColor: "#fafafa" }}>
                   <td style={{ padding: 10 }}>{doc._id}</td>
-                  <td style={{ padding: 10 }}>{doc.fullName || "Chưa có tên"}</td>
+                  <td style={{ padding: 10 }}>
+                    {doc.fullName || "Chưa có tên"}
+                  </td>
                   <td style={{ padding: 10 }}>
                     {doc.doctorInfo?.specialty || "Chưa cập nhật"}
                   </td>

@@ -36,7 +36,7 @@ const Header = () => {
           </span>
         </li>
         <li className="Header-nav-item">
-          <span onClick={() => navigate("         ")}>
+          <span onClick={() => navigate("/user/home")}>
             <FontAwesomeIcon icon={faRightFromBracket} /> Đăng xuất
           </span>
         </li>

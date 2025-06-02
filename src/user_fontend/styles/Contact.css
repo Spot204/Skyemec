@@ -1,0 +1,94 @@
+.Ct-contact-container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 24px 32px;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  font-family: Arial, sans-serif;
+}
+
+.Ct-contact-container h2 {
+  text-align: center;
+  color: #1e88e5;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.Ct-contact-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Ct-contact-container li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1.08rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Ct-contact-container li:last-child {
+  border-bottom: none;
+}
+
+.Ct-contact-container a {
+  color: #388e3c;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.Ct-contact-container a:hover {
+  color: #1e88e5;
+  text-decoration: underline;
+}
+
+/* Modal overlay */
+.Body-contact-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Nền mờ phía sau */
+.Body-contact-modal-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0006;
+}
+
+/* Nội dung popup */
+.Body-contact-modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: 32px 24px 24px 24px;
+  z-index: 1001;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 2px 12px #0003;
+}
+
+/* Nút đóng */
+.Body-contact-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #1e88e5;
+  cursor: pointer;
+}
