@@ -21,6 +21,7 @@ import reportRoutes from "./routes/GetreportsRoutes.js";
 import newsRoutes from "./routes/NewsRoutes.js";
 import DoctorListRoutes from "./routes/DoctorListRoutes.js";
 import getAppointmentRoutes from "./routes/GetAppointmentRoutes.js";
+import invoiceRoutes from "./routes/InvoiceRoutes.js";
 
 
 dotenv.config();
@@ -55,6 +56,7 @@ app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
 app.use("/login", loginRoutes); // Đăng ký login route
 app.use("/api/appointments", getAppointmentRoutes);
 app.use("/api/newss", newsRoutes); // Đăng ký route lấy tin tức
+app.use("/api/invoices", invoiceRoutes);
 
 
 
