@@ -1,0 +1,27 @@
+[{
+    "hospital": "Bệnh viện Đa khoa Trung ương",
+    "department": "Nội khoa",
+    "doctor": "BS Nguyễn Văn A",
+    "date": "2025-06-10",
+    "slot": "08:00 - 09:00",
+    "gender": "Nam",
+    "name": "Trần Văn B",
+    "phone": "0987654321",
+    "birthday": "1990-01-15",
+    "email": "tranvanb@example.com",
+    "reason": "Khám tổng quát"
+  },
+  {
+    "hospital": "Bệnh viện Phụ sản Hà Nội",
+    "department": "Sản phụ khoa",
+    "doctor": "BS Lê Thị C",
+    "date": "2025-06-12",
+    "slot": "14:00 - 15:00",
+    "gender": "Nữ",
+    "name": "Nguyễn Thị D",
+    "phone": "0912345678",
+    "birthday": "1985-05-20",
+    "email": "nguyenthid@example.com",
+    "reason": "Khám thai định kỳ"
+  }
+]

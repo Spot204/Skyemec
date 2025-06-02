@@ -12,6 +12,7 @@ const AppointmentSchema = new mongoose.Schema({
   birthday: { type: String }, // Ngày sinh
   email: { type: String }, // Email
   reason: { type: String }, // Lý do khám
+  status: { type: String, default: "pending" },
 });
 
 const Appointment = mongoose.model("Appointment", AppointmentSchema);
