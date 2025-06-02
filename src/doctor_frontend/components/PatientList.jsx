@@ -14,6 +14,10 @@ const PatientList = () => {
   const [search, setSearch] = useState("");
   const [patients, setPatients] = useState([]);
 
+  // Lấy doctorId nếu muốn lọc theo bác sĩ đăng nhập
+  const doctorId = localStorage.getItem("doctorId");
+  console.log("doctorId in localStorage:", doctorId, typeof doctorId);
+
   useEffect(() => {
     axios
       .get("http://localhost:5050/api/patients")
@@ -21,7 +25,18 @@ const PatientList = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const filteredPatients = patients.filter((patient) => {
+  // Nếu muốn lọc theo bác sĩ, bỏ comment dòng dưới
+  // const doctorPatients = patients.filter(p => p.doctorId === doctorId);
+
+  const doctorPatients = patients.filter(
+    (p) =>
+      p.doctorId &&
+      (p.doctorId.toString
+        ? p.doctorId.toString() === doctorId
+        : p.doctorId === doctorId)
+  );
+
+  const filteredPatients = doctorPatients.filter((patient) => {
     const keyword = search.toLowerCase();
     return (
       patient.name?.toLowerCase().includes(keyword) ||
@@ -30,6 +45,10 @@ const PatientList = () => {
       patient.idNumber?.toLowerCase().includes(keyword)
     );
   });
+  patients.forEach((p) =>
+    console.log("p.doctorId:", p.doctorId, typeof p.doctorId)
+  );
+  console.log("doctorId in localStorage:", doctorId, typeof doctorId);
 
   return (
     <div className="palist-cover">
@@ -60,7 +79,6 @@ const PatientList = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="delete-selected-profiles">Xóa hồ sơ</button>
         </span>
         <div className="patient-main-list">
           <div className="palist-grid">
