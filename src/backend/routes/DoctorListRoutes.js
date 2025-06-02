@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../model/User.js";
+import User from "../model/AccountModel.js";
 
 const router = express.Router();
 
@@ -13,7 +13,9 @@ router.post("/load", async (req, res) => {
       filter["doctorInfo.specialty"] = specialty;
     }
 
-    const doctors = await User.find(filter).select("fullName doctorInfo.specialty");
+    const doctors = await User.find(filter).select(
+      "fullName doctorInfo.specialty"
+    );
     res.json(doctors);
   } catch (error) {
     console.error("Lỗi lấy danh sách bác sĩ:", error);
@@ -24,7 +26,8 @@ router.post("/load", async (req, res) => {
 router.post("/sreach", async (req, res) => {
   try {
     const { specialty } = req.body; // lấy specialty từ body thay vì query
-    let filter = { role: "doctor" ,
+    let filter = {
+      role: "doctor",
       name: { $regex: req.body.name, $options: "i" }, // Thêm điều kiện tìm kiếm theo tên
     };
 
@@ -32,7 +35,9 @@ router.post("/sreach", async (req, res) => {
       filter["doctorInfo.specialty"] = specialty;
     }
 
-    const doctors = await User.find(filter).select("fullName doctorInfo.specialty");
+    const doctors = await User.find(filter).select(
+      "fullName doctorInfo.specialty"
+    );
     res.json(doctors);
   } catch (error) {
     console.error("Lỗi tìm kiếm bác sĩ:", error);

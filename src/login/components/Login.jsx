@@ -32,6 +32,7 @@ const Login = () => {
       if (user.role === "admin") {
         navigate("/admin/dashboard");
       } else if (user.role === "doctor") {
+        localStorage.setItem("doctorId", user._id);
         navigate("/doctor");
       } else {
         alert("Vai trò không hợp lệ!");

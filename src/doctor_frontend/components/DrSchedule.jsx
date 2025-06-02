@@ -26,10 +26,19 @@ const DrSchedule = () => {
   // Lấy dữ liệu lịch trình
   useEffect(() => {
     if (!doctorId) return;
-    fetch(`http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`)
-      .then((res) => res.json())
-      .then(setScheduleData)
-      .catch((error) => console.error("Error fetching schedule:", error));
+    fetch(`http://localhost:5050/schedule/${doctorId}/schedule`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Không lấy được lịch trình");
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) setScheduleData(data);
+        else setScheduleData([]);
+      })
+      .catch((error) => {
+        setScheduleData([]);
+        console.error("Error fetching schedule:", error);
+      });
   }, [month, year, doctorId]);
 
   // Mở rộng mặc định và scroll đến ngày hiện tại
@@ -53,8 +62,12 @@ const DrSchedule = () => {
     }, 200);
   }, [scheduleData, month, year]);
 
+  const filteredSchedule = scheduleData.filter(
+    (item) => Number(item.month) === month && Number(item.year) === year
+  );
+
   // Gom lịch theo ngày
-  const grouped = scheduleData.reduce((acc, item) => {
+  const grouped = filteredSchedule.reduce((acc, item) => {
     const dayNum = Number(item.day);
     (acc[item.day] = acc[item.day] || []).push(item);
     return acc;
@@ -89,14 +102,11 @@ const DrSchedule = () => {
       return;
     }
     try {
-      await fetch(
-        `http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newSchedule),
-        }
-      );
+      await fetch(`http://localhost:5050/schedule/${doctorId}/schedule`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newSchedule),
+      });
       setShowAdd(false);
       setNewSchedule({
         day: "",
@@ -106,7 +116,7 @@ const DrSchedule = () => {
         task: "",
       });
       // Reload schedule
-      fetch(`http://localhost:5050/api/doctor-schedules/${doctorId}/schedule`)
+      fetch(`http://localhost:5050/schedule/${doctorId}/schedule`)
         .then((res) => res.json())
         .then(setScheduleData);
     } catch (err) {

@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../model/User.js"; // ✅ đảm bảo đường dẫn đúng, là 'model' (không phải 'models')
+import User from "../model/AccountModel.js"; // ✅ đảm bảo đường dẫn đúng, là 'model' (không phải 'models')
 
 const router = express.Router();
 
