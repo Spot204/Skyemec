@@ -17,6 +17,7 @@ import MedRoutes from "./routes/drMedRoutes.js";
 import reportRoutes from "./routes/GetreportsRoutes.js";
 import newsRoutes from "./routes/NewsRoutes.js";
 import DoctorListRoutes from "./routes/DoctorListRoutes.js";
+import getAppointmentRoutes from "./routes/GetAppointmentRoutes.js";
 
 dotenv.config();
 

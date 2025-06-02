@@ -94,4 +94,33 @@
   .btn-view:hover {
     background-color: #3399ff;
   }
+  .btn-delete {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c9302c;
+  }
+  
+  .btn-view {
+    background-color: #005566;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-view:hover {
+    background-color: #003f47;
+  }
   
