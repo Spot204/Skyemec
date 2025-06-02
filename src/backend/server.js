@@ -46,7 +46,6 @@ app.use("/api", updateAccountRoutes);
 app.use("/api/patients", Patients);
 app.use("/api/doctor", drRoutes);
 app.use("/api/appointment", userRoutes);
-app.use("/schedule", drScheRoutes);
 app.use("/api/doctors", drRoutes);
 app.use("/api/doctor-schedules", drScheRoutes);
 app.use("/api/news", drNews);
@@ -55,27 +54,17 @@ app.use("/api/appointments", userRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/doctor-list/nam123", DoctorListRoutes); // route mới tránh trùng
+app.use("/api/login", loginRoutes); // Đăng ký login route
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {
   res.status(404).json({ message: "API endpoint không tồn tại" });
 });
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Lỗi server nội bộ" });
 });
-app.use("/api/login", loginRoutes); // Đăng ký login route
-
-// // Middleware xử lý lỗi 404
-// app.use((req, res, next) => {
-//   res.status(404).json({ message: "API endpoint không tồn tại" });
-// });
-
-// // Middleware xử lý lỗi chung
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).json({ message: "Lỗi server nội bộ" });
-// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
