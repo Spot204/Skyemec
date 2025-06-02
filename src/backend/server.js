@@ -51,7 +51,7 @@ app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
-app.use("/api/login", loginRoutes); // Đăng ký login route
+app.use("/login", loginRoutes); // Đăng ký login route
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {

@@ -51,7 +51,7 @@ const App = () => {
           path="/admin/*"
           element={
             user?.role === "admin" ? (
-              <AdminApp />
+              <AdminApp/>
             ) : (
               <Navigate to="/login/login" replace />
             )

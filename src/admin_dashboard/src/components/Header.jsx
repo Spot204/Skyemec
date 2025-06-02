@@ -41,7 +41,7 @@ const Header = ({ setCurrentPage }) => {
               <li
                 key={label}
                 className="ad-Header-dropdown-item"
-                onClick={() => setCurrentPage("admin_dashboard")}
+                onClick={() => setCurrentPage(page)}
               >
                 {label}
               </li>
@@ -82,19 +82,14 @@ const Header = ({ setCurrentPage }) => {
         ])}
         {renderMenu("Thống kê", [
           { label: "Lịch khám theo tuần/tháng", page: "schedule_stats" },
-          {
-            label: "Số lượt đặt khám, lượt xem bác sĩ",
-            page: "appointment_stats",
-          },
+          { label: "Số lượt đặt khám, lượt xem bác sĩ", page: "appointment_stats" },
           { label: "Doanh thu và lượt sử dụng ưu đãi", page: "revenue_stats" },
         ])}
       </ul>
       <div className="ad-Header-navbar-right">
         <div className="ad-Header-login">
           <FontAwesomeIcon icon={faUser} />
-          <span className="ad-login" onClick={() => setCurrentPage("logout")}>
-            Đăng xuất
-          </span>
+          <span className="ad-login"onClick={()=>setCurrentPage("logout")}>Đăng xuất</span>
         </div>
         <div className="ad-Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
