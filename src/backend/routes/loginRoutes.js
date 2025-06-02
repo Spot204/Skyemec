@@ -1,14 +1,15 @@
 import express from "express";
-// import jwt from "jsonwebtoken";
-import User from "../model/User.js"; // Import model User
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import User from "../model/User.js";
 
 const router = express.Router();
 
-// Đăng nhập (login)
+// API đăng nhập
 router.post("/dangnhap", async (req, res) => {
-  const { username, password } = req.body; // Lấy username và password từ body request
+  const { username, password } = req.body;
 
-  // Kiểm tra dữ liệu đầu vào
+  // Kiểm tra đầu vào
   if (!username || !password) {
     return res
       .status(400)
@@ -16,17 +17,35 @@ router.post("/dangnhap", async (req, res) => {
   }
 
   try {
-    const user = await User.findOne({ username });
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
+
+    // Tìm user không phân biệt hoa/thường
+    const user = await User.findOne({
+      username: { $regex: new RegExp("^" + trimmedUsername + "$", "i") },
+    });
+
     if (!user) {
-      return res.status(401).json({ message: "Không có tài khoản" });
+      return res.status(401).json({ message: "Tài khoản không tồn tại" });
     }
 
-    // So sánh mật khẩu thuần
-    if (user.password !== password) {
+    // So sánh mật khẩu với hash
+    const isMatch = await bcrypt.compare(trimmedPassword, user.password);
+    if (!isMatch) {
       return res.status(401).json({ message: "Mật khẩu không đúng" });
     }
 
-    res.json({ message: "Đăng nhập thành công", user });
+    // Tạo JWT token
+    const token = jwt.sign(
+      { id: user._id, role: user.role, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    // Ẩn mật khẩu khi trả dữ liệu
+    const { password: pw, ...userWithoutPassword } = user._doc;
+    res.json({ message: "Đăng nhập thành công", token, user: userWithoutPassword });
+
   } catch (err) {
     console.error("Lỗi khi xử lý đăng nhập:", err);
     res.status(500).json({ message: "Lỗi server nội bộ" });

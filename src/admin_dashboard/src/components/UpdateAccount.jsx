@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/UpdateAccount.css";
-
+import { updateUser } from "../services/UpdateService"; // ✅ import đúng service
 
 const roles = ["admin", "doctor", "user"];
 const genders = ["Male", "Female", "Other"];
@@ -14,13 +14,11 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [address, setAddress] = useState("");
 
-  // Doctor info
   const [specialty, setSpecialty] = useState("");
   const [licenseNumber, setLicenseNumber] = useState("");
   const [workSchedule, setWorkSchedule] = useState([]);
   const [department, setDepartment] = useState("");
 
-  // User info
   const [medicalHistory, setMedicalHistory] = useState("");
   const [insuranceInfo, setInsuranceInfo] = useState("");
 
@@ -44,12 +42,6 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
     }
   }, [userToEdit]);
 
-  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  const hours = [
-    "08:00", "09:00", "10:00", "11:00", "12:00",
-    "13:00", "14:00", "15:00", "16:00", "17:00",
-  ];
-
   const addWorkSchedule = () => {
     setWorkSchedule([...workSchedule, { day: "", start: "", end: "" }]);
   };
@@ -66,15 +58,15 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
     setWorkSchedule(updated);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!username.trim() || !fullName.trim()) {
       alert("Vui lòng nhập đầy đủ username và họ tên");
       return;
     }
 
     const updatedUser = {
-      id: userToEdit.id,
       username: username.trim(),
       role,
       fullName: fullName.trim(),
@@ -98,7 +90,14 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
       };
     }
 
-    onSave(updatedUser);
+    try {
+      const result = await updateUser(userToEdit._id, updatedUser); // ✅ dùng _id
+      alert("Cập nhật thành công!");
+      onSave(result);
+    } catch (err) {
+      console.error("Lỗi cập nhật:", err);
+      alert("Không thể cập nhật tài khoản");
+    }
   };
 
   return (
@@ -106,50 +105,30 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
       <h2>Cập nhật thông tin tài khoản</h2>
       <form onSubmit={handleSubmit} className="ua-form">
         <label>Username:</label>
-        <input
-          value={username}
-          disabled
-          readOnly
-          title="Username không được sửa"
-        />
+        <input value={username} disabled readOnly />
 
         <label>Vai trò:</label>
         <select value={role} onChange={(e) => setRole(e.target.value)}>
           {roles.map((r) => (
-            <option key={r} value={r}>
-              {r.charAt(0).toUpperCase() + r.slice(1)}
-            </option>
+            <option key={r} value={r}>{r}</option>
           ))}
         </select>
 
         <label>Họ và tên:</label>
-        <input
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
+        <input value={fullName} onChange={(e) => setFullName(e.target.value)} required />
 
         <label>Số điện thoại:</label>
-        <input
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
+        <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
 
         <label>Giới tính:</label>
         <select value={gender} onChange={(e) => setGender(e.target.value)}>
           {genders.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
+            <option key={g} value={g}>{g}</option>
           ))}
         </select>
 
         <label>Ngày sinh:</label>
-        <input
-          type="date"
-          value={dateOfBirth}
-          onChange={(e) => setDateOfBirth(e.target.value)}
-        />
+        <input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
 
         <label>Địa chỉ:</label>
         <input value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -158,51 +137,27 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
           <>
             <h3>Thông tin bác sĩ</h3>
             <label>Chuyên khoa:</label>
-            <input
-              value={specialty}
-              onChange={(e) => setSpecialty(e.target.value)}
-            />
+            <input value={specialty} onChange={(e) => setSpecialty(e.target.value)} />
             <label>Mã chứng chỉ hành nghề:</label>
-            <input
-              value={licenseNumber}
-              onChange={(e) => setLicenseNumber(e.target.value)}
-            />
+            <input value={licenseNumber} onChange={(e) => setLicenseNumber(e.target.value)} />
             <label>Lịch làm việc:</label>
             {workSchedule.map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
-                <select
-                  value={item.day}
-                  onChange={(e) => updateWorkScheduleItem(i, "day", e.target.value)}
-                  required
-                >
+                <select value={item.day} onChange={(e) => updateWorkScheduleItem(i, "day", e.target.value)} required>
                   <option value="">Chọn ngày</option>
                   {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((d) => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
-                <select
-                  value={item.start}
-                  onChange={(e) => updateWorkScheduleItem(i, "start", e.target.value)}
-                  required
-                >
+                <select value={item.start} onChange={(e) => updateWorkScheduleItem(i, "start", e.target.value)} required>
                   <option value="">Bắt đầu</option>
-                  {[
-                    "08:00","09:00","10:00","11:00","12:00",
-                    "13:00","14:00","15:00","16:00","17:00",
-                  ].map((h) => (
+                  {["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"].map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
                 </select>
-                <select
-                  value={item.end}
-                  onChange={(e) => updateWorkScheduleItem(i, "end", e.target.value)}
-                  required
-                >
+                <select value={item.end} onChange={(e) => updateWorkScheduleItem(i, "end", e.target.value)} required>
                   <option value="">Kết thúc</option>
-                  {[
-                    "08:00","09:00","10:00","11:00","12:00",
-                    "13:00","14:00","15:00","16:00","17:00",
-                  ].map((h) => (
+                  {["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"].map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
                 </select>
@@ -221,16 +176,9 @@ export default function UpdateAccount({ userToEdit, onSave, onCancel }) {
           <>
             <h3>Thông tin bệnh nhân</h3>
             <label>Tiền sử bệnh:</label>
-            <textarea
-              value={medicalHistory}
-              onChange={(e) => setMedicalHistory(e.target.value)}
-              rows={3}
-            />
+            <textarea value={medicalHistory} onChange={(e) => setMedicalHistory(e.target.value)} rows={3} />
             <label>Thông tin bảo hiểm y tế:</label>
-            <input
-              value={insuranceInfo}
-              onChange={(e) => setInsuranceInfo(e.target.value)}
-            />
+            <input value={insuranceInfo} onChange={(e) => setInsuranceInfo(e.target.value)} />
           </>
         )}
 

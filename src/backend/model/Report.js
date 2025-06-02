@@ -11,5 +11,5 @@ const ReportSchema = new mongoose.Schema({
     note: { type: String }, // Chi tiết yêu cầu
 });
 
-const Report = mongoose.model("Report", ReportSchema);
+const Report = mongoose.model("Report", ReportSchema,"reports"); // Tên collection là "reports"
 export default Report;
