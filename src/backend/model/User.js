@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Schedule from "./drSchedule";
 
 // Schema cho lịch làm việc của bác sĩ
 const workScheduleSchema = new mongoose.Schema({
