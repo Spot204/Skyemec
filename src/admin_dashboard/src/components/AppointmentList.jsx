@@ -1,78 +1,25 @@
 import React from "react";
 import "../styles/AppointmentList.css";
 
-const statusVN = {
-  Pending: "Đang chờ",
-  Confirmed: "Đã xác nhận",
-  Cancelled: "Đã hủy",
-};
-
-const AppointmentList = ({ appointments, onStatusChange, onSelect }) => {
+const AppointmentList = ({ appointments, onSelect }) => {
   return (
     <table className="AppointmentList-table">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Bệnh nhân</th>
-          <th>Thời gian</th>
-          <th>Trạng thái</th>
-          <th>Hành động</th>
-          <th>Thông tin khách hàng</th>
+          <th>Họ tên</th>
+          <th>Cơ sở khám</th>
+          <th>Số điện thoại</th> {/* Thêm tiêu đề cột */}
+          <th>Chi tiết</th>
         </tr>
       </thead>
       <tbody>
         {appointments.map((app) => (
-          <tr key={app.id}>
-            <td>{app.id}</td>
-            <td>{app.patientName}</td>
-            <td>{app.time}</td>
-            <td
-              className={
-                app.status === "Pending"
-                  ? "status-pending"
-                  : app.status === "Confirmed"
-                  ? "status-confirmed"
-                  : app.status === "Cancelled"
-                  ? "status-cancelled"
-                  : ""
-              }
-            >
-              {statusVN[app.status] || app.status}
-            </td>
-            <td>
-              {app.status !== "Đã xác nhận" && app.status !== "Đã huỷ" && (
-                <>
-                  <button
-                    className="btn btn-confirm"
-                    onClick={() => onStatusChange(app.id, "Đã xác nhận")}
-                  >
-                    Xác nhận
-                  </button>
-                  <button
-                    className="btn btn-cancel"
-                    onClick={() => onStatusChange(app.id, "Đã huỷ")}
-                  >
-                    Hủy
-                  </button>
-                </>
-              )}
-              {app.status === "Đã xác nhận" && (
-                <button
-                  className="btn btn-cancel"
-                  onClick={() => onStatusChange(app.id, "Đã huỷ")}
-                >
-                  Hủy
-                </button>
-              )}
-              {app.status === "Đã huỷ" && (
-                <button
-                  className="btn btn-restore"
-                  onClick={() => onStatusChange(app.id, "Chờ duyệt")}
-                >
-                  Khôi phục
-                </button>
-              )}
-            </td>
+          <tr key={app._id}>
+            <td>{app._id}</td>
+            <td>{app.name || "—"}</td>
+            <td>{app.hospital || "—"}</td>
+            <td>{app.phone || "—"}</td> {/* Hiển thị số điện thoại */}
             <td>
               <button className="btn btn-view" onClick={() => onSelect(app)}>
                 Xem

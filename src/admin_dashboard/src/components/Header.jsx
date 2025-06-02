@@ -20,28 +20,27 @@ const Header = ({ setCurrentPage }) => {
     setIsOpen(null);
   };
 
-  // Render menu với dropdown bên dưới item
   const renderMenu = (title, items) => (
     <li
-      className="Header-nav-item"
+      className="ad-Header-nav-item"
       onMouseEnter={() => handleMouseEnter(title)}
       onMouseLeave={handleMouseLeave}
-      style={{ position: "relative" }} // Đảm bảo li là relative để dropdown position absolute hoạt động đúng
+      style={{ position: "relative" }}
     >
       <span>{title}</span>
       <FontAwesomeIcon icon={faAngleDown} />
       {isOpen === title && (
         <div
-          className="dropdown-container"
+          className="ad-dropdown-container"
           style={{ position: "absolute", top: "100%", left: 0 }}
           ref={dropdownRef}
         >
-          <div className="triangle"></div>
-          <ul className="Header-dropdown-list">
+          <div className="ad-triangle"></div>
+          <ul className="ad-Header-dropdown-list">
             {items.map(({ label, page }) => (
               <li
                 key={label}
-                className="Header-dropdown-item"
+                className="ad-Header-dropdown-item"
                 onClick={() => setCurrentPage(page)}
               >
                 {label}
@@ -54,36 +53,27 @@ const Header = ({ setCurrentPage }) => {
   );
 
   return (
-    <nav className="Header-navbar">
+    <nav className="ad-Header-navbar">
       <img
-        className="Header-logo"
+        className="ad-Header-logo"
         src={logo}
         alt="logo"
         onClick={() => setCurrentPage("admin_dashboard")}
       />
-      <ul className="Header-navbar-list">
+      <ul className="ad-Header-navbar-list">
         {renderMenu("Quản lý tài khoản", [
           { label: "Danh sách người dùng", page: "user_list" },
-          { label: "Xem / chỉnh sửa / khóa tài khoản", page: "edit_user" },
-          { label: "Phân quyền (user, admin)", page: "permissions" },
         ])}
         {renderMenu("Quản lý lịch khám", [
           { label: "Quản lý lịch hẹn", page: "appointment_management" },
         ])}
         {renderMenu("Quản lý bác sĩ", [
           { label: "Thêm / sửa / xóa bác sĩ", page: "doctor_management" },
-          { label: "Thêm / sửa / xóa chuyên khoa", page: "specialty_management" },
-          { label: "Bộ lọc tìm kiếm", page: "doctor_filter" },
         ])}
         {renderMenu("Quản lý tin tức", [
           { label: "Tạo / sửa / xóa tin tức", page: "news_management" },
           { label: "Lên lịch đăng bài", page: "schedule_post" },
           { label: "Phân loại tin (ưu đãi / sự kiện)", page: "news_category" },
-        ])}
-        {renderMenu("Quản lý liên hệ", [
-          { label: "Danh sách liên hệ từ người dùng", page: "contact_list" },
-          { label: "Trả lời hoặc chuyển tiếp", page: "reply_contact" },
-          { label: "Gửi thông báo cho khách hàng", page: "notify_customer" },
         ])}
         {renderMenu("Hóa đơn", [
           { label: "Tạo biên lai tự động", page: "auto_receipt" },
@@ -96,12 +86,12 @@ const Header = ({ setCurrentPage }) => {
           { label: "Doanh thu và lượt sử dụng ưu đãi", page: "revenue_stats" },
         ])}
       </ul>
-      <div className="Header-navbar-right">
-        <div className="Header-login">
+      <div className="ad-Header-navbar-right">
+        <div className="ad-Header-login">
           <FontAwesomeIcon icon={faUser} />
-          <span className="login">Đăng xuất</span>
+          <span className="ad-login">Đăng xuất</span>
         </div>
-        <div className="Header-search">
+        <div className="ad-Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </div>
       </div>

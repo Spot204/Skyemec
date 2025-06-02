@@ -1,38 +1,69 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import App_user from "./user_fontend/App_user";
 import Login from "./login/App_login";
 import App_doctor from "./doctor_frontend/App_doctor";
 import AdminApp from "./admin_dashboard/AdminApp";
 
+// Hàm lấy user từ localStorage
+const getUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
+};
+
 const App = () => {
+  const user = getUser();
+
   return (
     <Router>
       <Routes>
-        {/* Điều hướng root về trang user hoặc trang đăng nhập */}
+        {/* Mặc định: redirect tới trang user */}
         <Route path="/" element={<Navigate to="/user" replace />} />
-        <Route path="/user" element={<Navigate to="/user/home" replace />} />
+
+        {/* Trang user luôn public */}
         <Route path="/user/*" element={<App_user />} />
-        {/* Trang đăng nhập */}
-        <Route path="/login/*" element={<Login />} />
+
+        {/* Trang đăng nhập: nếu đã login thì redirect theo role */}
         <Route
-          path="/doctor"
-          element={<Navigate to="/doctor/drhome" replace />}
+          path="/login/*"
+          element={
+            user?.role === "admin" ? (
+              <Navigate to="/admin/dashboard" replace />
+            ) : user?.role === "doctor" ? (
+              <Navigate to="/doctor/drprofile" replace />
+            ) : (
+              <Login />
+            )
+          }
         />
-        <Route path="/doctor/*" element={<App_doctor />} />
-        {/* Admin dashboard */}
-        {/* Truy cập /admin sẽ redirect sang /admin/dashboard */}
+
+        {/* Doctor route: yêu cầu đăng nhập đúng role */}
         <Route
-          path="/admin"
-          element={<Navigate to="/admin/dashboard" replace />}
+          path="/doctor/*"
+          element={
+            user?.role === "doctor" ? (
+              <App_doctor />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
         />
-        {/* AdminApp xử lý tất cả route con dưới /admin */}
-        <Route path="/admin/*" element={<AdminApp />} />
-        {/* Fallback 404 */}
+
+        {/* Admin route: yêu cầu đăng nhập đúng role */}
+        <Route
+          path="/admin/*"
+          element={
+            user?.role === "admin" ? (
+              <AdminApp />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+        {/* 404 fallback */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>

@@ -1,46 +1,51 @@
 import express from "express";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import User from "../model/User.js";
 
 const router = express.Router();
 
-// Đăng nhập (login)
+// API đăng nhập
 router.post("/dangnhap", async (req, res) => {
-  const { username, password } = req.body;  // Lấy username và password từ body request
+  const { username, password } = req.body;
 
-  // Kiểm tra dữ liệu đầu vào
+  // Kiểm tra đầu vào
   if (!username || !password) {
-    return res.status(400).json({ message: "Username và mật khẩu không được để trống" });
+    return res
+      .status(400)
+      .json({ message: "Username và mật khẩu không được để trống" });
   }
 
   try {
-    // Tìm user trong database theo username
-    const user = await User.findOne({ username });  // Tìm theo username
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
+
+    // Tìm user không phân biệt hoa/thường
+    const user = await User.findOne({
+      username: { $regex: new RegExp("^" + trimmedUsername + "$", "i") },
+    });
 
     if (!user) {
-      return res.status(401).json({ message: "Không có tài khoản" });
+      return res.status(401).json({ message: "Tài khoản không tồn tại" });
     }
 
-    // So sánh mật khẩu thuần
-    if (user.password !== password) {
+    // So sánh mật khẩu với hash
+    const isMatch = await bcrypt.compare(trimmedPassword, user.password);
+    if (!isMatch) {
       return res.status(401).json({ message: "Mật khẩu không đúng" });
     }
 
-    // Kiểm tra biến môi trường JWT_SECRET
-    // if (!process.env.JWT_SECRET) {
-    //   console.error("JWT_SECRET chưa được thiết lập trong biến môi trường!");
-    //   return res.status(500).json({ message: "Lỗi server nội bộ: JWT_SECRET không có" });
-    // }
+    // Tạo JWT token
+    const token = jwt.sign(
+      { id: user._id, role: user.role, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
-    // // Tạo JWT token
-    // const token = jwt.sign(
-    //   { id: user._id, role: user.role, username: user.username },
-    //   process.env.JWT_SECRET,
-    //   { expiresIn: "1h" }  
-    // );
+    // Ẩn mật khẩu khi trả dữ liệu
+    const { password: pw, ...userWithoutPassword } = user._doc;
+    res.json({ message: "Đăng nhập thành công", token, user: userWithoutPassword });
 
-    // const { password: pw, ...userWithoutPassword } = user._doc;
-    // res.json({ token, user: userWithoutPassword });  // Gửi token và thông tin user (không có mật khẩu)
   } catch (err) {
     console.error("Lỗi khi xử lý đăng nhập:", err);
     res.status(500).json({ message: "Lỗi server nội bộ" });

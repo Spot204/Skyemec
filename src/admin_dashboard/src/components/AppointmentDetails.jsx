@@ -8,20 +8,27 @@ const AppointmentDetails = ({ appointment, onClose }) => {
     <div className="AppointmentDetails-container">
       <h3>Thông tin khách hàng</h3>
       <p>
-        <strong>Bệnh nhân:</strong> {appointment.patientName}
+        <strong>Họ tên:</strong> {appointment.name}
       </p>
       <p>
-        <strong>Thời gian hẹn:</strong> {appointment.time}
+        <strong>Ngày sinh:</strong> {appointment.birthday || "—"}
       </p>
       <p>
         <strong>Số điện thoại:</strong> {appointment.phone}
       </p>
       <p>
-        <strong>Email:</strong> {appointment.email}
+        <strong>Email:</strong> {appointment.email || "—"}
       </p>
       <p>
-        <strong>Ghi chú:</strong> {appointment.notes}
+        <strong>Chi tiết yêu cầu:</strong> {appointment.note || "—"}
       </p>
+      <p>
+        <strong>Dịch vụ:</strong> {appointment.service || "—"}
+      </p>
+      <p>
+        <strong>Cơ sở khám:</strong> {appointment.hospital || "—"}
+      </p>
+
       <button className="btn-close" onClick={onClose}>
         Đóng
       </button>
