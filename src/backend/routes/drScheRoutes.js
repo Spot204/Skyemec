@@ -16,4 +16,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const schedule = new DrSchedule(req.body);
+    await schedule.save();
+    res.status(201).json(schedule);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
