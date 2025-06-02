@@ -17,6 +17,9 @@ import ReplyContact from "./src/components/ReplyContact";
 import NotifyCustomer from "./src/components/NotifyCustomer";
 import InvoiceManagement from "./src/components/InvoiceManagement";
 import InvoiceCreate from "./src/components/InvoiceCreate"; 
+import StartAppointment from "./src/components/StatsAppointments";
+import RevenueStats from "./src/components/RevenueStats";
+
 
 const AdminApp = () => {
   return (
@@ -41,6 +44,10 @@ const AdminApp = () => {
           <Route path="contacts" element={<ContactList />} />
           <Route path="contacts/reply" element={<ReplyContact />} />
           <Route path="notifications" element={<NotifyCustomer />} />
+          <Route path="start-appointment" element={<StartAppointment />} />
+          <Route path="revenue-stats" element={<RevenueStats />} />
+
+
 
           {/* Route quản lý hóa đơn */}
           <Route path="invoices" element={<InvoiceManagement />} />

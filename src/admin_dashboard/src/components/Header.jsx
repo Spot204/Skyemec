@@ -75,19 +75,14 @@ const Header = () => {
         ])}
         {renderMenu("Quản lý tin tức", [
           { label: "Tạo / sửa / xóa tin tức", path: "/admin/news" },
-          { label: "Lên lịch đăng bài", path: "/admin/schedule-post" },
-          { label: "Phân loại tin (ưu đãi / sự kiện)", path: "/admin/news-category" },
         ])}
         {renderMenu("Hóa đơn", [
           { label: "Quản lý hóa đơn", path: "/admin/invoices" },
           { label: "Tạo biên lai tự động", path: "/admin/invoices/create" },
-          { label: "Gửi hóa đơn qua email", path: "/admin/invoices/send" },
-          { label: "Tải về dạng PDF", path: "/admin/invoices/download" },
         ])}
         {renderMenu("Thống kê", [
-          { label: "Lịch khám theo tuần/tháng", path: "/admin/schedule-stats" },
-          { label: "Số lượt đặt khám, lượt xem bác sĩ", path: "/admin/appointment-stats" },
-          { label: "Doanh thu và lượt sử dụng ưu đãi", path: "/admin/revenue-stats" },
+          { label: "Lịch khám theo tuần/tháng", path: "/admin/start-appointment" },
+          { label: "Doanh thu", path: "/admin/revenue-stats" },
         ])}
       </ul>
       <div className="ad-Header-navbar-right">
