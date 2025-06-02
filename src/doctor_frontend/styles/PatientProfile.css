@@ -80,8 +80,8 @@
   flex: 7;
 }
 
-h4 {
-  margin-top: 5px;
+.papro-info h4 {
+  margin-top: 0;
   margin-left: 25px;
   color: #0067ab;
   font-size: 32px;
@@ -148,7 +148,7 @@ label {
   margin-bottom: 10px;
 }
 
-.patient-edit-button {
+.patient-save-edit-button {
   background-color: #51be9d;
   color: white;
   border: none;
@@ -159,6 +159,24 @@ label {
   position: relative;
   left: 40px;
   top: 10px;
+}
+
+.patient-delete-button {
+  width: 90%;
+  padding: 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  position: relative;
+  top: 10px;
+  left: 16px;
+}
+
+.patient-delete-button:hover {
+  background-color: #d32f2f;
 }
 
 .patient-edit-button-cancel {

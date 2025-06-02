@@ -21,13 +21,12 @@ import reportRoutes from "./routes/GetreportsRoutes.js";
 import newsRoutes from "./routes/NewsRoutes.js";
 import DoctorListRoutes from "./routes/DoctorListRoutes.js";
 
-
-
-
 dotenv.config();
 
 if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
-  console.error("Biến môi trường MONGO_URI hoặc JWT_SECRET chưa được thiết lập!");
+  console.error(
+    "Biến môi trường MONGO_URI hoặc JWT_SECRET chưa được thiết lập!"
+  );
   process.exit(1);
 }
 
@@ -39,22 +38,20 @@ app.use(express.json());
 connectDB();
 
 // Đăng ký routes
-app.use("/login", loginRoutes);
+
 app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes);
 app.use("/api", updateAccountRoutes);
 app.use("/api/patients", Patients);
-app.use("/api/doctors", drRoutes);
-app.use("/api/doctor-schedules", drScheRoutes);
+app.use("/api/doctor", drRoutes);
+app.use("/api/appointment", userRoutes);
+app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
-app.use("/api/appointments", userRoutes);
 app.use("/api/reports", reportRoutes);
-app.use("/api/news", newsRoutes);
-app.use("/api/doctor-list/nam123", DoctorListRoutes);  // route mới tránh trùng
-
-
+app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
+app.use("/api/login", loginRoutes); // Đăng ký login route
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {
@@ -64,6 +61,18 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Lỗi server nội bộ" });
 });
+
+
+// // Middleware xử lý lỗi 404
+// app.use((req, res, next) => {
+//   res.status(404).json({ message: "API endpoint không tồn tại" });
+// });
+
+// // Middleware xử lý lỗi chung
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).json({ message: "Lỗi server nội bộ" });
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

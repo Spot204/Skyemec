@@ -14,10 +14,11 @@ import NotifyCustomer from "./src/components/NotifyCustomer";
 import ManagePermissions from "./src/components/ManagePermissions";
 import UpdateAccount from "./src/components/UpdateAccount";
 import AppointmentList from "./src/components/AppointmentList";
+import { useNavigate } from "react-router-dom";
 
 const AdminApp = () => {
   const [currentPage, setCurrentPage] = useState("admin_dashboard");
-
+  const navigate = useNavigate();
   const renderPage = () => {
     switch (currentPage) {
       case "admin_dashboard":
@@ -46,6 +47,8 @@ const AdminApp = () => {
         return <ReplyContact />;
       case "notify_customer":
         return <NotifyCustomer />;
+      case "logout":
+        return navigate("/user/home");
       default:
         return <AdminDashboard />;
     }

@@ -104,7 +104,7 @@ const PatientProfile = () => {
         <p className="patient-edit-p">
           {label}:{" "}
           <button
-            className="patient-edit-button"
+            className="patient-save-edit-button"
             onClick={() => handleAddField(field)}
           >
             Thêm thông tin
@@ -120,7 +120,7 @@ const PatientProfile = () => {
                 style={{ marginLeft: 8 }}
               />
               <button
-                className="patient-edit-button"
+                className="patient-save-edit-button"
                 style={{ marginLeft: 8 }}
                 onClick={() => handleSaveField(field)}
               >
@@ -193,7 +193,7 @@ const PatientProfile = () => {
         <p className="patient-edit-p">
           {label}:{" "}
           <button
-            className="patient-edit-button"
+            className="patient-save-edit-button"
             onClick={() => handleAddField(field)}
           >
             Thêm thông tin
@@ -218,7 +218,7 @@ const PatientProfile = () => {
                 style={{ marginLeft: 8 }}
               />
               <button
-                className="patient-edit-button"
+                className="patient-save-edit-button"
                 style={{ marginLeft: 8 }}
                 onClick={() => handleSaveField(field)}
               >
@@ -301,13 +301,34 @@ const PatientProfile = () => {
                 <h4>{patient.name}</h4>
               )}
               {!editMode && (
-                <button className="edit-patient-info" onClick={handleEdit}>
-                  Sửa thông tin
-                </button>
+                <>
+                  <button className="edit-patient-info" onClick={handleEdit}>
+                    Sửa thông tin
+                  </button>
+                  <button
+                    className="patient-delete-button"
+                    style={{ marginLeft: 8 }}
+                    onClick={async () => {
+                      if (window.confirm("Bạn chắc chắc muốn xóa hồ sơ này?")) {
+                        try {
+                          await axios.delete(
+                            `http://localhost:5050/api/patients/${id}`
+                          );
+                          alert("Đã xóa hồ sơ thành công!");
+                          navigate("/doctor/patientlist");
+                        } catch (err) {
+                          alert("Xóa hồ sơ thất bại!");
+                        }
+                      }
+                    }}
+                  >
+                    Xóa hồ sơ
+                  </button>
+                </>
               )}
               {editMode && (
                 <button
-                  className="patient-edit-button"
+                  className="patient-save-edit-button"
                   style={{ marginLeft: 8 }}
                   onClick={handleSave}
                 >
@@ -316,7 +337,7 @@ const PatientProfile = () => {
               )}
               {editMode && (
                 <button
-                  className="patient-edit-button-cancel"
+                  className="patient-save-edit-button-cancel"
                   style={{ marginLeft: 8 }}
                   onClick={() => {
                     setEditMode(false);
@@ -476,7 +497,7 @@ const PatientProfile = () => {
                 />
               </p>
               <button
-                className="patient-edit-button"
+                className="patient-save-edit-button"
                 style={{ marginRight: 8 }}
                 onClick={() => handleSaveField("relatives")}
               >
@@ -486,7 +507,7 @@ const PatientProfile = () => {
             </div>
           ) : (
             <button
-              className="patient-edit-button"
+              className="patient-save-edit-button"
               onClick={() => handleAddField("relatives")}
             >
               Thêm thông tin người thân

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Schedule from "./drSchedule";
 
 // Schema cho lịch làm việc của bác sĩ
 const workScheduleSchema = new mongoose.Schema({
@@ -17,6 +18,7 @@ const userSchema = new mongoose.Schema({
   gender: { type: String },
   dateOfBirth: { type: Date },
   address: { type: String },
+  Schedule:{ type: Object, ref: "Schedule" }, // Tham chiếu đến lịch làm việc của bác sĩ
 
   // Thông tin riêng cho bác sĩ
   doctorInfo: {

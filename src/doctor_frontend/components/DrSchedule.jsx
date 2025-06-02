@@ -13,6 +13,14 @@ const DrSchedule = () => {
   const [scheduleData, setScheduleData] = useState([]);
   const [expandedDays, setExpandedDays] = useState([]);
   const dayRefs = useRef({});
+  const [showAdd, setShowAdd] = useState(false);
+  const [newSchedule, setNewSchedule] = useState({
+    day: "",
+    month: "",
+    year: "",
+    time: "",
+    task: "",
+  });
 
   // Lấy dữ liệu lịch trình
   useEffect(() => {
@@ -65,6 +73,42 @@ const DrSchedule = () => {
     setMonth(month === 1 ? 12 : month - 1) ||
     (month === 1 && setYear(year - 1));
 
+  // Thêm lịch trình mới
+  const handleAddSchedule = async (e) => {
+    e.preventDefault();
+    if (
+      !newSchedule.day ||
+      !newSchedule.month ||
+      !newSchedule.year ||
+      !newSchedule.time ||
+      !newSchedule.task
+    ) {
+      alert("Vui lòng nhập đầy đủ thông tin!");
+      return;
+    }
+    try {
+      await fetch("http://localhost:5050/schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newSchedule),
+      });
+      setShowAdd(false);
+      setNewSchedule({
+        day: "",
+        month: "",
+        year: "",
+        time: "",
+        task: "",
+      });
+      // Reload schedule
+      fetch(`http://localhost:5050/schedule?month=${month}&year=${year}`)
+        .then((res) => res.json())
+        .then(setScheduleData);
+    } catch (err) {
+      alert("Thêm lịch trình thất bại!");
+    }
+  };
+
   return (
     <div className="background">
       <span
@@ -89,7 +133,107 @@ const DrSchedule = () => {
             &gt;
           </button>
         </div>
-        <h3>Lịch trình làm việc</h3>
+
+        <div className="add-schedule-div">
+          <div className="add-schedule-div-header">
+            <h3>Lịch trình làm việc</h3>
+            <button
+              className="add-schedule-btn"
+              onClick={() => setShowAdd(true)}
+              title="Thêm lịch trình"
+            >
+              +
+            </button>
+          </div>
+          {showAdd && (
+            <form onSubmit={handleAddSchedule}>
+              <div className="form-info">
+                <label>
+                  Ngày:&nbsp;
+                  <input
+                    type="number"
+                    min="1"
+                    max="31"
+                    value={newSchedule.day}
+                    onChange={(e) =>
+                      setNewSchedule({ ...newSchedule, day: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="form-info">
+                <label>
+                  Tháng:&nbsp;
+                  <input
+                    type="number"
+                    min="1"
+                    max="12"
+                    value={newSchedule.month}
+                    onChange={(e) =>
+                      setNewSchedule({ ...newSchedule, month: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="form-info">
+                <label>
+                  Năm:&nbsp;
+                  <input
+                    type="number"
+                    min="2000"
+                    max="2100"
+                    value={newSchedule.year}
+                    onChange={(e) =>
+                      setNewSchedule({ ...newSchedule, year: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="form-info">
+                <label>
+                  Giờ:&nbsp;
+                  <input
+                    type="time"
+                    value={newSchedule.time}
+                    onChange={(e) =>
+                      setNewSchedule({ ...newSchedule, time: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="form-info-work">
+                <label>
+                  Công việc:&nbsp;
+                  <input
+                    type="text"
+                    value={newSchedule.task}
+                    onChange={(e) =>
+                      setNewSchedule({ ...newSchedule, task: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "30px",
+                }}
+              >
+                <button type="submit">Lưu</button>
+                <button type="button" onClick={() => setShowAdd(false)}>
+                  Hủy
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+
         <div className="scheduled">
           {Object.keys(grouped)
             .map(Number)

@@ -145,6 +145,7 @@ body{
 .User-Header-logo:hover {
     color: #0077cc;
     cursor: pointer;
+    transform: scale(1.05);
 }
 
 .User-Header-dropdown-item:hover {
