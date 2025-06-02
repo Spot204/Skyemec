@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import User from "../model/User.js";
+import User from "../model/AccountModel.js";
 
 const router = express.Router();
 
@@ -44,8 +44,11 @@ router.post("/dangnhap", async (req, res) => {
 
     // Ẩn mật khẩu khi trả dữ liệu
     const { password: pw, ...userWithoutPassword } = user._doc;
-    res.json({ message: "Đăng nhập thành công", token, user: userWithoutPassword });
-
+    res.json({
+      message: "Đăng nhập thành công",
+      token,
+      user: userWithoutPassword,
+    });
   } catch (err) {
     console.error("Lỗi khi xử lý đăng nhập:", err);
     res.status(500).json({ message: "Lỗi server nội bộ" });
