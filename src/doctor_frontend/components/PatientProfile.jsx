@@ -4,9 +4,8 @@ import patient2 from "../assets/empty-ava-1.jpg";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import topimage from "../assets/Docimage1.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const PatientProfile = () => {
@@ -33,14 +32,12 @@ const PatientProfile = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Xử lý xác nhận sửa thông tin
   const handleEdit = () => {
     if (window.confirm("Bạn muốn sửa thông tin bệnh nhân?")) {
       setEditMode(true);
     }
   };
 
-  // Xử lý xác nhận lưu thông tin
   const handleSave = async () => {
     if (
       window.confirm(
@@ -59,13 +56,11 @@ const PatientProfile = () => {
     }
   };
 
-  // Thêm thông tin cho trường chưa có
   const handleAddField = (field) => {
     setAddingField(field);
     setEditMode(false);
   };
 
-  // Lưu thông tin mới cho trường chưa có
   const handleSaveField = async (field) => {
     if (
       window.confirm(
@@ -96,6 +91,22 @@ const PatientProfile = () => {
             value={form[field] || ""}
             onChange={handleChange}
           />
+          {addingField === field && (
+            <span>
+              <button
+                className="patient-save-add-info-button"
+                onClick={() => handleSaveField(field)}
+              >
+                Lưu
+              </button>
+              <button
+                className="patient-save-add-info-button-cancel"
+                onClick={() => setAddingField(null)}
+              >
+                Hủy
+              </button>
+            </span>
+          )}
         </p>
       );
     }
@@ -104,30 +115,11 @@ const PatientProfile = () => {
         <p className="patient-edit-p">
           {label}:{" "}
           <button
-            className="patient-save-edit-button"
+            className="patient-add-info-button"
             onClick={() => handleAddField(field)}
           >
-            Thêm thông tin
+            +
           </button>
-          {addingField === field && (
-            <>
-              <input
-                className="patient-edit-input"
-                name={field}
-                type={type}
-                value={form[field] || ""}
-                onChange={handleChange}
-                style={{ marginLeft: 8 }}
-              />
-              <button
-                className="patient-save-edit-button"
-                style={{ marginLeft: 8 }}
-                onClick={() => handleSaveField(field)}
-              >
-                Lưu
-              </button>
-            </>
-          )}
         </p>
       );
     }
@@ -184,6 +176,22 @@ const PatientProfile = () => {
             }
             placeholder="Mỗi dòng là một mục"
           />
+          {addingField === field && (
+            <span>
+              <button
+                className="patient-save-add-info-button"
+                onClick={() => handleSaveField(field)}
+              >
+                Lưu
+              </button>
+              <button
+                className="patient-save-add-info-button-cancel"
+                onClick={() => setAddingField(null)}
+              >
+                Hủy
+              </button>
+            </span>
+          )}
         </p>
       );
     }
@@ -193,39 +201,11 @@ const PatientProfile = () => {
         <p className="patient-edit-p">
           {label}:{" "}
           <button
-            className="patient-save-edit-button"
+            className="patient-add-info-button"
             onClick={() => handleAddField(field)}
           >
-            Thêm thông tin
+            +
           </button>
-          {addingField === field && (
-            <>
-              <textarea
-                className="patient-edit-textarea"
-                name={field}
-                value={Array.isArray(form[field]) ? form[field].join("\n") : ""}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    [field]: e.target.value
-                      .split("\n")
-                      .map((item) => item.trim())
-                      .filter((item) => item),
-                  })
-                }
-                rows={3}
-                placeholder="Mỗi dòng là một mục"
-                style={{ marginLeft: 8 }}
-              />
-              <button
-                className="patient-save-edit-button"
-                style={{ marginLeft: 8 }}
-                onClick={() => handleSaveField(field)}
-              >
-                Lưu
-              </button>
-            </>
-          )}
         </p>
       );
     }
@@ -244,18 +224,6 @@ const PatientProfile = () => {
   } else if (patient.relatives && typeof patient.relatives === "object") {
     relatives = [patient.relatives];
   }
-
-  const dataToSave = {
-    ...form,
-    diary:
-      typeof form.diary === "string"
-        ? form.diary
-            .split("\n")
-            .map((line) => line.trim())
-            .filter((line) => line)
-        : form.diary,
-    // ...các trường array khác nếu cần
-  };
 
   return (
     <div className="papro-cover">
@@ -329,7 +297,6 @@ const PatientProfile = () => {
               {editMode && (
                 <button
                   className="patient-save-edit-button"
-                  style={{ marginLeft: 8 }}
                   onClick={handleSave}
                 >
                   Lưu
@@ -337,8 +304,7 @@ const PatientProfile = () => {
               )}
               {editMode && (
                 <button
-                  className="patient-save-edit-button-cancel"
-                  style={{ marginLeft: 8 }}
+                  className="patient-edit-button-cancel"
                   onClick={() => {
                     setEditMode(false);
                     setForm(patient);
@@ -375,7 +341,7 @@ const PatientProfile = () => {
                   {editMode ? (
                     <input
                       className="patient-edit-input"
-                      value={form.relatives[idx]?.name || ""}
+                      value={form.relatives?.[idx]?.name || ""}
                       onChange={(e) => {
                         const newArr = [...form.relatives];
                         newArr[idx] = { ...newArr[idx], name: e.target.value };
@@ -391,7 +357,7 @@ const PatientProfile = () => {
                   {editMode ? (
                     <input
                       className="patient-edit-input"
-                      value={form.relatives[idx]?.phone || ""}
+                      value={form.relatives?.[idx]?.phone || ""}
                       onChange={(e) => {
                         const newArr = [...form.relatives];
                         newArr[idx] = { ...newArr[idx], phone: e.target.value };
@@ -407,7 +373,7 @@ const PatientProfile = () => {
                   {editMode ? (
                     <input
                       className="patient-edit-input"
-                      value={form.relatives[idx]?.relation || ""}
+                      value={form.relatives?.[idx]?.relation || ""}
                       onChange={(e) => {
                         const newArr = [...form.relatives];
                         newArr[idx] = {
@@ -426,7 +392,7 @@ const PatientProfile = () => {
                   {editMode ? (
                     <input
                       className="patient-edit-input"
-                      value={form.relatives[idx]?.address || ""}
+                      value={form.relatives?.[idx]?.address || ""}
                       onChange={(e) => {
                         const newArr = [...form.relatives];
                         newArr[idx] = {
@@ -503,14 +469,19 @@ const PatientProfile = () => {
               >
                 Lưu
               </button>
-              <button onClick={() => setAddingField(null)}>Hủy</button>
+              <button
+                className="patient-edit-button-cancel"
+                onClick={() => setAddingField(null)}
+              >
+                Hủy
+              </button>
             </div>
           ) : (
             <button
               className="patient-save-edit-button"
               onClick={() => handleAddField("relatives")}
             >
-              Thêm thông tin người thân
+              Thêm người thân
             </button>
           )}
         </div>

@@ -1,4 +1,3 @@
-// backend/server.js
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -10,13 +9,11 @@ import createAccountRoutes from "./routes/CreateAccountRoutes.js";
 import deleteAccountRoutes from "./routes/DeleteAccountRoutes.js";
 import updateAccountRoutes from "./routes/UpdateAccountRoutes.js";
 import getUserRoutes from "./routes/GetUser.js";
-import Patients from "./routes/patientRoutes.js";
+import patientRoutes from "./routes/patientRoutes.js";
 import drRoutes from "./routes/drRoutes.js";
 import drScheRoutes from "./routes/drScheRoutes.js";
 import drNews from "./routes/drNewsRoutes.js";
 import MedRoutes from "./routes/drMedRoutes.js";
-import userRoutes from "./routes/userRoutes.js"; // appointments
-
 import reportRoutes from "./routes/GetreportsRoutes.js";
 import newsRoutes from "./routes/NewsRoutes.js";
 import DoctorListRoutes from "./routes/DoctorListRoutes.js";
@@ -42,15 +39,14 @@ app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes);
 app.use("/api", updateAccountRoutes);
-app.use("/api/patients", Patients);
-app.use("/api/appointment", userRoutes);
+app.use("/api/patients", patientRoutes);
 app.use("/api/doctors", drRoutes);
 app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);
 app.use("/api/reports", reportRoutes);
-app.use("/api/doctor-list", DoctorListRoutes); // route mới tránh trùng
-app.use("/login", loginRoutes); // Đăng ký login route
+app.use("/api/doctor-list", DoctorListRoutes);
+app.use("/login", loginRoutes);
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {
