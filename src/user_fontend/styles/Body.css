@@ -39,7 +39,7 @@
 .Body-top-connect-button {
   font-size: 20px;
   color: white;
-  background-color: #51be9d;
+  background-color: #51be9d!important;
   border: 0px;
   border-radius: 50px;
   padding: 7px 25px;
