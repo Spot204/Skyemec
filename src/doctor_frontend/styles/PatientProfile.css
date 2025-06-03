@@ -192,7 +192,7 @@ label {
   top: 10px;
 }
 
-.patient-edit-button:hover {
+.patient-save-edit-button:hover {
   background-color: #4a9f8b;
 }
 
@@ -219,4 +219,54 @@ label {
   border-radius: 5px;
   cursor: text;
   margin: 10px;
+}
+
+.patient-save-add-info-button {
+  background-color: #51be9d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 12px 40px;
+  position: relative;
+  left: 100px;
+  top: 10px;
+}
+
+.patient-save-add-info-button {
+  background-color: #4a9f8b;
+}
+
+.patient-save-add-info-button-cancel {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 12px 40px;
+  position: relative;
+  left: 130px;
+  top: 10px;
+}
+
+.patient-save-add-info-button-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.patient-add-info-button {
+  background-color: #51be9d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  padding: 10px 16px;
+  position: relative;
+  left: 10px;
+}
+
+.patient-add-info-button:hover {
+  background-color: #4a9f8b;
 }

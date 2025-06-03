@@ -1,16 +1,18 @@
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../user_fontend/assets/Skyemec.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { useState, useRef } from "react";
-import "../styles/Header.css";
-import React from "react";
 
-const Header = ({ setCurrentPage }) => {
+import "../styles/Header.css";
+
+const Header = () => {
   const [isOpen, setIsOpen] = useState(null);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (menu) => {
     setIsOpen(menu);
@@ -37,11 +39,11 @@ const Header = ({ setCurrentPage }) => {
         >
           <div className="ad-triangle"></div>
           <ul className="ad-Header-dropdown-list">
-            {items.map(({ label, page }) => (
+            {items.map(({ label, path }) => (
               <li
                 key={label}
                 className="ad-Header-dropdown-item"
-                onClick={() => setCurrentPage(page)}
+                onClick={() => navigate(path)}
               >
                 {label}
               </li>
@@ -58,38 +60,37 @@ const Header = ({ setCurrentPage }) => {
         className="ad-Header-logo"
         src={logo}
         alt="logo"
-        onClick={() => setCurrentPage("admin_dashboard")}
+        onClick={() => navigate("/admin")}
+        style={{ cursor: "pointer" }}
       />
       <ul className="ad-Header-navbar-list">
         {renderMenu("Quản lý tài khoản", [
-          { label: "Danh sách người dùng", page: "user_list" },
+          { label: "Danh sách người dùng", path: "/admin/users" },
         ])}
         {renderMenu("Quản lý lịch khám", [
-          { label: "Quản lý lịch hẹn", page: "appointment_management" },
+          { label: "Quản lý lịch hẹn", path: "/admin/appointments" },
         ])}
         {renderMenu("Quản lý bác sĩ", [
-          { label: "Thêm / sửa / xóa bác sĩ", page: "doctor_management" },
+          { label: "Thêm / sửa / xóa bác sĩ", path: "/admin/doctors" },
         ])}
         {renderMenu("Quản lý tin tức", [
-          { label: "Tạo / sửa / xóa tin tức", page: "news_management" },
-          { label: "Lên lịch đăng bài", page: "schedule_post" },
-          { label: "Phân loại tin (ưu đãi / sự kiện)", page: "news_category" },
+          { label: "Tạo / sửa / xóa tin tức", path: "/admin/news" },
         ])}
         {renderMenu("Hóa đơn", [
-          { label: "Tạo biên lai tự động", page: "auto_receipt" },
-          { label: "Gửi hóa đơn qua email", page: "send_invoice" },
-          { label: "Tải về dạng PDF", page: "download_pdf" },
+          { label: "Quản lý hóa đơn", path: "/admin/invoices" },
+          { label: "Tạo biên lai tự động", path: "/admin/invoices/create" },
         ])}
         {renderMenu("Thống kê", [
-          { label: "Lịch khám theo tuần/tháng", page: "schedule_stats" },
-          { label: "Số lượt đặt khám, lượt xem bác sĩ", page: "appointment_stats" },
-          { label: "Doanh thu và lượt sử dụng ưu đãi", page: "revenue_stats" },
+          { label: "Lịch khám theo tuần/tháng", path: "/admin/start-appointment" },
+          { label: "Doanh thu", path: "/admin/revenue-stats" },
         ])}
       </ul>
       <div className="ad-Header-navbar-right">
-        <div className="ad-Header-login">
+        <div className="ad-Header-login" style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faUser} />
-          <span className="ad-login"onClick={()=>setCurrentPage("logout")}>Đăng xuất</span>
+          <span className="ad-login" onClick={() => navigate("/login")}>
+            Đăng xuất
+          </span>
         </div>
         <div className="ad-Header-search">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
