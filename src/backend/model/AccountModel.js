@@ -1,3 +1,4 @@
+// AccountModel.js
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
@@ -28,11 +29,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
+// Tạm thời bỏ đoạn hook tự động mã hóa mật khẩu để test lưu mật khẩu plaintext
+// userSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) return next();
+//   this.password = await bcrypt.hash(this.password, 10);
+//   next();
+// });
 
 const User = mongoose.model("Account", userSchema, "Account");
 export default User;

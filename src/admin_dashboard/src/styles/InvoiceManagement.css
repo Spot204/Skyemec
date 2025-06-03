@@ -1,164 +1,165 @@
 .invoice-management-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px 40px;
-    background: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #004d59;
-    box-shadow: 0 4px 12px rgba(0, 85, 102, 0.1);
-    border-radius: 10px;
-  }
-  
-  h2 {
-    font-weight: 700;
-    font-size: 28px;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #004d59;
-    padding-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  /* Filter trạng thái */
-  select {
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    min-width: 180px;
-    transition: border-color 0.3s ease;
-  }
-  
-  select:focus {
-    outline: none;
-    border-color: #005566;
-    box-shadow: 0 0 6px rgba(0, 85, 102, 0.5);
-  }
-  
-  /* Bảng danh sách */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  thead tr {
-    background-color: #e0f2f1;
-  }
-  
-  thead th, tbody td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f9f9;
-  }
-  
-  /* Nút bấm */
-  button {
-    padding: 6px 14px;
-    border-radius: 5px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover:not(:disabled) {
-    filter: brightness(90%);
-  }
-  
-  /* Nút xem */
-  button:nth-child(1) {
-    background-color: #005566;
-    color: #fff;
-    margin-right: 6px;
-  }
-  
-  /* Nút xóa */
-  button:nth-child(2) {
-    background-color: #d9534f;
-    color: #fff;
-  }
-  
-  /* Nút xóa hover */
-  button:nth-child(2):hover {
-    background-color: #c9302c;
-  }
-  
-  /* Phân trang */
-  .pagination {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .pagination button {
-    background: #005566;
-    color: white;
-    margin: 0 5px;
-    padding: 8px 14px;
-    border-radius: 5px;
-    font-weight: 600;
-  }
-  
-  .pagination button:disabled {
-    background: #aac9cd;
-    cursor: default;
-  }
-  
-  /* Modal chi tiết hóa đơn */
-  .invoice-detail-modal {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 20px 30px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    border-radius: 10px;
-  }
-  
-  .invoice-detail-modal h3 {
-    margin-bottom: 15px;
-  }
-  
-  .invoice-detail-modal p {
-    margin: 6px 0;
-  }
-  
-  .invoice-detail-modal table {
-    margin-top: 10px;
-    font-size: 13px;
-  }
-  
-  .invoice-detail-modal table th, .invoice-detail-modal table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* Nút đóng modal */
-  .invoice-detail-modal button {
-    margin-top: 15px;
-    background-color: #005566;
-    color: white;
-  }
-  
-  /* Overlay nền khi mở modal */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.3);
-    z-index: 999;
-  }
-  
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px 40px;
+  background: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #004d59;
+  box-shadow: 0 4px 12px rgba(0, 85, 102, 0.1);
+  border-radius: 10px;
+}
+
+.invoice-management-container h2 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #004d59;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Filter trạng thái */
+select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 180px;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #005566;
+  box-shadow: 0 0 6px rgba(0, 85, 102, 0.5);
+}
+
+/* Bảng danh sách */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+thead tr {
+  background-color: #e0f2f1;
+}
+
+thead th,
+tbody td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #f1f9f9;
+}
+
+/* Nút bấm */
+button {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(90%);
+}
+
+/* Nút xem */
+button:nth-child(1) {
+  background-color: #005566;
+  color: #fff;
+  margin-right: 6px;
+}
+
+/* Nút xóa */
+button:nth-child(2) {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+/* Nút xóa hover */
+button:nth-child(2):hover {
+  background-color: #c9302c;
+}
+
+/* Phân trang */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  background: #005566;
+  color: white;
+  margin: 0 5px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.pagination button:disabled {
+  background: #aac9cd;
+  cursor: default;
+}
+
+/* Modal chi tiết hóa đơn */
+.invoice-detail-modal {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 20px 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.invoice-detail-modal h3 {
+  margin-bottom: 15px;
+}
+
+.invoice-detail-modal p {
+  margin: 6px 0;
+}
+
+.invoice-detail-modal table {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.invoice-detail-modal table th,
+.invoice-detail-modal table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Nút đóng modal */
+.invoice-detail-modal button {
+  margin-top: 15px;
+  background-color: #005566;
+  color: white;
+}
+
+/* Overlay nền khi mở modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}

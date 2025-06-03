@@ -10,7 +10,7 @@ const ReplyContact = ({ contact, onSendReply }) => {
 
   if (!contact) {
     return (
-      <div className="container">
+      <div className="login-container-1">
         <p>Vui lòng chọn một liên hệ từ danh sách để trả lời.</p>
       </div>
     );
@@ -23,12 +23,18 @@ const ReplyContact = ({ contact, onSendReply }) => {
   };
 
   return (
-    <div className="container">
+    <div className="login-container-1">
       <h2>Trả lời liên hệ</h2>
       <div className="info">
-        <p><strong>Tên:</strong> {contact.name}</p>
-        <p><strong>Email:</strong> {contact.email}</p>
-        <p><strong>Tiêu đề:</strong> {contact.subject}</p>
+        <p>
+          <strong>Tên:</strong> {contact.name}
+        </p>
+        <p>
+          <strong>Email:</strong> {contact.email}
+        </p>
+        <p>
+          <strong>Tiêu đề:</strong> {contact.subject}
+        </p>
       </div>
 
       <textarea

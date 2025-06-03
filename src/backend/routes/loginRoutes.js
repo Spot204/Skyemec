@@ -1,3 +1,4 @@
+// routes/login.js
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -5,22 +6,18 @@ import User from "../model/AccountModel.js";
 
 const router = express.Router();
 
-// API đăng nhập
+// POST /login/dangnhap - Xử lý đăng nhập người dùng
 router.post("/dangnhap", async (req, res) => {
-  const { username, password } = req.body;
-
-  // Kiểm tra đầu vào
-  if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username và mật khẩu không được để trống" });
-  }
-
   try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ message: "Username và mật khẩu không được để trống" });
+    }
+
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
 
-    // Tìm user không phân biệt hoa/thường
     const user = await User.findOne({
       username: { $regex: new RegExp("^" + trimmedUsername + "$", "i") },
     });
@@ -29,29 +26,33 @@ router.post("/dangnhap", async (req, res) => {
       return res.status(401).json({ message: "Tài khoản không tồn tại" });
     }
 
-    // So sánh mật khẩu với hash
+    // So sánh mật khẩu đã hash bằng bcrypt.compare
     const isMatch = await bcrypt.compare(trimmedPassword, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Mật khẩu không đúng" });
     }
-    c
-    // Tạo JWT token
+
     const token = jwt.sign(
-      { id: user._id, role: user.role, username: user.username },
+      {
+        id: user._id,
+        role: user.role,
+        username: user.username,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    // Ẩn mật khẩu khi trả dữ liệu
-    const { password: pw, ...userWithoutPassword } = user._doc;
-    res.json({
+    const userObj = user.toObject();
+    delete userObj.password;
+
+    return res.json({
       message: "Đăng nhập thành công",
       token,
-      user: userWithoutPassword,
+      user: userObj,
     });
-  } catch (err) {
-    console.error("Lỗi khi xử lý đăng nhập:", err);
-    res.status(500).json({ message: "Lỗi server nội bộ" });
+  } catch (error) {
+    console.error("Lỗi khi xử lý đăng nhập:", error);
+    return res.status(500).json({ message: "Lỗi server nội bộ" });
   }
 });
 
