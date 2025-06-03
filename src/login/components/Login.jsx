@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import Background from "../assets/1.webp";
 import Logo from "../assets/Skyemec.png";
-import { login } from "../sevices/LoginSevice"; // Đường dẫn đúng
+import { login } from "../sevices/LoginSevice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,9 +28,9 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await login(username.trim(), password.trim());
-      const { token, user } = result;
+      const { user } = result;
 
-      console.log("User info:", user);
+      console.log("User info from API:", user);
 
       if (!user || !user.role) {
         alert("Không lấy được thông tin vai trò người dùng.");
@@ -40,10 +40,10 @@ const Login = () => {
 
       const role = user.role.toLowerCase().trim();
 
-      // Lưu token và user vào localStorage
-      localStorage.setItem("token", token);
+      // Lưu user vào localStorage
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Điều hướng theo role
       if (role === "admin") {
         navigate("/admin/dashboard");
       } else if (role === "doctor") {
@@ -52,6 +52,9 @@ const Login = () => {
       } else {
         alert("Vai trò không hợp lệ!");
       }
+
+      // Reload trang để cập nhật app state
+      window.location.reload();
 
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
@@ -71,10 +74,10 @@ const Login = () => {
         onClick={() => navigate("/user/home")}
         style={{ cursor: "pointer" }}
       />
-      <div className="border-form">
+      <div className="border">
         <div className="form-section">
           <h2>Đăng nhập</h2>
-          <form className="main-login-form" onSubmit={handleLogin}>
+          <form onSubmit={handleLogin} className="main-login-form">
             <input
               type="text"
               placeholder="Username"

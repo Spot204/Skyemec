@@ -22,6 +22,15 @@ const Header = () => {
     setIsOpen(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("doctorId");
+
+    // Reload trang và điều hướng về login
+    window.location.href = "/login";
+  };
+
   const renderMenu = (title, items) => (
     <li
       className="ad-Header-nav-item"
@@ -88,7 +97,7 @@ const Header = () => {
       <div className="ad-Header-navbar-right">
         <div className="ad-Header-login" style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faUser} />
-          <span className="ad-login" onClick={() => navigate("/login")}>
+          <span className="ad-login" onClick={handleLogout}>
             Đăng xuất
           </span>
         </div>
