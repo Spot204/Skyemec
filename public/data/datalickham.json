@@ -1,27 +1,240 @@
-[{
-    "hospital": "Bệnh viện Đa khoa Trung ương",
-    "department": "Nội khoa",
-    "doctor": "BS Nguyễn Văn A",
-    "date": "2025-06-10",
-    "slot": "08:00 - 09:00",
-    "gender": "Nam",
-    "name": "Trần Văn B",
-    "phone": "0987654321",
-    "birthday": "1990-01-15",
-    "email": "tranvanb@example.com",
-    "reason": "Khám tổng quát"
+[
+  {
+    "_id": { "$oid": "683b2723a9353964755eb881" },
+    "username": "phanminhbinh",
+    "password": "admin",
+    "role": "doctor",
+    "fullName": "Phan Minh Bình",
+    "phoneNumber": "",
+    "gender": "Male",
+    "dateOfBirth": null,
+    "address": "",
+    "doctorInfo": {
+      "specialty": "",
+      "licenseNumber": "",
+      "department": ""
+    },
+    "schedules": [
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bd8" },
+        "month": 6,
+        "year": 2025,
+        "day": 3,
+        "time": "9:30",
+        "task": "Họp khoa"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bd9" },
+        "month": 6,
+        "year": 2025,
+        "day": 3,
+        "time": "12:00",
+        "task": "Nghỉ giải lao"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bda" },
+        "month": 5,
+        "year": 2025,
+        "day": 10,
+        "time": "9:00",
+        "task": "Tư vấn sức khỏe"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bdb" },
+        "month": 6,
+        "year": 2025,
+        "day": 2,
+        "time": "10:30",
+        "task": "Hội chẩn"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bdc" },
+        "month": 5,
+        "year": 2025,
+        "day": 30,
+        "time": "13:30",
+        "task": "Khám cấp cứu"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bdd" },
+        "month": 5,
+        "year": 2025,
+        "day": 20,
+        "time": "9:30",
+        "task": "Họp khoa"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bde" },
+        "month": 6,
+        "year": 2025,
+        "day": 5,
+        "time": "13:00",
+        "task": "Đào tạo nội bộ"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bdf" },
+        "month": 6,
+        "year": 2025,
+        "day": 22,
+        "time": "10:30",
+        "task": "Khám cấp cứu"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be0" },
+        "month": 5,
+        "year": 2025,
+        "day": 29,
+        "time": "14:00",
+        "task": "Nghỉ giải lao"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be1" },
+        "month": 6,
+        "year": 2025,
+        "day": 15,
+        "time": "13:00",
+        "task": "Khám tổng quát"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be2" },
+        "month": 6,
+        "year": 2025,
+        "day": 13,
+        "time": "14:00",
+        "task": "Tư vấn sức khỏe"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be3" },
+        "month": 5,
+        "year": 2025,
+        "day": 20,
+        "time": "8:00",
+        "task": "Khám chuyên khoa"
+      }
+    ],
+    "__v": 1
   },
   {
-    "hospital": "Bệnh viện Phụ sản Hà Nội",
-    "department": "Sản phụ khoa",
-    "doctor": "BS Lê Thị C",
-    "date": "2025-06-12",
-    "slot": "14:00 - 15:00",
-    "gender": "Nữ",
-    "name": "Nguyễn Thị D",
-    "phone": "0912345678",
-    "birthday": "1985-05-20",
-    "email": "nguyenthid@example.com",
-    "reason": "Khám thai định kỳ"
+    "username": "vuthinhung",
+    "password": "admin",
+    "role": "doctor",
+    "fullName": "Vũ Thị Nhung",
+    "phoneNumber": "0383687738",
+    "gender": "Female",
+    "dateOfBirth": null,
+    "address": "Hà Nội",
+    "doctorInfo": {
+      "specialty": "Tim mạch",
+      "licenseNumber": "",
+      "workSchedule": [],
+      "department": ""
+    },
+    "schedules": [
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be6" },
+        "month": 6,
+        "year": 2025,
+        "day": 3,
+        "time": "12:00",
+        "task": "Nghỉ giải lao"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be7" },
+        "month": 5,
+        "year": 2025,
+        "day": 14,
+        "time": "11:00",
+        "task": "Khám chuyên khoa"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be8" },
+        "month": 6,
+        "year": 2025,
+        "day": 14,
+        "time": "10:00",
+        "task": "Khám tổng quát"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6be9" },
+        "month": 5,
+        "year": 2025,
+        "day": 27,
+        "time": "11:30",
+        "task": "Khám tổng quát"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bea" },
+        "month": 6,
+        "year": 2025,
+        "day": 19,
+        "time": "11:30",
+        "task": "Khám tổng quát"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6beb" },
+        "month": 5,
+        "year": 2025,
+        "day": 29,
+        "time": "10:30",
+        "task": "Khám cấp cứu"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bec" },
+        "month": 5,
+        "year": 2025,
+        "day": 27,
+        "time": "15:00",
+        "task": "Nghỉ giải lao"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bed" },
+        "month": 5,
+        "year": 2025,
+        "day": 26,
+        "time": "15:30",
+        "task": "Tư vấn sức khỏe"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bee" },
+        "month": 6,
+        "year": 2025,
+        "day": 7,
+        "time": "11:00",
+        "task": "Khám cấp cứu"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bef" },
+        "month": 5,
+        "year": 2025,
+        "day": 25,
+        "time": "14:30",
+        "task": "Khám bệnh"
+      },
+      {
+        "_id": { "$oid": "683dded91f2d0a5666fd6bf0" },
+        "month": 5,
+        "year": 2025,
+        "day": 30,
+        "time": "8:30",
+        "task": "Khám tổng quát"
+      },
+      {
+        "_id": { "$oid": "683ddfcfd633abcb7ac8caab" },
+        "month": 6,
+        "year": 2025,
+        "day": 1,
+        "time": "08:30",
+        "task": "Làm báo cáo"
+      },
+      {
+        "_id": { "$oid": "683ddfe8d633abcb7ac8cac7" },
+        "month": 6,
+        "year": 2025,
+        "day": 1,
+        "time": "09:30",
+        "task": "Lịch hẹn khám cho bệnh nhân"
+      }
+    ],
+    "__v": 3
   }
 ]

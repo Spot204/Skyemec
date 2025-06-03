@@ -1,9 +1,9 @@
-import "../styles/Login.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 import Background from "../assets/1.webp";
 import Logo from "../assets/Skyemec.png";
-import { login } from "../sevices/LoginSevice"; // chú ý đường dẫn chính xác
+import { login } from "../sevices/LoginSevice"; // Đường dẫn đúng
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,35 +11,53 @@ const Login = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = () => {
+  const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
+
+    if (!username.trim() || !password.trim()) {
+      alert("Vui lòng nhập đầy đủ username và mật khẩu.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const result = await login(username, password); // gọi API từ service
+      const result = await login(username.trim(), password.trim());
       const { token, user } = result;
 
-      // Lưu vào localStorage
+      console.log("User info:", user);
+
+      if (!user || !user.role) {
+        alert("Không lấy được thông tin vai trò người dùng.");
+        setLoading(false);
+        return;
+      }
+
+      const role = user.role.toLowerCase().trim();
+
+      // Lưu token và user vào localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      alert("Đăng nhập thành công!");
-
-      // Phân luồng theo role
-      if (user.role === "admin") {
+      if (role === "admin") {
         navigate("/admin/dashboard");
-      } else if (user.role === "doctor") {
+      } else if (role === "doctor") {
         localStorage.setItem("doctorId", user._id);
         navigate("/doctor");
       } else {
         alert("Vai trò không hợp lệ!");
       }
+
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
       alert("Lỗi đăng nhập: " + (error.message || "Vui lòng thử lại"));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,6 +69,7 @@ const Login = () => {
         src={Logo}
         alt="Logo"
         onClick={() => navigate("/user/home")}
+        style={{ cursor: "pointer" }}
       />
       <div className="border-form">
         <div className="form-section">
@@ -62,6 +81,7 @@ const Login = () => {
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              disabled={loading}
             />
             <input
               type="password"
@@ -69,17 +89,21 @@ const Login = () => {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
             />
             <div className="save-password">
               <input
                 type="checkbox"
                 id="checkbox"
                 checked={isChecked}
-                onChange={handleChange}
+                onChange={handleCheckboxChange}
+                disabled={loading}
               />
               <label htmlFor="checkbox">Lưu mật khẩu</label>
             </div>
-            <button type="submit">Đăng nhập</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+            </button>
           </form>
         </div>
       </div>
