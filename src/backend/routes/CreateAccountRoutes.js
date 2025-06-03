@@ -1,3 +1,4 @@
+// routes/createAccount.js
 import express from "express";
 import bcrypt from "bcryptjs";
 import User from "../model/AccountModel.js";
@@ -26,13 +27,12 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Username đã tồn tại" });
     }
 
-    // Mã hóa mật khẩu
+    // Mã hóa mật khẩu trước khi lưu
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Tạo user mới
     const newUser = new User({
       username,
-      password: hashedPassword,
+      password: hashedPassword, // Lưu password đã mã hóa
       fullName,
       phoneNumber,
       gender,
@@ -43,7 +43,6 @@ router.post("/", async (req, res) => {
       userInfo,
     });
 
-    // Lưu vào database
     await newUser.save();
 
     return res.status(201).json({
