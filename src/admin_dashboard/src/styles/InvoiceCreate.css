@@ -19,16 +19,16 @@
   letter-spacing: 0.05em;
 }
 
-form label {
+.invoice-create-form label {
   display: block;
   margin-bottom: 15px;
   font-weight: 600;
 }
 
-form input[type="text"],
-form input[type="date"],
-form input[type="number"],
-form textarea {
+.invoice-create-form form input[type="text"],
+.invoice-create-form form input[type="date"],
+.invoice-create-form form input[type="number"],
+.invoice-create-form form textarea {
   width: 100%;
   padding: 8px 12px;
   font-size: 14px;
@@ -38,10 +38,10 @@ form textarea {
   box-sizing: border-box;
 }
 
-form input[type="text"]:focus,
-form input[type="date"]:focus,
-form input[type="number"]:focus,
-form textarea:focus {
+.invoice-create-form form input[type="text"]:focus,
+.invoice-create-form form input[type="date"]:focus,
+.invoice-create-form form input[type="number"]:focus,
+.invoice-create-form form textarea:focus {
   outline: none;
   border-color: #005566;
   box-shadow: 0 0 6px rgba(0, 85, 102, 0.5);

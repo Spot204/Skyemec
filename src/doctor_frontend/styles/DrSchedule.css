@@ -45,7 +45,7 @@
 .change-month {
   height: 70px;
   width: 70px;
-  background-color: #51be9d;
+  background-color: #51be9d !important;
   color: white;
   font-weight: bold;
   border: none;
@@ -89,7 +89,7 @@
 }
 
 .add-schedule-btn {
-  background-color: #51be9d;
+  background-color: #51be9d !important;
   color: white;
   border: none;
   padding: 10px 18px;
@@ -129,12 +129,15 @@
 }
 
 .form-info-work input {
-  width: 95%;
+  width: 85%;
   margin-left: 10px;
   height: 15px;
   border-radius: 25px;
   cursor: text;
   margin-top: 15px;
+  padding: 16px;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .form-info input {
@@ -143,4 +146,7 @@
   border-radius: 25px;
   cursor: text;
   width: 35%;
+  margin-bottom: 15px;
+  padding: 16px;
+  font-size: 20px;
 }

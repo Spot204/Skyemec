@@ -52,7 +52,6 @@ const Login = () => {
       } else {
         alert("Vai trò không hợp lệ!");
       }
-
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
       alert("Lỗi đăng nhập: " + (error.message || "Vui lòng thử lại"));
