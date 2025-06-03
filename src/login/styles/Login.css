@@ -23,25 +23,33 @@
   cursor: pointer;
 }
 
-.border-form {
+/* Sửa class .border thành đúng với React bạn dùng */
+.border {
   background-color: white;
   border-radius: 20px;
-  border-color: black;
-  height: 540px;
+  border: 1px solid black;
+  height: 590px;
   width: 500px;
-  margin-left: 1150px !important;
-  margin-top: 170px !important;
+  margin-left: 1150px;
+  margin-right: auto;
+  margin-top: 170px;
   position: relative;
   z-index: 1;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+  /* Center block */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* form-section giữ như cũ */
 .form-section {
-  padding: 90px;
+  padding: 50px 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 0;
 }
 
 .form-section h2 {
@@ -49,15 +57,12 @@
   font-size: 36px;
 }
 
+/* Thêm class main-login-form cho form */
 .main-login-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.save-password {
-  display: inline-flex;
-  align-items: center;
+  gap: 15px;
+  width: 100%;
 }
 
 .main-login-form input[type="checkbox"] {
@@ -65,19 +70,14 @@
   margin-right: 10px;
 }
 
-.main-login-form input[type="text"] {
-  padding: 15px;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-}
-
+.main-login-form input[type="text"],
 .main-login-form input[type="password"] {
   padding: 15px;
   font-size: 20px;
   border-radius: 10px;
   border: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .main-login-form label {
@@ -94,6 +94,7 @@
   cursor: pointer;
   font-size: 16px;
   border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .main-login-form button:hover {

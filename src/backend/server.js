@@ -43,7 +43,7 @@ app.use("/api/users", getUserRoutes);
 app.use("/api/create-account", createAccountRoutes);
 app.use("/api", deleteAccountRoutes);
 app.use("/api", updateAccountRoutes);
-app.use("/api/appointment", patientRoutes);
+app.use("/api/patients", patientRoutes);
 app.use("/api/doctor", drRoutes);
 app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
