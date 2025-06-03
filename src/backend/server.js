@@ -16,7 +16,6 @@ import drScheRoutes from "./routes/drScheRoutes.js";
 import drNews from "./routes/drNewsRoutes.js";
 import MedRoutes from "./routes/drMedRoutes.js";
 import userRoutes from "./routes/userRoutes.js"; // appointments
-
 import reportRoutes from "./routes/GetreportsRoutes.js";
 import newsRoutes from "./routes/NewsRoutes.js";
 import DoctorListRoutes from "./routes/DoctorListRoutes.js";
@@ -44,7 +43,7 @@ app.use("/api", deleteAccountRoutes);
 app.use("/api", updateAccountRoutes);
 app.use("/api/patients", Patients);
 app.use("/api/appointment", userRoutes);
-app.use("/api/doctors", drRoutes);
+app.use("/api/doctor", drRoutes);
 app.use("/schedule", drScheRoutes);
 app.use("/api/news", drNews);
 app.use("/api/medicines", MedRoutes);

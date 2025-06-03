@@ -1,5 +1,4 @@
 // Lấy thông tin bệnh nhân theo email hoặc id
-import PatientProfile from "../model/PatientProfile.js";
 import express from "express";
 import Appointment from "../model/Appointment.js";
 import Report from "../model/Report.js";
@@ -10,17 +9,6 @@ const router = express.Router();
 // Đặt lịch khám: POST /api/appointment/create
 router.post("/create", async (req, res) => {
   try {
-    patient = new PatientProfile({
-      name,
-      phone,
-      birthDate: birthday,
-      gender,
-      address,
-      registeredHospital: hospital,
-      examinationDate: date,
-      examinationReasons: reason ? [reason] : [],
-    });
-    await patient.save();
     const appointment = new Appointment(req.body);
     await appointment.save();
     // Gửi email xác nhận đặt lịch khám
