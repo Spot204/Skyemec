@@ -89,4 +89,52 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /api/appointments/stats/monthly
+ * @desc    Thống kê số lượng lịch khám theo tháng
+ * @access  Public
+ */
+router.get("/stats/monthly", async (req, res) => {
+  try {
+    const stats = await Appointment.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m", date: "$date" } },
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error("GET /api/appointments/stats/monthly error:", error);
+    res.status(500).json({ message: "Lỗi khi lấy thống kê lịch khám theo tháng" });
+  }
+});
+
+/**
+ * @route   GET /api/appointments/stats/weekly
+ * @desc    Thống kê số lượng lịch khám theo tuần
+ * @access  Public
+ */
+router.get("/stats/weekly", async (req, res) => {
+  try {
+    const stats = await Appointment.aggregate([
+      {
+        $group: {
+          _id: { isoWeekYear: { $isoWeekYear: "$date" }, week: { $isoWeek: "$date" } },
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { "_id.isoWeekYear": 1, "_id.week": 1 } },
+    ]);
+
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error("GET /api/appointments/stats/weekly error:", error);
+    res.status(500).json({ message: "Lỗi khi lấy thống kê lịch khám theo tuần" });
+  }
+});
+
 export default router;

@@ -38,9 +38,23 @@ export async function deleteAppointmentById(id) {
   const response = await fetch(`${API_BASE_URL}/appointments/${id}`, {
     method: "DELETE",
   });
+
+  // Một số API trả về body, một số không
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Lỗi khi xóa lịch hẹn");
+    let errorMsg = "Lỗi khi xóa lịch hẹn";
+    try {
+      const errorData = await response.json();
+      if (errorData.message) errorMsg = errorData.message;
+    } catch {
+      // ignore parse error
+    }
+    throw new Error(errorMsg);
   }
-  return response.json();
+
+  // Có thể API trả về {message: "..."} hoặc không trả về body
+  try {
+    return await response.json();
+  } catch {
+    return {};
+  }
 }

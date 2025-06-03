@@ -1,0 +1,49 @@
+.stats-container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    color: #004d59;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,85,102,0.15);
+  }
+  
+  .stats-controls {
+    margin-bottom: 15px;
+  }
+  
+  .stats-controls label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .stats-controls select {
+    margin-left: 10px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .stats-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .stats-table th,
+  .stats-table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: center;
+  }
+  
+  .stats-table th {
+    background-color: #005566;
+    color: #fff;
+  }
+  
+  .error {
+    color: red;
+    font-weight: 600;
+  }
+  
