@@ -52,10 +52,10 @@ const Login = () => {
         alt="Logo"
         onClick={() => navigate("/user/home")}
       />
-      <div className="border">
+      <div className="border-form">
         <div className="form-section">
           <h2>Đăng nhập</h2>
-          <form onSubmit={handleLogin}>
+          <form className="main-login-form" onSubmit={handleLogin}>
             <input
               type="text"
               placeholder="Username"

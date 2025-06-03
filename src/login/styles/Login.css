@@ -7,6 +7,13 @@
   top: 0;
   left: 0;
 }
+
+.login-container h2 {
+  margin-top: 0;
+  color: #0077cc;
+  margin-bottom: 15px;
+}
+
 .logo {
   width: 200px !important;
   height: auto !important;
@@ -16,7 +23,7 @@
   cursor: pointer;
 }
 
-.border {
+.border-form {
   background-color: white;
   border-radius: 20px;
   border-color: black;
@@ -42,17 +49,10 @@
   font-size: 36px;
 }
 
-form {
+.main-login-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-form input {
-  padding: 15px;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .save-password {
@@ -60,18 +60,33 @@ form input {
   align-items: center;
 }
 
-input[type="checkbox"] {
-  margin-top: 10px;
+.main-login-form input[type="checkbox"] {
   transform: scale(1.5);
   margin-right: 10px;
 }
 
-label {
-  margin-left: 5px !important;
+.main-login-form input[type="text"] {
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.main-login-form input[type="password"] {
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.main-login-form label {
+  margin-left: 10px;
+  margin-top: 5px;
   font-size: 20px;
 }
 
-form button {
+.main-login-form button {
   padding: 16px;
   background-color: #51be9d;
   color: white;
@@ -79,9 +94,14 @@ form button {
   cursor: pointer;
   font-size: 16px;
   border-radius: 10px;
-  margin-top: 10px;
 }
 
-form button:hover {
+.main-login-form button:hover {
   background-color: #4a9f8b;
+}
+
+.main-login-form input[type="text"]:focus,
+.main-login-form input[type="password"]:focus {
+  outline: 1px solid #51be9d;
+  box-shadow: none;
 }

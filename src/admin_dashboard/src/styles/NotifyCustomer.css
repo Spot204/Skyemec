@@ -1,4 +1,4 @@
-.login-container {
+.notify-customer-container {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.login-container h2 {
+.notify-customer-container h2 {
   margin-top: 0;
   color: #0077cc;
   margin-bottom: 15px;
