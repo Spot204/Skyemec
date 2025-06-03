@@ -33,7 +33,8 @@ const InvoiceCreate = () => {
       newItems[index][field] = isNaN(numValue) || numValue < 0 ? 0 : numValue;
     }
     // Tính lại amount
-    newItems[index].amount = newItems[index].quantity * newItems[index].unitPrice;
+    newItems[index].amount =
+      newItems[index].quantity * newItems[index].unitPrice;
     setFormData((prev) => ({ ...prev, items: newItems }));
   };
 
@@ -41,7 +42,10 @@ const InvoiceCreate = () => {
   const handleAddItem = () => {
     setFormData((prev) => ({
       ...prev,
-      items: [...prev.items, { description: "", quantity: 1, unitPrice: 0, amount: 0 }],
+      items: [
+        ...prev.items,
+        { description: "", quantity: 1, unitPrice: 0, amount: 0 },
+      ],
     }));
   };
 
@@ -53,7 +57,10 @@ const InvoiceCreate = () => {
   };
 
   // Tính tổng tiền
-  const totalAmount = formData.items.reduce((sum, item) => sum + item.amount, 0);
+  const totalAmount = formData.items.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
 
   // Submit form tạo hóa đơn
   const handleSubmit = async (e) => {
@@ -92,7 +99,7 @@ const InvoiceCreate = () => {
       {error && <div className="error-msg">{error}</div>}
       {successMsg && <div className="success-msg">{successMsg}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="invoice-create-form" onSubmit={handleSubmit}>
         <label>
           ID lịch khám:
           <input
@@ -132,7 +139,9 @@ const InvoiceCreate = () => {
               type="text"
               placeholder="Mô tả"
               value={item.description}
-              onChange={(e) => handleItemChange(index, "description", e.target.value)}
+              onChange={(e) =>
+                handleItemChange(index, "description", e.target.value)
+              }
               required
             />
             <input
@@ -140,7 +149,9 @@ const InvoiceCreate = () => {
               min="1"
               placeholder="Số lượng"
               value={item.quantity}
-              onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
+              onChange={(e) =>
+                handleItemChange(index, "quantity", e.target.value)
+              }
               required
             />
             <input
@@ -148,7 +159,9 @@ const InvoiceCreate = () => {
               min="0"
               placeholder="Đơn giá"
               value={item.unitPrice}
-              onChange={(e) => handleItemChange(index, "unitPrice", e.target.value)}
+              onChange={(e) =>
+                handleItemChange(index, "unitPrice", e.target.value)
+              }
               required
             />
             <input

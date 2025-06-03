@@ -55,7 +55,6 @@ const Login = () => {
 
       // Reload trang để cập nhật app state
       window.location.reload();
-
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
       alert("Lỗi đăng nhập: " + (error.message || "Vui lòng thử lại"));
