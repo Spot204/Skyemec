@@ -34,7 +34,7 @@ router.post("/dangnhap", async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ message: "Mật khẩu không đúng" });
     }
-
+    c
     // Tạo JWT token
     const token = jwt.sign(
       { id: user._id, role: user.role, username: user.username },
