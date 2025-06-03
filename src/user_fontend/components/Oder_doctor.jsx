@@ -14,37 +14,26 @@ const Oder_doctor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      hospital: selectedHospital,
+      registeredHospital: selectedHospital,
       department: selectedDepartment,
       doctor: selectedDoctor,
-      date: selectedDate ? selectedDate.toISOString().split("T")[0] : "",
+      examinationDate: selectedDate ? selectedDate.toISOString().split("T")[0] : "",
       slot: selectedSlot ? String(selectedSlot) : "",
       gender: formData.gender,
       name: document.getElementById("Bodysd-input-name")?.value || "",
-      phone:
-        document.querySelector('input[placeholder="Nhập số điện thoại"]')
-          ?.value || "",
-      birthday:
-        document.querySelector('input[placeholder="Nhập ngày tháng năm sinh"]')
-          ?.value || "",
-      email:
-        document.querySelector('input[placeholder="Nhập email"]')?.value || "",
-      reason: document.querySelector(".Bodysd-inp-reason")?.value || "",
+      phone: document.querySelector('input[placeholder="Nhập số điện thoại"]')?.value || "",
+      birthDate: document.querySelector('input[placeholder="Nhập ngày tháng năm sinh"]')?.value || "",
+      email: document.querySelector('input[placeholder="Nhập email"]')?.value || "",
+      examinationReasons: [document.querySelector(".Bodysd-inp-reason")?.value || ""],
     };
 
     // Validate bắt buộc nhập
     if (
-      !data.hospital.trim() ||
-      !data.department.trim() ||
-      !data.doctor.trim() ||
-      !data.date.trim() ||
-      !data.slot.trim() ||
-      !data.gender.trim() ||
       !data.name.trim() ||
       !data.phone.trim() ||
-      !data.birthday.trim() ||
+      !data.birthDate.trim() ||
       !data.email.trim() ||
-      !data.reason.trim()
+      !data.examinationReasons[0].trim()
     ) {
       alert("Vui lòng nhập đầy đủ tất cả các trường bắt buộc!");
       return;

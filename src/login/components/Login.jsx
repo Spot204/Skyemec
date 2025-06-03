@@ -71,10 +71,10 @@ const Login = () => {
         onClick={() => navigate("/user/home")}
         style={{ cursor: "pointer" }}
       />
-      <div className="border">
+      <div className="border-form">
         <div className="form-section">
           <h2>Đăng nhập</h2>
-          <form onSubmit={handleLogin}>
+          <form className="main-login-form" onSubmit={handleLogin}>
             <input
               type="text"
               placeholder="Username"

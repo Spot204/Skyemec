@@ -21,7 +21,7 @@ const NotifyCustomer = () => {
   };
 
   return (
-    <div className="container">
+    <div className="notify-customer-container">
       <h2>Gửi thông báo cho khách hàng</h2>
       <label htmlFor="subject" className="label">
         Tiêu đề thông báo
