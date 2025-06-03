@@ -28,7 +28,7 @@ const Header = () => {
     localStorage.removeItem("doctorId");
 
     // Reload trang và điều hướng về login
-    window.location.href = "/login";
+    window.location.href = "/user/home";
   };
 
   const renderMenu = (title, items) => (
