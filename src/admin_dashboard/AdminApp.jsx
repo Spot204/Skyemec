@@ -2,19 +2,11 @@ import React from "react";
 import Header from "./src/components/Header";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import AdminDashboard from "./src/components/AdminDashboard";
 import AccountManagement from "./src/components/AccountManagement";
 import UpdateAccount from "./src/components/UpdateAccount";
-import ManagePermissions from "./src/components/ManagePermissions";
 import AppointmentManagement from "./src/components/AppointmentManagement";
 import DoctorManagement from "./src/components/DoctorManagement";
-import SpecialtyManagement from "./src/components/SpecialtyManagement";
-import DoctorFilter from "./src/components/DoctorFilter";
 import NewsManagement from "./src/components/NewsManagement";
-import NewsCategoryFilter from "./src/components/NewsCategoryFilter";
-import ContactList from "./src/components/ContactList";
-import ReplyContact from "./src/components/ReplyContact";
-import NotifyCustomer from "./src/components/NotifyCustomer";
 import InvoiceManagement from "./src/components/InvoiceManagement";
 import InvoiceCreate from "./src/components/InvoiceCreate"; 
 import StartAppointment from "./src/components/StatsAppointments";
@@ -28,22 +20,14 @@ const AdminApp = () => {
       <main style={{ padding: "20px", minHeight: "calc(100vh - 70px)" }}>
         <Routes>
           {/* Route mặc định /admin redirect về dashboard */}
-          <Route path="/" element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="/" element={<Navigate to="users" replace />} />
 
           {/* Các route chức năng */}
           <Route path="users" element={<AccountManagement />} />
           <Route path="users/edit" element={<UpdateAccount />} />
-          <Route path="permissions" element={<ManagePermissions />} />
           <Route path="appointments" element={<AppointmentManagement />} />
           <Route path="doctors" element={<DoctorManagement />} />
-          <Route path="specialties" element={<SpecialtyManagement />} />
-          <Route path="doctor-filter" element={<DoctorFilter />} />
           <Route path="news" element={<NewsManagement />} />
-          <Route path="news-category" element={<NewsCategoryFilter />} />
-          <Route path="contacts" element={<ContactList />} />
-          <Route path="contacts/reply" element={<ReplyContact />} />
-          <Route path="notifications" element={<NotifyCustomer />} />
           <Route path="start-appointment" element={<StartAppointment />} />
           <Route path="revenue-stats" element={<RevenueStats />} />
 

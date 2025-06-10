@@ -1,19 +1,27 @@
 import express from "express";
 import Invoice from "../model/InvoiceModel.js";
+import Appointment from "../model/Appointment.js"; // Đảm bảo đã import Appointment model
 
 const router = express.Router();
 
 // Tạo hóa đơn mới
 router.post("/", async (req, res) => {
   try {
-    const { appointmentId, invoiceNumber, issueDate, items, status, notes } = req.body;
+    const { invoiceNumber, issueDate, items, status, notes } = req.body;
 
+    // Kiểm tra nếu invoiceNumber đã tồn tại
+    const existingInvoice = await Invoice.findOne({ invoiceNumber });
+    if (existingInvoice) {
+      return res.status(400).json({ message: "Mã hóa đơn đã tồn tại" });
+    }
+
+    // Tính tổng tiền cho hóa đơn
     const totalAmount = Array.isArray(items)
       ? items.reduce((sum, item) => sum + (item.amount || 0), 0)
       : 0;
 
+    // Tạo hóa đơn mới
     const newInvoice = new Invoice({
-      appointmentId,
       invoiceNumber,
       issueDate: issueDate ? new Date(issueDate) : new Date(),
       items,
@@ -30,6 +38,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 // Lấy danh sách hóa đơn (hỗ trợ phân trang, lọc)
 router.get("/", async (req, res) => {
   try {
@@ -40,10 +49,9 @@ router.get("/", async (req, res) => {
     const skip = (page - 1) * limit;
 
     const invoices = await Invoice.find(query)
-      .populate("appointmentId")
       .sort({ issueDate: -1 })
       .skip(skip)
-      .limit(Number(limit));
+      .limit(Number(limit)); // Không cần populate("appointmentId")
 
     const total = await Invoice.countDocuments(query);
 
@@ -60,10 +68,12 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+// Lấy chi tiết hóa đơn theo ID
 // Lấy chi tiết hóa đơn theo ID
 router.get("/:id", async (req, res) => {
   try {
-    const invoice = await Invoice.findById(req.params.id).populate("appointmentId");
+    const invoice = await Invoice.findById(req.params.id); // Loại bỏ populate("appointmentId")
     if (!invoice) {
       return res.status(404).json({ message: "Không tìm thấy hóa đơn" });
     }
@@ -74,19 +84,22 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+// Cập nhật hóa đơn theo ID
 // Cập nhật hóa đơn theo ID
 router.put("/:id", async (req, res) => {
   try {
-    const { appointmentId, invoiceNumber, issueDate, items, status, notes } = req.body;
+    const { invoiceNumber, issueDate, items, status, notes } = req.body;
 
+    // Tính tổng tiền cho hóa đơn
     const totalAmount = Array.isArray(items)
       ? items.reduce((sum, item) => sum + (item.amount || 0), 0)
       : 0;
 
+    // Tiến hành cập nhật hóa đơn mà không cần appointmentId
     const updatedInvoice = await Invoice.findByIdAndUpdate(
       req.params.id,
       {
-        appointmentId,
         invoiceNumber,
         issueDate: issueDate ? new Date(issueDate) : new Date(),
         items,
@@ -107,6 +120,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ message: "Lỗi khi cập nhật hóa đơn" });
   }
 });
+
 
 // Xóa hóa đơn theo ID
 router.delete("/:id", async (req, res) => {

@@ -1,4 +1,3 @@
-// routes/createAccount.js
 import express from "express";
 import bcrypt from "bcryptjs";
 import User from "../model/AccountModel.js";
@@ -11,14 +10,18 @@ router.post("/", async (req, res) => {
     username,
     password,
     fullName,
-    phoneNumber,
-    gender,
+    phoneNumber = "",
+    gender = "",
     dateOfBirth,
-    address,
+    address = "",
     role,
-    doctorInfo,
-    userInfo,
+    doctorInfo = {},
   } = req.body;
+
+  // Validate required fields
+  if (!username || !password || !fullName || !role) {
+    return res.status(400).json({ message: "Thiếu trường bắt buộc" });
+  }
 
   try {
     // Kiểm tra username đã tồn tại chưa
@@ -27,27 +30,33 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Username đã tồn tại" });
     }
 
-    // Mã hóa mật khẩu trước khi lưu
+    // Mã hóa mật khẩu
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Chuyển dateOfBirth về Date nếu có
+    const dob = dateOfBirth ? new Date(dateOfBirth) : null;
 
     const newUser = new User({
       username,
-      password: hashedPassword, // Lưu password đã mã hóa
+      password: hashedPassword,
       fullName,
       phoneNumber,
       gender,
-      dateOfBirth,
+      dateOfBirth: dob,
       address,
       role,
       doctorInfo,
-      userInfo,
     });
 
     await newUser.save();
 
+    // Không trả về password
+    const userToReturn = newUser.toObject();
+    delete userToReturn.password;
+
     return res.status(201).json({
       message: "Tạo tài khoản thành công",
-      user: newUser,
+      user: userToReturn,
     });
   } catch (error) {
     console.error("Lỗi tạo tài khoản:", error);

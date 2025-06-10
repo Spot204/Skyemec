@@ -6,14 +6,19 @@ const API_BASE_URL = "http://localhost:5050/api/invoices";
  * @returns {Promise<Object>} - { data, total, page, limit, totalPages }
  */
 export async function getInvoices(params = {}) {
-  const queryString = new URLSearchParams(params).toString();
-  const url = `${API_BASE_URL}${queryString ? `?${queryString}` : ""}`;
+  try {
+    const queryString = new URLSearchParams(params).toString();
+    const url = `${API_BASE_URL}${queryString ? `?${queryString}` : ""}`;
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Lỗi khi lấy danh sách hóa đơn");
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Lỗi khi lấy danh sách hóa đơn: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Lỗi trong getInvoices:", error);
+    throw error;
   }
-  return response.json();
 }
 
 /**
@@ -22,11 +27,16 @@ export async function getInvoices(params = {}) {
  * @returns {Promise<Object>}
  */
 export async function getInvoiceById(id) {
-  const response = await fetch(`${API_BASE_URL}/${id}`);
-  if (!response.ok) {
-    throw new Error("Lỗi khi lấy chi tiết hóa đơn");
+  try {
+    const response = await fetch(`${API_BASE_URL}/${id}`);
+    if (!response.ok) {
+      throw new Error(`Lỗi khi lấy chi tiết hóa đơn: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Lỗi trong getInvoiceById:", error);
+    throw error;
   }
-  return response.json();
 }
 
 /**
@@ -35,16 +45,21 @@ export async function getInvoiceById(id) {
  * @returns {Promise<Object>}
  */
 export async function createInvoice(data) {
-  const response = await fetch(API_BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.message || "Lỗi khi tạo hóa đơn");
+  try {
+    const response = await fetch(API_BASE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.message || "Lỗi khi tạo hóa đơn");
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Lỗi trong createInvoice:", error);
+    throw error;
   }
-  return response.json();
 }
 
 /**
@@ -54,16 +69,21 @@ export async function createInvoice(data) {
  * @returns {Promise<Object>}
  */
 export async function updateInvoice(id, data) {
-  const response = await fetch(`${API_BASE_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.message || "Lỗi khi cập nhật hóa đơn");
+  try {
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.message || "Lỗi khi cập nhật hóa đơn");
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Lỗi trong updateInvoice:", error);
+    throw error;
   }
-  return response.json();
 }
 
 /**
@@ -72,11 +92,16 @@ export async function updateInvoice(id, data) {
  * @returns {Promise<void>}
  */
 export async function deleteInvoiceById(id) {
-  const response = await fetch(`${API_BASE_URL}/${id}`, {
-    method: "DELETE",
-  });
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.message || "Lỗi khi xóa hóa đơn");
+  try {
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.message || "Lỗi khi xóa hóa đơn");
+    }
+  } catch (error) {
+    console.error("Lỗi trong deleteInvoiceById:", error);
+    throw error;
   }
 }

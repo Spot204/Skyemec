@@ -15,27 +15,32 @@ const AppointmentList = ({ appointments, onSelect, onDelete }) => {
         </tr>
       </thead>
       <tbody>
-        {appointments.map((app) => (
-          <tr key={app._id}>
-            <td>{app._id}</td>
-            <td>{app.name || "—"}</td>
-            <td>{app.hospital || "—"}</td>
-            <td>{app.phone || "—"}</td>
-            <td>
-              <button className="btn btn-view" onClick={() => onSelect(app)}>
-                Xem
-              </button>
-            </td>
-            <td>
-              <button
-                className="btn btn-delete"
-                onClick={() => onDelete(app._id)}
-              >
-                Xóa
-              </button>
-            </td>
-          </tr>
-        ))}
+        {appointments.map((app) => {
+          // Map fallback cho hospital
+          const hospital = app.hospital || app.registeredHospital || "—";
+
+          return (
+            <tr key={app._id}>
+              <td>{app._id}</td>
+              <td>{app.name || "—"}</td>
+              <td>{hospital}</td>
+              <td>{app.phone || "—"}</td>
+              <td>
+                <button className="btn btn-view" onClick={() => onSelect(app)}>
+                  Xem
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-delete"
+                  onClick={() => onDelete(app._id)}
+                >
+                  Xóa
+                </button>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
