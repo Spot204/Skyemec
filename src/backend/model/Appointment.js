@@ -9,7 +9,7 @@ const RelativeSchema = new mongoose.Schema({
 
 const AppointmentSchema = new mongoose.Schema(
   {
-    hospital: { type: String }, // Cơ sở khám
+
     department: { type: String }, // Chuyên khoa
     doctor: { type: String }, // Bác sĩ được chọn
     doctorId: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor" },

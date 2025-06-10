@@ -17,7 +17,7 @@ const Oder_doctor = () => {
       registeredHospital: selectedHospital,
       department: selectedDepartment,
       doctor: selectedDoctor,
-      examinationDate: selectedDate ? selectedDate.toISOString().split("T")[0] : "",
+      examinationDate: selectedDate || null,
       slot: selectedSlot ? String(selectedSlot) : "",
       gender: formData.gender,
       name: document.getElementById("Bodysd-input-name")?.value || "",

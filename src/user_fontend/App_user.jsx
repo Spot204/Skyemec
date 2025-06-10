@@ -12,6 +12,8 @@ import Search_doctor from "./components/Search_doctor";
 import Oder_doctor from "./components/Oder_doctor";
 import CustomerService from "./components/CustomerService";
 import DrProfile from "../doctor_frontend/components/DrProfile";
+import Newlist from "./components/Newlist";
+import News from "./components/News";
 
 const App = () => {
   //const [currentPage, setCurrentPage] = useState("home");
@@ -167,6 +169,29 @@ const App = () => {
                 notes={notes}
                 images={images}
               />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="news"
+          element={
+            <>
+              <Body_Search_doctor topText="Tin tức" setTopText={setTopText} />
+              <Newlist />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="news/:id"
+          element={
+            <>
+              <Body_Search_doctor
+                topText="Tin tức chi tiết"
+                setTopText={setTopText}
+              />
+              <News />
               <Footer />
             </>
           }
