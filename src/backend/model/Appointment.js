@@ -26,7 +26,7 @@ const AppointmentSchema = new mongoose.Schema(
     ethnicity: String,
     address: String,
     insuranceNumber: String,
-    examinationDate: String,
+    examinationDate: { type: date }, // Sử dụng kiểu Date thay vì String
     registeredHospital: String,
     job: String,
     relatives: [RelativeSchema],

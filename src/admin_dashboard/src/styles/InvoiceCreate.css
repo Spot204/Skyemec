@@ -1,47 +1,54 @@
 .invoice-create-container {
-  max-width: 700px;
+  max-width: 800px;
   margin: 40px auto;
-  padding: 25px 40px;
-  background: #fff;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px 40px;
+  background: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #004d59;
-  box-shadow: 0 4px 12px rgba(0, 85, 102, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 85, 102, 0.1);
   border-radius: 10px;
 }
 
 .invoice-create-container h2 {
   font-weight: 700;
   font-size: 28px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   border-bottom: 3px solid #004d59;
   padding-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.invoice-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .invoice-create-form label {
-  display: block;
-  margin-bottom: 15px;
   font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
-.invoice-create-form form input[type="text"],
-.invoice-create-form form input[type="date"],
-.invoice-create-form form input[type="number"],
-.invoice-create-form form textarea {
+.invoice-create-form input[type="text"],
+.invoice-create-form input[type="date"],
+.invoice-create-form input[type="number"],
+.invoice-create-form textarea {
   width: 100%;
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
+  border-radius: 6px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-.invoice-create-form form input[type="text"]:focus,
-.invoice-create-form form input[type="date"]:focus,
-.invoice-create-form form input[type="number"]:focus,
-.invoice-create-form form textarea:focus {
+.invoice-create-form input[type="text"]:focus,
+.invoice-create-form input[type="date"]:focus,
+.invoice-create-form input[type="number"]:focus,
+.invoice-create-form textarea:focus {
   outline: none;
   border-color: #005566;
   box-shadow: 0 0 6px rgba(0, 85, 102, 0.5);
@@ -50,9 +57,9 @@
 .invoice-item-row {
   display: grid;
   grid-template-columns: 3fr 1fr 2fr 2fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 15px;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .invoice-item-row input[readonly] {
@@ -64,8 +71,8 @@
   background-color: #d9534f;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 6px 8px;
+  border-radius: 6px;
+  padding: 8px 15px;
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.3s ease;
@@ -84,12 +91,13 @@
   background-color: #005566;
   color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
+  padding: 12px 16px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 700;
   margin-bottom: 20px;
   transition: background-color 0.3s ease;
+  align-self: flex-start;
 }
 
 .add-item-btn:hover {
@@ -99,6 +107,7 @@
 .total-amount {
   font-weight: 700;
   font-size: 18px;
+  color: #005566;
   margin-bottom: 20px;
 }
 
@@ -106,10 +115,10 @@
   background-color: #004d59;
   color: white;
   border: none;
-  padding: 12px 18px;
+  padding: 14px 20px;
   font-weight: 700;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 18px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -127,17 +136,17 @@
 .error-msg {
   background-color: #f8d7da;
   color: #721c24;
-  padding: 12px 15px;
+  padding: 15px;
   border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 
 .success-msg {
   background-color: #d4edda;
   color: #155724;
-  padding: 12px 15px;
+  padding: 15px;
   border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-weight: 600;
 }

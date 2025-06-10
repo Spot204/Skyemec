@@ -45,7 +45,7 @@ const Login = () => {
 
       // Điều hướng theo role
       if (role === "admin") {
-        navigate("/admin/dashboard");
+        navigate("/admin/users");
       } else if (role === "doctor") {
         localStorage.setItem("doctorId", user._id);
         navigate("/doctor");

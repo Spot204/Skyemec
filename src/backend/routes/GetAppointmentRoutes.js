@@ -3,6 +3,13 @@ import Appointment from "../model/Appointment.js";
 
 const router = express.Router();
 
+const mapAppointment = (appointment) => ({
+  ...appointment.toObject(),
+  hospital: appointment.hospital || appointment.registeredHospital,
+  birthday: appointment.birthday || appointment.birthDate,
+  date: appointment.date || appointment.examinationDate,
+});
+
 /**
  * @route   GET /api/appointments
  * @desc    Lấy danh sách lịch hẹn với tìm kiếm, lọc, phân trang
@@ -39,8 +46,10 @@ router.get("/", async (req, res) => {
 
     const total = await Appointment.countDocuments(query);
 
+    const mappedAppointments = appointments.map(mapAppointment);
+
     res.status(200).json({
-      data: appointments,
+      data: mappedAppointments,
       total,
       page: Number(page),
       limit: Number(limit),
@@ -52,23 +61,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * @route   GET /api/appointments/:id
- * @desc    Lấy chi tiết lịch hẹn theo ID
- * @access  Public
- */
-router.get("/:id", async (req, res) => {
-  try {
-    const appointment = await Appointment.findById(req.params.id);
-    if (!appointment) {
-      return res.status(404).json({ message: "Không tìm thấy lịch hẹn" });
-    }
-    res.status(200).json(appointment);
-  } catch (error) {
-    console.error("GET /api/appointments/:id error:", error);
-    res.status(500).json({ message: "Lỗi server khi lấy chi tiết lịch hẹn" });
-  }
-});
+
 
 /**
  * @route   DELETE /api/appointments/:id
@@ -90,50 +83,65 @@ router.delete("/:id", async (req, res) => {
 });
 
 /**
- * @route   GET /api/appointments/stats/monthly
- * @desc    Thống kê số lượng lịch khám theo tháng
+ * @route   GET /api/appointments/stats
+ * @desc    Thống kê số lượng lịch khám theo ngày được đặt lịch khám trong khoảng thời gian và bệnh viện được chọn
  * @access  Public
  */
-router.get("/stats/monthly", async (req, res) => {
+router.get("/stats", async (req, res) => {
   try {
+    const { startDate, endDate, hospital } = req.query;
+
+    // Kiểm tra và chuyển đổi ngày tháng (startDate, endDate) thành Date objects
+    const start = startDate ? new Date(startDate) : new Date();
+    const end = endDate ? new Date(endDate) : new Date();
+
+    // Tạo query filter cho thống kê
+    const query = {
+      examinationDate: { $gte: start, $lte: end }, // Lọc theo examinationDate
+    };
+
+    // Nếu có bệnh viện, thêm điều kiện vào query
+    if (hospital) {
+      query.registeredHospital = { $regex: hospital, $options: "i" }; // Lọc theo registeredHospital
+    }
+
+    // Thực hiện aggregation để nhóm dữ liệu theo ngày
     const stats = await Appointment.aggregate([
       {
+        $match: query, // Áp dụng filter từ query
+      },
+      {
         $group: {
-          _id: { $dateToString: { format: "%Y-%m", date: "$date" } },
-          count: { $sum: 1 },
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$examinationDate" } }, // Nhóm theo ngày examinationDate
+          count: { $sum: 1 }, // Đếm số lượng lịch khám
         },
       },
-      { $sort: { _id: 1 } },
+      { $sort: { _id: 1 } }, // Sắp xếp theo ngày
     ]);
 
-    res.status(200).json(stats);
+    res.status(200).json(stats); // Trả về thống kê
   } catch (error) {
-    console.error("GET /api/appointments/stats/monthly error:", error);
-    res.status(500).json({ message: "Lỗi khi lấy thống kê lịch khám theo tháng" });
+    console.error("GET /api/appointments/stats error:", error);
+    res.status(500).json({ message: "Lỗi khi lấy thống kê lịch khám theo ngày" });
   }
 });
 
 /**
- * @route   GET /api/appointments/stats/weekly
- * @desc    Thống kê số lượng lịch khám theo tuần
+ * @route   GET /api/appointments/:id
+ * @desc    Lấy chi tiết lịch hẹn theo ID
  * @access  Public
  */
-router.get("/stats/weekly", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const stats = await Appointment.aggregate([
-      {
-        $group: {
-          _id: { isoWeekYear: { $isoWeekYear: "$date" }, week: { $isoWeek: "$date" } },
-          count: { $sum: 1 },
-        },
-      },
-      { $sort: { "_id.isoWeekYear": 1, "_id.week": 1 } },
-    ]);
+    const appointment = await Appointment.findById(req.params.id);
+    if (!appointment) {
+      return res.status(404).json({ message: "Không tìm thấy lịch hẹn" });
+    }
 
-    res.status(200).json(stats);
+    res.status(200).json(appointment);
   } catch (error) {
-    console.error("GET /api/appointments/stats/weekly error:", error);
-    res.status(500).json({ message: "Lỗi khi lấy thống kê lịch khám theo tuần" });
+    console.error("GET /api/appointments/:id error:", error);
+    res.status(500).json({ message: "Lỗi server khi lấy chi tiết lịch hẹn" });
   }
 });
 

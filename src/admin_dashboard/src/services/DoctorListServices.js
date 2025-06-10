@@ -1,13 +1,17 @@
-const API_BASE_URL = "http://localhost:5050/api/doctor-list/load";
+const API_BASE_URL = "http://localhost:5050/api/doctor-list"; // Giữ nguyên đường dẫn API như bạn yêu cầu
 
-export async function fetchDoctors(specialty = "") {
+/**
+ * Lấy danh sách bác sĩ, filter theo chuyên khoa (có thể thêm phân trang)
+ * @param {Object} params - { specialty, page, limit }
+ */
+export async function fetchDoctors(params = {}) {
   try {
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch(`${API_BASE_URL}/load`, {  // Giữ endpoint load như cũ
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(specialty ? { specialty } : {}),
+      body: JSON.stringify(params),
     });
 
     if (!response.ok) {
@@ -19,18 +23,24 @@ export async function fetchDoctors(specialty = "") {
 
     return await response.json();
   } catch (error) {
-    console.error(" Lỗi fetchDoctors:", error);
+    console.error("Lỗi fetchDoctors:", error);
     throw error;
   }
 }
-export async function searchDoctors(name, specialty = "") {
+
+/**
+ * Tìm kiếm bác sĩ theo tên và chuyên khoa
+ * @param {Object} params - { name, specialty, page, limit }
+ */
+export async function searchDoctors(params = {}) {
   try {
-    const response = await fetch(`${API_BASE_URL}sreach`, {
+    // Giữ nguyên endpoint search
+    const response = await fetch(`${API_BASE_URL}/search`, {  // Giữ endpoint search như cũ
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, specialty }),
+      body: JSON.stringify(params),
     });
 
     if (!response.ok) {
@@ -42,7 +52,7 @@ export async function searchDoctors(name, specialty = "") {
 
     return await response.json();
   } catch (error) {
-    console.error(" Lỗi searchDoctors:", error);
+    console.error("Lỗi searchDoctors:", error);
     throw error;
   }
 }

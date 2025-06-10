@@ -4,8 +4,7 @@ import "../styles/InvoiceCreate.css";
 
 const InvoiceCreate = () => {
   const [formData, setFormData] = useState({
-    appointmentId: "",
-    invoiceNumber: "",
+    invoiceNumber: "", // Mã hóa đơn
     issueDate: "",
     items: [{ description: "", quantity: 1, unitPrice: 0, amount: 0 }],
     status: "pending",
@@ -70,7 +69,14 @@ const InvoiceCreate = () => {
     setSuccessMsg(null);
 
     try {
-      await createInvoice({
+      // Đảm bảo rằng Mã hóa đơn là duy nhất và hợp lệ
+      if (!formData.invoiceNumber) {
+        setError("Mã hóa đơn không thể để trống.");
+        setLoading(false);
+        return;
+      }
+
+      const newInvoice = await createInvoice({
         ...formData,
         totalAmount,
         issueDate: formData.issueDate || new Date().toISOString().slice(0, 10),
@@ -78,7 +84,6 @@ const InvoiceCreate = () => {
       setSuccessMsg("Tạo hóa đơn thành công!");
       // Reset form hoặc chuyển hướng tuỳ bạn
       setFormData({
-        appointmentId: "",
         invoiceNumber: "",
         issueDate: "",
         items: [{ description: "", quantity: 1, unitPrice: 0, amount: 0 }],
@@ -100,17 +105,6 @@ const InvoiceCreate = () => {
       {successMsg && <div className="success-msg">{successMsg}</div>}
 
       <form className="invoice-create-form" onSubmit={handleSubmit}>
-        <label>
-          ID lịch khám:
-          <input
-            type="text"
-            name="appointmentId"
-            value={formData.appointmentId}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
         <label>
           Mã hóa đơn:
           <input
