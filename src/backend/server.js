@@ -20,7 +20,6 @@ import DoctorListRoutes from "./routes/DoctorListRoutes.js";
 import getAppointmentRoutes from "./routes/GetAppointmentRoutes.js";
 import invoiceRoutes from "./routes/InvoiceRoutes.js";
 import statsRoutes from "./routes/StatsRoutes.js";
-import revenueRoutes from "./routes/RevenueRoutes.js";
 
 dotenv.config();
 
@@ -55,7 +54,6 @@ app.use("/api/appointments", getAppointmentRoutes);
 app.use("/api/newss", newsRoutes); // Đăng ký route lấy tin tức
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/stats", statsRoutes);
-app.use("/api/revenue", revenueRoutes);
 
 // Middleware xử lý lỗi
 app.use((req, res, next) => {

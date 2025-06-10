@@ -10,7 +10,6 @@ import NewsManagement from "./src/components/NewsManagement";
 import InvoiceManagement from "./src/components/InvoiceManagement";
 import InvoiceCreate from "./src/components/InvoiceCreate"; 
 import StartAppointment from "./src/components/StatsAppointments";
-import RevenueStats from "./src/components/RevenueStats";
 
 
 const AdminApp = () => {
@@ -29,7 +28,6 @@ const AdminApp = () => {
           <Route path="doctors" element={<DoctorManagement />} />
           <Route path="news" element={<NewsManagement />} />
           <Route path="start-appointment" element={<StartAppointment />} />
-          <Route path="revenue-stats" element={<RevenueStats />} />
 
 
 

@@ -87,11 +87,10 @@ const Header = () => {
         ])}
         {renderMenu("Hóa đơn", [
           { label: "Quản lý hóa đơn", path: "/admin/invoices" },
-          { label: "Tạo biên lai tự động", path: "/admin/invoices/create" },
+          { label: "Tạo biên lai", path: "/admin/invoices/create" },
         ])}
         {renderMenu("Thống kê", [
           { label: "Lịch khám theo tuần/tháng", path: "/admin/start-appointment" },
-          { label: "Doanh thu", path: "/admin/revenue-stats" },
         ])}
       </ul>
       <div className="ad-Header-navbar-right">
