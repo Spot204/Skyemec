@@ -9,7 +9,9 @@ router.post("/", async (req, res) => {
     const { name, headers, notes, images } = req.body;
 
     if (!name) {
-      return res.status(400).json({ message: "Tên tin tức không được để trống" });
+      return res
+        .status(400)
+        .json({ message: "Tên tin tức không được để trống" });
     }
 
     const newNews = new News({ name, headers, notes, images });
@@ -18,7 +20,9 @@ router.post("/", async (req, res) => {
     res.status(201).json({ message: "Thêm tin tức thành công", news: newNews });
   } catch (error) {
     console.error("Lỗi khi thêm tin tức:", error);
-    res.status(500).json({ message: "Lỗi server khi thêm tin tức", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Lỗi server khi thêm tin tức", error: error.message });
   }
 });
 
@@ -29,7 +33,12 @@ router.get("/", async (req, res) => {
     res.json(newsList);
   } catch (error) {
     console.error("Lỗi khi lấy danh sách tin tức:", error);
-    res.status(500).json({ message: "Lỗi server khi lấy danh sách tin tức", error: error.message });
+    res
+      .status(500)
+      .json({
+        message: "Lỗi server khi lấy danh sách tin tức",
+        error: error.message,
+      });
   }
 });
 
@@ -46,13 +55,20 @@ router.put("/:id", async (req, res) => {
     );
 
     if (!updatedNews) {
-      return res.status(404).json({ message: "Không tìm thấy tin tức với ID này" });
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy tin tức với ID này" });
     }
 
     res.json({ message: "Cập nhật tin tức thành công", news: updatedNews });
   } catch (error) {
     console.error("Lỗi khi cập nhật tin tức:", error);
-    res.status(500).json({ message: "Lỗi server khi cập nhật tin tức", error: error.message });
+    res
+      .status(500)
+      .json({
+        message: "Lỗi server khi cập nhật tin tức",
+        error: error.message,
+      });
   }
 });
 
@@ -62,12 +78,32 @@ router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     const deleted = await News.findByIdAndDelete(id);
     if (!deleted) {
-      return res.status(404).json({ message: "Không tìm thấy tin tức với ID này" });
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy tin tức với ID này" });
     }
     res.json({ message: "Xóa tin tức thành công" });
   } catch (error) {
     console.error("Lỗi khi xóa tin tức:", error);
-    res.status(500).json({ message: "Lỗi server khi xóa tin tức", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Lỗi server khi xóa tin tức", error: error.message });
+  }
+});
+
+// Lấy tin tức theo ID
+router.get("/:id", async (req, res) => {
+  try {
+    const news = await News.findById(req.params.id);
+    if (!news)
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy tin tức với ID này" });
+    res.json(news);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Lỗi server khi lấy tin tức", error: error.message });
   }
 });
 

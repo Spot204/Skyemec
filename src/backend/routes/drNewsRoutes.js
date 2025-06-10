@@ -20,7 +20,7 @@ router.get("/tintucyte", async (req, res) => {
           .includes(keyword)
       )
     );
-    res.json(filtered.slice(0, 6));
+    res.json(filtered.slice(0, 8));
   } catch (err) {
     res.status(500).json({ error: "Không lấy được tin tức" });
   }

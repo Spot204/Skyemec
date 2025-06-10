@@ -37,9 +37,9 @@
 
 .btn-register-for-examination {
   width: 120px;
-  height: 40px;
+  height: 50px !important ;
   border: 0px;
-  background-color: #0076c0;
+  background-color: #0076c0 !important;
   border-radius: 5px;
   color: white;
   margin-top: 15px;
@@ -61,8 +61,8 @@
 }
 
 .btn-List-number {
-  background-color: aliceblue;
-  color: black;
+  background-color: aliceblue !important;
+  color: black !important;
   border: 0;
   border-radius: 20px;
   margin: 0 3px;
@@ -75,7 +75,7 @@
 }
 .btn-List-number:hover,
 .btn-List-number.active {
-  background-color: #0076c0;
+  background-color: #0076c0 !important;
   color: white;
 }
 

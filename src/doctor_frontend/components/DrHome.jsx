@@ -20,7 +20,7 @@ const DrHome = () => {
   return (
     <div className="drhome-cover">
       <div className="drhome-top-text">
-        <a>Xin chào bác sĩ!</a>
+        <a>XIN CHÀO BÁC SĨ!!😊</a>
       </div>
       <img className="drhome-top-img" src={topimage} alt="topimage" />
       <div className="drhome-container">
