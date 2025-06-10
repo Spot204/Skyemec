@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Schema cho mỗi mục trong hóa đơn
 const InvoiceItemSchema = new mongoose.Schema({
   description: { type: String, required: true },
   quantity: { type: Number, required: true, default: 1 },
@@ -7,35 +8,23 @@ const InvoiceItemSchema = new mongoose.Schema({
   amount: { type: Number, required: true }, // Thành tiền
 });
 
+// Schema cho hóa đơn
 const InvoiceSchema = new mongoose.Schema({
-  invoiceNumber: { type: String, required: true, unique: true },
-  issueDate: { type: Date, default: Date.now },  // Ngày phát hành
-  items: [InvoiceItemSchema],  // Danh sách dịch vụ
-  totalAmount: { 
-    type: Number, 
-    required: true, 
-    default: 0
+  appointmentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Appointment", // Tham chiếu đến Appointment model
+    required: true,
   },
+  invoiceNumber: { type: String, required: true, unique: true }, // Mã hóa đơn
+  issueDate: { type: Date, default: Date.now }, // Ngày phát hành
+  items: [InvoiceItemSchema], // Danh sách các mục hóa đơn
+  totalAmount: { type: Number, required: true }, // Tổng tiền
   status: {
     type: String,
     enum: ["pending", "paid", "canceled"],
-    default: "pending",  // Trạng thái hóa đơn
-  },
-  paymentDate: { type: Date },  // Ngày thanh toán
-  notes: { type: String },  // Ghi chú
-});
-
-// Tính toán tổng tiền và lưu vào totalAmount khi tạo hóa đơn
-InvoiceSchema.pre('save', function(next) {
-  if (this.isModified('items')) {
-    let total = 0;
-    this.items.forEach(item => {
-      item.amount = item.quantity * item.unitPrice;
-      total += item.amount;
-    });
-    this.totalAmount = total;  // Tính toán lại tổng tiền
-  }
-  next();
+    default: "pending",
+  }, // Trạng thái hóa đơn
+  notes: { type: String }, // Ghi chú
 });
 
 const Invoice = mongoose.model("Invoice", InvoiceSchema);
